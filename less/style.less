@@ -1,0 +1,41 @@
+// Import Elements Mixins
+@import "elements.less";
+
+@nice-blue: #5B83AD;
+@column-body : #26282a;
+@column-grey : #3a3d42;
+
+body
+{
+  background-color: #55555a;
+  //background-color:#ffffff;
+  //font-family: 'Merriweather Sans', sans-serif;
+}
+
+.friendTweets
+{
+  background-color: @column-grey ;
+  .rounded(10px);
+  .drop-shadow(5px,5px, 5px, 0.1);
+  color: #bbbbbb;
+
+  .colTweets
+  {
+    background-color: @column-body ;
+  }
+
+  h3 {
+    padding-left: 20px;
+    color: #bbbbbb;
+  }
+}
+
+.tweetprofilepic
+{
+  float: left;
+  width::55px;
+  img {
+    width:48px;
+    height:48px;
+  }
+}
