@@ -18,6 +18,9 @@
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href="less/style.less" rel="stylesheet/less">
 
+    <!--Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -47,7 +50,7 @@
         <div class="span4 friendTweets" ng-controller="FriendTweetsCtrl">
             <h3>1. Home</h3>
             <div class="colTweets">
-                <div ng-repeat="tweet in tweets">
+                <div ng-repeat="tweet in tweets" class="tweetBox">
                     <tweet></tweet>
                 </div>
             </div>

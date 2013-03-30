@@ -5,15 +5,13 @@
 @column-body : #26282a;
 @column-grey : #3a3d42;
 
-body
-{
+body{
   background-color: #55555a;
   //background-color:#ffffff;
-  //font-family: 'Merriweather Sans', sans-serif;
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
-.friendTweets
-{
+.friendTweets{
   background-color: @column-grey ;
   .rounded(10px);
   .drop-shadow(5px,5px, 5px, 0.1);
@@ -30,12 +28,49 @@ body
   }
 }
 
-.tweetprofilepic
-{
-  float: left;
-  width::55px;
-  img {
-    width:48px;
-    height:48px;
+
+.tweetBox{
+  .tweetprofilepic {
+    float:left;
+    width:55px;
+    padding:10px;
+
+    img {
+      width:48px;
+      height:48px;
+
+    }
+  }
+
+  .tweetdetails {
+    padding-top: 10px;
+
+    a {
+      color: #cccccc;
+    }
+
+    p {
+      font-style: normal;
+      overflow: hidden;
+    }
+
+    .screen_name{
+
+      color: #666666;
+
+      a:hover , a:link, a:visited {
+        text-decoration: none;
+      }
+    }
+  }
+
+  hr {
+    padding: 0;
+    margin: 0;
+    clear: both;
+    border: 0;
+    background-color: #3c3c3c;
+    height: 1px;
   }
 }
+
