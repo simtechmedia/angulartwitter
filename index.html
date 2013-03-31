@@ -1,20 +1,14 @@
-
 <!DOCTYPE html>
 <html ng-app="angtwit" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>AngTwitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        }
-    </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href="less/style.less" rel="stylesheet/less">
 
@@ -45,25 +39,60 @@
 </div>
 
 <div class="container">
+    <div class="row" ng-controller="ColumnsCtrl">
+        <div class="span4" ng-repeat="column in ColumnData.columns">
+            <tweetColumn type="{{column['type']}}"></tweetColumn>
+        </div>
+    </div>
+</div>
 
-    <div class="row">
-        <div class="span4 friendTweets" ng-controller="FriendTweetsCtrl">
-            <h3>1. Home</h3>
-            <div class="colTweets">
-                <div ng-repeat="tweet in tweets" class="tweetBox">
-                    <tweet></tweet>
+<! -- Templates -- >
+<script type="text/ng-template" id="friendtweets-column.html">
+    <div class="span4 friendTweets" ng-controller="FriendTweetsCtrl">
+        <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
+        <div class="colTweets">
+            <div ng-repeat="tweet in tweets" class="tweetBox">
+                <div class="tweetprofilepic">
+                    <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
+                <div class="tweetdetails">
+                    <p><a href="#"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
+                </div>
+                <hr/>
             </div>
         </div>
     </div>
+</script>
 
-</div>
+<script type="text/ng-template" id="search-column.html">
+    <div class="span4 friendTweets" ng-controller="SeatchTweetsCtrl">
+        <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
+        <i class="icon-search icon-white heading-icon"></i>
+        <div class="colTweets">
+            <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
+                <div class="tweetprofilepic">
+                    <img ng-src="{{tweet.profile_image_url}}">
+                </div>
+                <div class="tweetdetails">
+                    <p><a href="#"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
+                    <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
+                </div>
+                <hr/>
+            </div>
+        </div>
+        <loadtweets></loadtweets>
+    </div>
+</script>
+
 
 
 <script src="js/angular.min.js"></script>
 <script src="js/angular-sanitize.js"></script>
 <script src="js/angular-ui.js"></script>
 <script src="js/less-1.3.3.min.js"></script>
+
+<script src="js/jquery-1.9.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>
 

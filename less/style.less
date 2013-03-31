@@ -6,6 +6,7 @@
 @column-grey : #3a3d42;
 
 body{
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
   background-color: #55555a;
   //background-color:#ffffff;
   font-family: 'Merriweather Sans', sans-serif;
@@ -17,6 +18,7 @@ body{
   .drop-shadow(5px,5px, 5px, 0.1);
   color: #bbbbbb;
 
+
   .colTweets
   {
     background-color: @column-body ;
@@ -24,16 +26,54 @@ body{
 
   h3 {
     padding-left: 20px;
+    line-height: 55px;
+    display: inline;
     color: #bbbbbb;
+  }
+
+  .heading-icon
+  {
+    float: right;
+    margin: 22px;
+  }
+
+
+
+}
+
+
+
+.loadmoretweets {
+
+  p {
+    font-weight: bold;
+    font-size:18px;
+    text-align: center;
+    color: #a7a7a7;
+    margin:auto;
+    line-height:51px;
+    vertical-align:middle;
+  }
+
+  p:hover {
+    color: #ffffff;
   }
 }
 
 
+
+
 .tweetBox{
+
+  position: relative;
+
   .tweetprofilepic {
+
+    position: absolute;
     float:left;
     width:55px;
-    padding:10px;
+    top: 10px;
+    left: 10px;
 
     img {
       width:48px;
@@ -43,7 +83,8 @@ body{
   }
 
   .tweetdetails {
-    padding-top: 10px;
+
+    padding:10px 10px 10px 70px;
 
     a {
       color: #cccccc;
@@ -52,6 +93,7 @@ body{
     p {
       font-style: normal;
       overflow: hidden;
+      display: block;
     }
 
     .screen_name{
