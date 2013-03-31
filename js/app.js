@@ -101,16 +101,7 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     }
 
     $scope.addHTML = function( st ){
-
-        // Add Ancor to HTTP
-        var regEx = /@([a-z0-9_]{1,20})/gi;
-        var newString = st.replace(  regEx , "<a href='#'>@$1</a>" );
-
-        // Adds Ancor to links
-        var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-        newString = newString.replace(  htmlRegEx , "<a href='$1'>$1</a>" );
-
-        return newString;
+        return addLinksToHtml(st);
     }
 }
 
@@ -123,16 +114,27 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
     });
 
     $scope.addHTML = function( st ){
-
-        // Add Ancor to HTTP
-        var regEx = /@([a-z0-9_]{1,20})/gi;
-        var newString = st.replace(  regEx , "<a href='#'>@$1</a>" );
-
-        // Adds Ancor to links
-        var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-        newString = newString.replace(  htmlRegEx , "<a href='$1'>$1</a>" );
-
-        return newString;
+        return addLinksToHtml(st);
     }
+}
+
+function TopBarCtrl ()
+{
+
+}
+
+function addLinksToHtml(st)
+{
+    // Add Ancor to HTTP
+    var regEx = /@([a-z0-9_]{1,20})/gi;
+    var newString = st.replace(  regEx , "<a href='#'>@$1</a>" );
+
+    // Adds Ancor to links
+    var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    newString = newString.replace(  htmlRegEx , "<a href='$1'>$1</a>" );
+
+    // Add HashTags
+
+    return newString;
 }
 

@@ -30,10 +30,16 @@
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="TopBarCtrl">
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="#">AngTwit</a>
+
+            <form class="form-search top-search">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn">Search</button>
+            </form>
+
         </div>
     </div>
 </div>
@@ -50,6 +56,7 @@
 <script type="text/ng-template" id="friendtweets-column.html">
     <div class="span4 friendTweets" ng-controller="FriendTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
+        <i class="icon-home icon-white heading-icon"></i>
         <div class="colTweets">
             <div ng-repeat="tweet in tweets" class="tweetBox">
                 <div class="tweetprofilepic">
