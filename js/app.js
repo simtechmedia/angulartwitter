@@ -1,4 +1,4 @@
-var app = angular.module("angtwit", ['ui','ngSanitize'] , function($routeProvider, $locationProvider) {
+var app = angular.module("angtwit", ['ngSanitize','ui.directives', 'ui.bootstrap', 'plunker'] , function($routeProvider, $locationProvider) {
 
 });
 
@@ -39,6 +39,12 @@ app.directive("loadtweets",function(){
         }
     }
 });
+
+function PopoverDemoCtrl ($scope) {
+    $scope.dynamicPopover = "Hello, World!";
+    $scope.dynamicPopoverText = "dynamic";
+    $scope.dynamicPopoverTitle = "Title";
+};
 
 
 app.directive( "tweetcolumn" , function ($compile) {
@@ -82,6 +88,8 @@ function ColumnsCtrl ( $scope, ColumnData )
     //console.log(ColumnData.columns.length);
 }
 
+
+// Controller for any search collumns
 function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 {
     $scope.data = ColumnData;
@@ -105,6 +113,7 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     }
 }
 
+// Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http , ColumnData )
 {
     $scope.data = ColumnData;
@@ -118,9 +127,17 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
     }
 }
 
-function TopBarCtrl ()
-{
 
+// Controller for Top Bar
+// Used for holding user data
+function TopBarCtrl (  $scope , $http , ColumnData )
+{
+    $scope.data = ColumnData;       //incase it needs it
+    $http.get('data/userData.json').success(function(data) {
+        var results = data.query.results
+        $scope.userData = results;
+        console.log(results);
+    });
 }
 
 function addLinksToHtml(st)
@@ -134,7 +151,6 @@ function addLinksToHtml(st)
     newString = newString.replace(  htmlRegEx , "<a href='$1'>$1</a>" );
 
     // Add HashTags
-
     return newString;
 }
 
