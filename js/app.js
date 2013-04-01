@@ -1,4 +1,4 @@
-var app = angular.module("angtwit", ['ngSanitize','ui.directives', 'ui.bootstrap', 'plunker'] , function($routeProvider, $locationProvider) {
+var app = angular.module("angtwit", ['ngSanitize','$strap.directives'] , function($routeProvider, $locationProvider) {
 
 });
 
@@ -40,11 +40,6 @@ app.directive("loadtweets",function(){
     }
 });
 
-function PopoverDemoCtrl ($scope) {
-    $scope.dynamicPopover = "Hello, World!";
-    $scope.dynamicPopoverText = "dynamic";
-    $scope.dynamicPopoverTitle = "Title";
-};
 
 
 app.directive( "tweetcolumn" , function ($compile) {
@@ -89,6 +84,7 @@ function ColumnsCtrl ( $scope, ColumnData )
 }
 
 
+
 // Controller for any search collumns
 function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 {
@@ -101,7 +97,6 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
         var results = data.query.results.results;
         $scope.tweets = results;
     });
-
 
     $scope.addMorePages = function() {
         console.log("addingMorePages");
@@ -127,7 +122,6 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
     }
 }
 
-
 // Controller for Top Bar
 // Used for holding user data
 function TopBarCtrl (  $scope , $http , ColumnData )
@@ -138,6 +132,32 @@ function TopBarCtrl (  $scope , $http , ColumnData )
         $scope.userData = results;
         console.log(results);
     });
+
+
+}
+
+// Search More Tweets Controller
+function TopSearchBarCtrl ($scope)
+{
+    $scope.content;                         // Content
+    $scope.searchDisabled = true;           // Toggle to disable button
+    $scope.searchVars = {
+       searchString : ""
+    }
+    // On Text Type
+    $scope.change = function()
+    {
+        ($scope.searchVars.searchString.length > 2 ) ?  $scope.searchDisabled = false :  $scope.searchDisabled = true;
+    }
+    //http://search.twitter.com/search.json?q=blue%20angels&rpp=5&include_entities=true&result_type=mixed
+    $scope.searchTweets = function()
+    {
+        var searchString = encodeURI($scope.searchVars.searchString);
+    }
+    // Popover Content
+    $scope.popover = {
+        "content": "Hello Popover<br />This is a multiline message!"
+    }
 }
 
 function addLinksToHtml(st)

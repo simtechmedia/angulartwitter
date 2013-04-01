@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\js\angular-ui.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\js\plunker.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\js\select2.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\js\ui-bootstrap-0.2.0.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\js\ui-bootstrap-tpls-0.2.0.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\js\ui-select2.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\template\popover\popover.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364691007365" ignored="false" />
-    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364782158020" ignored="false" />
+    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364857388846" ignored="false" />
     <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364763182973" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364779003912" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364857862227" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -19,6 +26,7 @@
     <file path="$PROJECT_DIR$/../portang/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364716983580" ignored="false" />
     <file path="/HTML Fragment (app.js:694).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364725577374" ignored="false" />
     <file path="/popover.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364780639325" ignored="false" />
+    <file path="/index2.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364793967826" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +46,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="57" selection-start="5676" selection-end="5676" vertical-scroll-proportion="0.7653928">
+            <state line="41" column="14" selection-start="2124" selection-end="2124" vertical-scroll-proportion="4.117647">
               <folding />
             </state>
           </provider>
@@ -56,19 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="21" selection-start="1716" selection-end="1716" vertical-scroll-proportion="27.92">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="popover.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/popover/popover.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="5" selection-start="5" selection-end="5" vertical-scroll-proportion="-0.0">
+            <state line="137" column="0" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.40509012">
               <folding />
             </state>
           </provider>
@@ -87,15 +86,6 @@
         <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
           <provider selected="true" editor-type-id="text-editor">
             <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/less/style.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="143" column="12" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -131,8 +121,9 @@
         <option value="$PROJECT_DIR$/data/userData.json" />
         <option value="$PROJECT_DIR$/less/style.less" />
         <option value="$PROJECT_DIR$/template/popover/popover.html" />
-        <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -183,24 +174,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="angulartwitter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angulartwitter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angulartwitter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="popover" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,6 +259,13 @@
       <option name="filePath" />
       <option name="scope" value="ALL" />
       <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <list size="0" />
@@ -399,20 +379,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1926" selection-end="1926" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="36" selection-start="1316" selection-end="1316" vertical-scroll-proportion="0.0">
@@ -462,16 +428,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
+    <entry file="file://$PROJECT_DIR$/index2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
+        <state line="34" column="6" selection-start="2652" selection-end="2652" vertical-scroll-proportion="-17.576923">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/less/style.less">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/phrase.rnc">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="12" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.0">
+        <state line="52" column="35" selection-start="1353" selection-end="1353" vertical-scroll-proportion="0.52165157">
           <folding />
         </state>
       </provider>
@@ -483,6 +449,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/less/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="12" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.8630413">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
@@ -490,23 +470,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/popover/popover.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="5" selection-start="5" selection-end="5" vertical-scroll-proportion="0.0">
+        <state line="41" column="14" selection-start="2124" selection-end="2124" vertical-scroll-proportion="4.117647">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="21" selection-start="1716" selection-end="1716" vertical-scroll-proportion="27.92">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="57" selection-start="5676" selection-end="5676" vertical-scroll-proportion="0.7653928">
+        <state line="137" column="0" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.40509012">
           <folding />
         </state>
       </provider>
