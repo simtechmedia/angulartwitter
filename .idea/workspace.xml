@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\index2.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
@@ -11,9 +10,9 @@
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364691007365" ignored="false" />
-    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364860955824" ignored="false" />
+    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364893912265" ignored="false" />
     <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364876716646" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364872271204" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364899037824" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -40,88 +39,71 @@
     <favorites_list name="angulartwitter" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5682041">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="59" column="60" selection-start="2823" selection-end="2831" vertical-scroll-proportion="1.8431373">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="style.less" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/less/style.less">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="157" column="11" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.7536232">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="elements.less" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/less/elements.less">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="47" column="5" selection-start="2283" selection-end="2287" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HomeTweets.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/js/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="158" column="20" selection-start="4509" selection-end="4509" vertical-scroll-proportion="-10.1">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userData.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/userData.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="31" column="41" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="searchangularjs.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="HTML Fragment (app.js:4508).html" pinned="false" current="false" current-in-tab="true">
-            <entry file="mock:///HTML Fragment (app.js:4508).html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="48" selection-start="40" selection-end="48" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="33" selection-start="1612" selection-end="1615" vertical-scroll-proportion="-6.0588236">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="176" column="10" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.83664924">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/less/style.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="121" column="5" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="elements.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/less/elements.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="5" selection-start="2283" selection-end="2287" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomeTweets.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userData.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/userData.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="41" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searchangularjs.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -150,11 +132,11 @@
         <option value="$PROJECT_DIR$/template/popover/popover.html" />
         <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/data/searchMelbourne.json" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="/HTML Fragment (app.js:4474).html" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="/HTML Fragment (app.js:4508).html" />
         <option value="$PROJECT_DIR$/less/style.less" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -478,20 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/less/elements.less">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="5" selection-start="2283" selection-end="2287" vertical-scroll-proportion="0.0">
@@ -499,16 +467,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/less/style.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="60" selection-start="2823" selection-end="2831" vertical-scroll-proportion="1.8431373">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="20" selection-start="4509" selection-end="4509" vertical-scroll-proportion="-10.1">
+        <state line="121" column="5" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -520,9 +481,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/less/style.less">
+    <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="11" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.7536232">
+        <state line="1987" column="53" selection-start="118635" selection-end="118635" vertical-scroll-proportion="-1267.8077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="33" selection-start="1612" selection-end="1615" vertical-scroll-proportion="-6.0588236">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="10" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.83664924">
           <folding />
         </state>
       </provider>

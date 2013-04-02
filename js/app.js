@@ -40,8 +40,6 @@ app.directive("loadtweets",function(){
     }
 });
 
-
-
 app.directive( "tweetcolumn" , function ($compile) {
     var template_for = function(type) {
         return type+"\\.html";
@@ -50,13 +48,14 @@ app.directive( "tweetcolumn" , function ($compile) {
         restrict:"E",
         transclude: true,
         scope:true,
-        compile: function(element, attrs) {
+        compile: function($scope, element, attrs) {
             return function(scope, element, attrs) {
                 // Waits for Attibutes to be ready
-                attrs.$observe('type', function(value) {
+                attrs.$observe('type', function(typeValue) {
+                    attrs.$observe('name', function(colValue) {
                     // Switch for Column Twitter Type
                     var tmpl;
-                    switch (value)
+                    switch (typeValue)
                     {
                         case "friendTweets":
                             tmpl = template_for("friendtweets-column");
@@ -68,8 +67,8 @@ app.directive( "tweetcolumn" , function ($compile) {
                     // Switch for Column Type
                     element.html($("#"+tmpl).html());//.show();
                     $compile(element.contents())(scope);
-                });
-            };
+                })});
+            }
         }
     }
 })
@@ -83,21 +82,35 @@ function ColumnsCtrl ( $scope, ColumnData )
     //console.log(ColumnData.columns.length);
 }
 
-
-
 // Controller for any search collumns
 function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 {
-    $scope.data = ColumnData;
+    $scope.data             = ColumnData;
     // Limit for pagination
-    $scope.pageSize = 20;
+    $scope.pageSize         = 10;
+    $scope.searchString     = "";
+    console.log("here comes the scope")
+    console.log($scope.$parent.column.name);
+    console.log($scope);
+    console.log("index" + $scope.$parent.$index);
+
+    var searchString = encodeURI($scope.$parent.column.name);
+    var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
+    $http.jsonp(searchURL).success(function(data) {
+        var results = data.results;
+        console.log(results);
+        $scope.tweets = results;
+    });
+
+    /*
     $http.get('data/searchangularjs.json').success(function(data) {
         var results = data.query.results.results;
         $scope.tweets = results;
-    });
+
+    });*/
     $scope.addMorePages = function() {
         console.log("addingMorePages");
-        $scope.pageSize=$scope.pageSize+20
+        $scope.pageSize=$scope.pageSize+10
     }
     $scope.addHTML = function( st ){
         return addLinksToHtml(st);
@@ -107,7 +120,6 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 // Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http , ColumnData )
 {
-    $scope.data = ColumnData;
     $http.get('data/HomeTweets.json').success(function(data) {
         var results = data.query.results.statuses.status;
         $scope.tweets = results;
@@ -122,7 +134,6 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
 // Used for holding user data
 function TopBarCtrl (  $scope , $http , ColumnData )
 {
-    $scope.data = ColumnData;       //incase it needs it
     $http.get('data/userData.json').success(function(data) {
         var results = data.query.results
         $scope.userData = results;
@@ -131,11 +142,12 @@ function TopBarCtrl (  $scope , $http , ColumnData )
 }
 
 // Search More Tweets Controller
-function TopSearchBarCtrl ($scope, $http)
+function TopSearchBarCtrl ($scope, ColumnData,  $http)
 {
+    $scope.ColumnData = ColumnData
     $scope.content;                         // Content
-    $scope.searchDisabled = true;           // Toggle to disable button
-    $scope.searchVars = {
+    $scope.searchDisabled   = true;           // Toggle to disable button
+    $scope.searchVars       = {
        searchString : ""
     }
     // On Text Type
@@ -146,6 +158,15 @@ function TopSearchBarCtrl ($scope, $http)
     //Search Tweets
     $scope.searchTweets = function()
     {
+        console.log("columndata");
+        console.log( $scope.ColumnData.columns);
+        $scope.ColumnData.columns.push({
+            "name" : $scope.searchVars.searchString ,
+            "type" : "search"
+        });
+        console.log( $scope.ColumnData);
+
+        /*
         var searchString = encodeURI($scope.searchVars.searchString);
         var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=5&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
         $http.jsonp(searchURL).success(function(data) {
@@ -153,11 +174,15 @@ function TopSearchBarCtrl ($scope, $http)
             console.log(results);
             $scope.tweets = results;
         });
+        */
     }
     // Popover Content
+    // Commenting out , might use it later
+    /*
     $scope.popover = {
         "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_user_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
     }
+    */
 }
 
 function addLinksToHtml( st ) {
