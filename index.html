@@ -33,8 +33,8 @@
     <div class="navbar-inner">
         <div class="container usernav">
             <a class="brand" href="#">Welcome Back {{userData.user.name}}</a>
-            <form class="form-search top-search" ng-controller="TopSearchBarCtrl">
-                <input type="text" class="input-medium search-query" placeholder="Search..." ng-change="change()" ng-model="searchVars.searchString">
+            <form class="form-search top-search" ng-controller="TopSearchBarCtrl" ng-submit="submitted=searchinput">
+                <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search..." ng-change="change()" ng-model="searchVars.searchString">
                 <button type="button" ng-disabled="searchDisabled" class="btn ng-scope"  ng-click="searchTweets()" data-placement="bottom" data-title="Search Results"  bs-popover="popover" data-original-title="" title="">
                     Search
                 </button>
@@ -90,6 +90,9 @@
         <loadtweets></loadtweets>
     </div>
 </script>
+
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/bootstrap.min.js"></script>

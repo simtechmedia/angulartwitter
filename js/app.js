@@ -89,20 +89,16 @@ function ColumnsCtrl ( $scope, ColumnData )
 function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 {
     $scope.data = ColumnData;
-
     // Limit for pagination
     $scope.pageSize = 20;
-
     $http.get('data/searchangularjs.json').success(function(data) {
         var results = data.query.results.results;
         $scope.tweets = results;
     });
-
     $scope.addMorePages = function() {
         console.log("addingMorePages");
         $scope.pageSize=$scope.pageSize+20
     }
-
     $scope.addHTML = function( st ){
         return addLinksToHtml(st);
     }
@@ -132,12 +128,10 @@ function TopBarCtrl (  $scope , $http , ColumnData )
         $scope.userData = results;
         console.log(results);
     });
-
-
 }
 
 // Search More Tweets Controller
-function TopSearchBarCtrl ($scope)
+function TopSearchBarCtrl ($scope, $http)
 {
     $scope.content;                         // Content
     $scope.searchDisabled = true;           // Toggle to disable button
@@ -149,19 +143,24 @@ function TopSearchBarCtrl ($scope)
     {
         ($scope.searchVars.searchString.length > 2 ) ?  $scope.searchDisabled = false :  $scope.searchDisabled = true;
     }
-    //http://search.twitter.com/search.json?q=blue%20angels&rpp=5&include_entities=true&result_type=mixed
+    //Search Tweets
     $scope.searchTweets = function()
     {
         var searchString = encodeURI($scope.searchVars.searchString);
+        var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=5&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
+        $http.jsonp(searchURL).success(function(data) {
+            var results = data.results;
+            console.log(results);
+            $scope.tweets = results;
+        });
     }
     // Popover Content
     $scope.popover = {
-        "content": "Hello Popover<br />This is a multiline message!"
+        "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_user_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
     }
 }
 
-function addLinksToHtml(st)
-{
+function addLinksToHtml( st ) {
     // Add Ancor to HTTP
     var regEx = /@([a-z0-9_]{1,20})/gi;
     var newString = st.replace(  regEx , "<a href='#'>@$1</a>" );
