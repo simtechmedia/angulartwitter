@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,19 +37,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="33" selection-start="1612" selection-end="1615" vertical-scroll-proportion="-6.0588236">
+            <state line="37" column="114" selection-start="1982" selection-end="1982" vertical-scroll-proportion="0.66772825">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="176" column="10" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.83664924">
+            <state line="177" column="5" selection-start="5373" selection-end="5373" vertical-scroll-proportion="-28.56">
               <folding />
             </state>
           </provider>
@@ -135,8 +132,8 @@
         <option value="/HTML Fragment (app.js:4474).html" />
         <option value="/HTML Fragment (app.js:4508).html" />
         <option value="$PROJECT_DIR$/less/style.less" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -488,13 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="33" selection-start="1612" selection-end="1615" vertical-scroll-proportion="-6.0588236">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
@@ -504,7 +494,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="10" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.83664924">
+        <state line="177" column="5" selection-start="5373" selection-end="5373" vertical-scroll-proportion="-28.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="114" selection-start="1982" selection-end="1982" vertical-scroll-proportion="0.66772825">
           <folding />
         </state>
       </provider>

@@ -35,7 +35,7 @@
             <a class="brand" href="#">Welcome Back {{userData.user.name}}</a>
             <form class="form-search top-search" ng-controller="TopSearchBarCtrl" ng-submit="submitted=searchinput">
                 <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search..." ng-change="change()" ng-model="searchVars.searchString">
-                <button type="button" ng-disabled="searchDisabled" class="btn ng-scope"  ng-click="searchTweets()" data-placement="bottom" data-title="Search Results"  bs-popover="popover" data-original-title="" title="">
+                <button type="button" ng-disabled="searchDisabled" class="btn ng-scope"  ng-click="searchTweets()">
                     Search
                 </button>
             </form>
