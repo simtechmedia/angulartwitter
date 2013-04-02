@@ -9,7 +9,7 @@
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
     <link href="less/style.less" rel="stylesheet/less">
 
     <!--Google Fonts-->
@@ -43,20 +43,19 @@
     </div>
 </div>
 
-    <div class="container">
-    <div class="row" ng-controller="ColumnsCtrl">
-        <div class="span4" ng-repeat="column in ColumnData.columns">
+
+<div class="horizontal-row" ng-controller="ColumnsCtrl">
+        <div class="tweetspan" ng-repeat="column in ColumnData.columns">
             <tweetColumn type="{{column['type']}}" name="{{column['name']}}"></tweetColumn>
         </div>
-    </div>
 </div>
 
 <! -- Templates -- >
 <script type="text/ng-template" id="friendtweets-column.html">
-    <div class="span4 friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
+    <div class="tweetspan friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
         <i class="icon-home icon-white heading-icon"></i>
-        <div class="colTweets">
+        <div class="colTweets" resize>
             <div ng-repeat="tweet in tweets" class="tweetBox">
                 <div class="tweetprofilepic">
                     <img ng-src="{{tweet.user.profile_image_url}}">
@@ -72,7 +71,7 @@
 </script>
 
 <script type="text/ng-template" id="search-column.html">
-    <div class="span4 friendTweets" name={{ColumnData.columns[$parent.$index].name}} name2="{{}}" ng-controller="SeatchTweetsCtrl">
+    <div class="tweetspan friendTweets" name={{ColumnData.columns[$parent.$index].name}} name2="{{}}" ng-controller="SeatchTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
         <i class="icon-search icon-white heading-icon"></i>
         <div class="colTweets">

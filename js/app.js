@@ -73,6 +73,23 @@ app.directive( "tweetcolumn" , function ($compile) {
     }
 })
 
+// FOr resizing the columsn to fit window height
+
+app.directive('resize', function ($window) {
+    return function (scope) {
+        console.log(scope);
+        scope.width = $window.innerWidth;
+        scope.height = $window.innerHeight;
+        angular.element($window).bind('resize', function () {
+            scope.$apply(function () {
+                //scope.width = $window.innerWidth;
+                //console.log($window.innerHeight);
+                scope.height = $window.innerHeight;
+            });
+        });
+    };
+});
+
 function ColumnsCtrl ( $scope, ColumnData )
 {
     $scope.ColumnData = ColumnData;
@@ -89,16 +106,11 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     // Limit for pagination
     $scope.pageSize         = 10;
     $scope.searchString     = "";
-    console.log("here comes the scope")
-    console.log($scope.$parent.column.name);
-    console.log($scope);
-    console.log("index" + $scope.$parent.$index);
-
     var searchString = encodeURI($scope.$parent.column.name);
     var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
     $http.jsonp(searchURL).success(function(data) {
         var results = data.results;
-        console.log(results);
+        //console.log(results);
         $scope.tweets = results;
     });
 
@@ -137,7 +149,7 @@ function TopBarCtrl (  $scope , $http , ColumnData )
     $http.get('data/userData.json').success(function(data) {
         var results = data.query.results
         $scope.userData = results;
-        console.log(results);
+        //console.log(results);
     });
 }
 
@@ -158,13 +170,10 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
     //Search Tweets
     $scope.searchTweets = function()
     {
-        console.log("columndata");
-        console.log( $scope.ColumnData.columns);
         $scope.ColumnData.columns.push({
             "name" : $scope.searchVars.searchString ,
             "type" : "search"
         });
-        console.log( $scope.ColumnData);
 
         /*
         var searchString = encodeURI($scope.searchVars.searchString);
