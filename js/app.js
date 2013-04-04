@@ -175,11 +175,29 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     $scope.searchString     = "";
     var searchString = encodeURI($scope.$parent.column.name);
     var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
-    $http.jsonp(searchURL).success(function(data) {
+
+    // Debug stuff, getting rate limited
+    if(document.URL.substring(0,16) == "http://localhost")
+    {
+        console.log("going offline")
+        $http.get('data/searchangularjs.json').success(function(data) {
+            $scope.processData(data);
+        });
+    } else {
+        console.log("going online");
+        $http.jsonp(searchURL).success(function(data)
+        {
+            $scope.processData(data);
+        })
+    }
+
+    $scope.processData = function(data)
+    {
+        console.log(data.results);
         var results = data.results;
-        //console.log(results);
         $scope.tweets = results;
-    });
+    }
+
 
     /*
     $http.get('data/searchangularjs.json').success(function(data) {
@@ -257,13 +275,28 @@ function searchSettingsCtrl ( $scope , ColumnData)
 // Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http , ColumnData )
 {
-    var homelineURL = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.status.timeline.friends%3B&format=json&diagnostics=true&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK"
+    var homelineURL = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.status.timeline.friends%3B&format=json&diagnostics=true&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
 
-    $http.jsonp(homelineURL).success(function(data)
+    // Debug stuff, getting rate limited
+    if(document.URL.substring(0,16) == "http://localhost")
+    {
+        console.log("going offline")
+        $http.get('data/HomeTweets.json').success(function(data) {
+            $scope.processData(data);
+        });
+    } else {
+        console.log("going online");
+        $http.jsonp(homelineURL).success(function(data)
+        {
+            $scope.processData(data);
+        })
+    }
+
+    $scope.processData = function(data)
     {
         var results = data.query.results.statuses.status;
         $scope.tweets = results;
-    })
+    }
 
     $scope.addHTML = function( st ){
         return addLinksToHtml(st);
@@ -274,8 +307,6 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
 // Used for holding user data
 function TopBarCtrl (  $scope , $http , ColumnData )
 {
-
-
     $http.get('data/userData.json').success(function(data) {
         var results = data.query.results
         $scope.userData = results;
@@ -304,16 +335,6 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
             "type" : "search",
             "settings" : false
         });
-
-        /*
-        var searchString = encodeURI($scope.searchVars.searchString);
-        var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=5&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
-        $http.jsonp(searchURL).success(function(data) {
-            var results = data.results;
-            console.log(results);
-            $scope.tweets = results;
-        });
-        */
     }
     // Popover Content
     // Commenting out , might use it later
@@ -325,14 +346,37 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
 
 }
 
-
-function MyModalCtrl ( $scope )
+// Controller for Profile Modal
+// Uses jsonp call to grab data from ypl
+function MyModalCtrl ( $scope, $http )
 {
-    //console.log("MyModalCtrl");
-    //zconsole.log($scope);
+    $scope.sourceTweet = $scope.$parent.tweet ;
+    $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20twitter.users%20where%20screen_name%3D'"+$scope.$parent.tweet.from_user+"'%3B%20&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK";
+
+    $scope.openModal = function(){
+        console.log("openModal" + $scope.$parent.tweet.from_user);
+        console.log($scope.urlRequest);
+
+        if(document.URL.substring(0,16) == "http://localhost")
+        {
+            console.log("going offline")
+            $http.get('data/userProfile.json').success(function(data) {
+                $scope.processData(data);
+            });
+        } else {
+            console.log("going online");
+            $http.jsonp($scope.urlRequest).success(function(data){
+                $scope.processData(data)
+            });
+        }
+    }
+
+    $scope.processData = function(data)
+    {
+        var results = data.query.results.user;
+        $scope.user = results;
+    }
 }
-
-
 
 function addLinksToHtml( st ) {
     // Add Ancor to HTTP

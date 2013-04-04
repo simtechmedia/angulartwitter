@@ -105,8 +105,7 @@
                     <img ng-src="{{tweet.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <button type="button" ng-controller="MyModalCtrl" class="btn" bs-modal="'user-model.html'">...</button>
-                    <p><a href="#" bs-modal="'user-model.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
+                    <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
                     <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
                 </div>
                 <hr/>
@@ -127,8 +126,28 @@
         </form>
     </div>
 </script>
+
+
 <script type="text/ng-template" id="user-model.html">
-    <p>Hello</p>
+
+    <div class="profileContainer">
+        <div class="profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
+
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+            <img class="profimg" ng-src="{{user.profile_image_url}}">
+            <p class="screen_name">{{user.screen_name}}</p>
+            <p class="username">{{user.name}}</p>
+            <p class="description">{{user.description}}</p>
+            <p class="url">{{user.url}}</p>
+
+
+            <p>Hello {{user.profile_background_image_url}} </p>
+
+        </div>
+    </div>
+
+
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
