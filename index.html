@@ -66,13 +66,10 @@
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
 
         <div ng-controller="searchSettingsCtrl">
-
             <div class="heading-edit" >
                 <i class="icon-home icon-white heading-icon"></i>
             </div>
-
         </div>
-
 
         <div class="colTweets" ng-style="style()" resize>
             <div ng-repeat="tweet in tweets" class="tweetBox">
@@ -108,7 +105,8 @@
                     <img ng-src="{{tweet.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <p><a href="#"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
+                    <button type="button" ng-controller="MyModalCtrl" class="btn" bs-modal="'user-model.html'">...</button>
+                    <p><a href="#" bs-modal="'user-model.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
                     <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
                 </div>
                 <hr/>
@@ -129,21 +127,9 @@
         </form>
     </div>
 </script>
-
-
-<script type="text/ng-template" id="user-model">
-    <div class="columnsettings" ng-show="showSettings.show">
-        <form>
-            <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search String" ng-change="change()" ng-model="searchVars.searchString">
-            <button type="submit" class="btn ng-scope"  ng-click="changeSearch()">
-                Search
-            </button>
-            <button type="button" class="btn btn-danger" ng-click="deleteColumn()">Delete Column</button>
-        </form>
-    </div>
+<script type="text/ng-template" id="user-model.html">
+    <p>Hello</p>
 </script>
-
-
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>

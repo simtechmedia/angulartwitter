@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\wamp\www\angulartwitter\hometimeline-column.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365056106710" ignored="false" />
-    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365070403235" ignored="false" />
+    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365075430740" ignored="false" />
     <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365051281748" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365070935921" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365103969501" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -40,30 +41,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="46" selection-start="5494" selection-end="5494" vertical-scroll-proportion="0.9639066">
+            <state line="107" column="60" selection-start="4592" selection-end="4592" vertical-scroll-proportion="-16.80392">
               <folding>
-                <marker date="1365071261785" expanded="true" signature="327:652" placeholder="..." />
+                <marker date="1365103658407" expanded="true" signature="327:652" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hometimeline-column.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hometimeline-column.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="6" selection-start="894" selection-end="894" vertical-scroll-proportion="-15.692307">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="-0.0">
+            <state line="259" column="0" selection-start="8200" selection-end="8200" vertical-scroll-proportion="0.26881722">
               <folding />
             </state>
           </provider>
@@ -137,8 +129,8 @@
         <option value="$PROJECT_DIR$/partials/user-modal.html" />
         <option value="$PROJECT_DIR$/partials/search-column.html" />
         <option value="$PROJECT_DIR$/partials/hometimeline-column.html" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -446,23 +438,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="79" selection-start="1919" selection-end="1919" vertical-scroll-proportion="0.06369427">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/userData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="32" selection-start="2741" selection-end="2782" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -488,26 +466,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hometimeline-column.html">
+    <entry file="file://$PROJECT_DIR$/data/userData.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="6" selection-start="894" selection-end="894" vertical-scroll-proportion="-15.692307">
+        <state line="55" column="32" selection-start="2741" selection-end="2782" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
+    <entry file="file://$PROJECT_DIR$/data/HomeTweets.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="-0.0">
+        <state line="6" column="21" selection-start="139" selection-end="147" vertical-scroll-proportion="-3.9230769">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="46" selection-start="5494" selection-end="5494" vertical-scroll-proportion="0.9639066">
+        <state line="107" column="60" selection-start="4592" selection-end="4592" vertical-scroll-proportion="-16.80392">
           <folding>
-            <marker date="1365071261785" expanded="true" signature="327:652" placeholder="..." />
+            <marker date="1365103658407" expanded="true" signature="327:652" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="259" column="0" selection-start="8200" selection-end="8200" vertical-scroll-proportion="0.26881722">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,4 +1,4 @@
-var app = angular.module("angtwit", ['ngSanitize'] , function($routeProvider, $locationProvider) {
+var app = angular.module("angtwit", ['ngSanitize','$strap.directives'] , function($routeProvider, $locationProvider) {
 
 });
 
@@ -15,6 +15,11 @@ app.factory('ColumnData', function() {
                 "name" : "angularJS",
                 "type" : "search" ,
                 "settings" : true
+            },
+            {
+                "name" : "@simtechmedia",
+                "type" : "search" ,
+                "settings" : false
             }
         ]
     }
@@ -150,18 +155,6 @@ app.directive('searchsettings', function(){
                      "settingsVal" : scope.showSettings
                 };
             }
-            /*,
-            scope.$watch( scope.getSettings, function ( newValue, oldValue) {
-                console.log("watch got something " + newValue.settingsVal );
-                // not sure why newValue / oldValue not working
-                if ( scope.currentVO.settings )  {
-                    element.addClass("showDiv");
-                    element.removeClass("hideDiv");
-                } else {
-                    element.addClass("hideDiv");
-                    element.removeClass("showDiv");
-                }
-            }, true );*/
         }
     }
 })
@@ -231,6 +224,7 @@ function searchSettingsCtrl ( $scope , ColumnData)
     // Toggle Settings Panel
     $scope.toggleSettingsPanel = function()
     {
+        console.log("toggleSettingsPanel");
         ($scope.currentVO.settings == true ) ? $scope.closeSettingsPanel() : $scope.openSettingsPanel() ;
     }
 
@@ -263,10 +257,13 @@ function searchSettingsCtrl ( $scope , ColumnData)
 // Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http , ColumnData )
 {
-    $http.get('data/HomeTweets.json').success(function(data) {
+    var homelineURL = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.status.timeline.friends%3B&format=json&diagnostics=true&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK"
+
+    $http.jsonp(homelineURL).success(function(data)
+    {
         var results = data.query.results.statuses.status;
         $scope.tweets = results;
-    });
+    })
 
     $scope.addHTML = function( st ){
         return addLinksToHtml(st);
@@ -277,6 +274,8 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
 // Used for holding user data
 function TopBarCtrl (  $scope , $http , ColumnData )
 {
+
+
     $http.get('data/userData.json').success(function(data) {
         var results = data.query.results
         $scope.userData = results;
@@ -291,11 +290,10 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
     $scope.content;                         // Content
     $scope.searchDisabled   = true;         // Toggle to disable button
     $scope.searchVars       = {
-       searchString : ""
+        searchString : ""
     }
     // On Text Type
-    $scope.change = function()
-    {
+    $scope.change = function() {
         ($scope.searchVars.searchString.length > 2 ) ?  $scope.searchDisabled = false :  $scope.searchDisabled = true;
     }
     //Search Tweets
@@ -303,7 +301,8 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
     {
         $scope.ColumnData.columns.push({
             "name" : $scope.searchVars.searchString ,
-            "type" : "search"
+            "type" : "search",
+            "settings" : false
         });
 
         /*
@@ -323,7 +322,17 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
         "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_user_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
     }
     */
+
 }
+
+
+function MyModalCtrl ( $scope )
+{
+    //console.log("MyModalCtrl");
+    //zconsole.log($scope);
+}
+
+
 
 function addLinksToHtml( st ) {
     // Add Ancor to HTTP
