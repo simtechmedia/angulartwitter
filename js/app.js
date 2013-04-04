@@ -179,12 +179,10 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     // Debug stuff, getting rate limited
     if(document.URL.substring(0,16) == "http://localhost")
     {
-        console.log("going offline")
         $http.get('data/searchangularjs.json').success(function(data) {
             $scope.processData(data);
         });
     } else {
-        console.log("going online");
         $http.jsonp(searchURL).success(function(data)
         {
             $scope.processData(data);
@@ -193,7 +191,6 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 
     $scope.processData = function(data)
     {
-        console.log(data.results);
         var results = data.results;
         $scope.tweets = results;
     }
@@ -280,12 +277,10 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
     // Debug stuff, getting rate limited
     if(document.URL.substring(0,16) == "http://localhost")
     {
-        console.log("going offline")
         $http.get('data/HomeTweets.json').success(function(data) {
             $scope.processData(data);
         });
     } else {
-        console.log("going online");
         $http.jsonp(homelineURL).success(function(data)
         {
             $scope.processData(data);
@@ -359,12 +354,10 @@ function MyModalCtrl ( $scope, $http )
 
         if(document.URL.substring(0,16) == "http://localhost")
         {
-            console.log("going offline")
             $http.get('data/userProfile.json').success(function(data) {
                 $scope.processData(data);
             });
         } else {
-            console.log("going online");
             $http.jsonp($scope.urlRequest).success(function(data){
                 $scope.processData(data)
             });
