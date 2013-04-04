@@ -4,6 +4,7 @@
 @nice-blue: #5B83AD;
 @column-body : #26282a;
 @column-grey : #3a3d42;
+@column-edit : #666666;
 
 body{
   padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -11,6 +12,7 @@ body{
   //background-color:#ffffff;
   font-family: 'Merriweather Sans', sans-serif;
   white-space: nowrap;
+  scrollbar-face-color: @column-grey;
 }
 
 
@@ -27,6 +29,7 @@ body{
     display:inline-block;
     vertical-align: top;
     white-space: normal;
+    margin: 0 15px 0 5px;
   }
 
 }
@@ -38,11 +41,47 @@ body{
   .drop-shadow(5px,5px, 5px, 0.1);
   color: #bbbbbb;
 
+  .columnsettings
+  {
+    background-color: @column-edit;
+    padding: 20px;
+    height:70px;
+    position: relative;
 
+    input
+    {
+      width: 200px;
+    }
+    button
+    {
+      top:100px;
+      float: right;
+    }
+
+    .btn-danger
+    {
+      margin-top: 10px;
+    }
+  }
+
+  .hideDiv
+  {
+    display: none;
+  }
+
+  .showDiv
+  {
+    display: inline ;
+  }
 
   .colTweets
   {
+
     background-color: @column-body ;
+    //height: 500px;
+    overflow-y: scroll;
+    width: 100%;
+
   }
 
   h3 {
@@ -52,15 +91,42 @@ body{
     color: #bbbbbb;
   }
 
+  .heading-edit {
+    margin-top:-55px;
+    float: right;
+    height: 42px;
+  }
+
   .heading-icon
   {
-    float: right;
-    margin: 22px;
-
-
+    margin: 30px 36px 0 0 ;
 
   }
+
+
+  .heading-text
+  {
+    text-align: center;
+    width:40px;
+    .border-radius(5px, 0 , 0 , 5px);
+    background-color: @column-edit;
+
+    float: right;
+    padding: 10px;
+    margin: 15px 15px 0 0;
+
+    font-weight : normal;
+
+    a , a:hover
+    {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
 }
+
 
 .top-search {
   float: right;
@@ -133,7 +199,7 @@ body{
 
     .screen_name{
 
-      color: #666666;
+      color: @column-edit;
 
       a:hover , a:link, a:visited {
         text-decoration: none;
@@ -164,6 +230,15 @@ body{
   }
 
 */
+.navbar
+{
+  .navbar-inner
+  {
+    padding-left: 20px;
+    padding-right:40px;
+  }
+
+}
 
 .usernav
 {
@@ -176,4 +251,41 @@ body{
   {
     width: 600px;
   }
+}
+
+
+
+/*** Scrollbar stuff */
+
+@thumb-gray : @column-edit ;
+
+::-webkit-scrollbar {
+  width: 10px;
+} /* this targets the default scrollbar (compulsory) */
+
+::-webkit-scrollbar-track {
+  background-color: @column-body;
+} /* the new scrollbar will have a flat appearance with the set background color */
+::-webkit-scrollbar-thumb {
+  background-color: @thumb-gray;
+} /* this will style the thumb, ignoring the track */
+::-webkit-scrollbar-button {
+  background-color: @column-body;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+::-webkit-scrollbar-corner {
+  background-color: @thumb-gray;
+} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
+
+.jspTrack
+{
+  background: #b46868; /* changed from #dde */
+  position: relative;
+}
+.jspDrag
+{
+  background: rgba(0,0,0,0.2); /* changed from #bbd */
+  position: relative;
+  top: 0;
+  left: 0;
+  cursor: pointer;
 }

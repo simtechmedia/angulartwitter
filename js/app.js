@@ -1,22 +1,26 @@
-var app = angular.module("angtwit", ['ngSanitize','$strap.directives'] , function($routeProvider, $locationProvider) {
+var app = angular.module("angtwit", ['ngSanitize'] , function($routeProvider, $locationProvider) {
 
 });
 
+// Service to hold current table data, will extend this service to hold more complex data down the road
 app.factory('ColumnData', function() {
     return {
         "columns" : [
             {
                 "name" : "home",
-                "type" : "friendTweets"
+                "type" : "friendTweets" ,
+                "settings" : false
             },
             {
                 "name" : "angularJS",
-                "type" : "search"
+                "type" : "search" ,
+                "settings" : true
             }
         ]
     }
 });
 
+// Tweet Body
 app.directive("tweetbody", function(){
     return {
         restrict:"E",
@@ -26,7 +30,8 @@ app.directive("tweetbody", function(){
     }
 });
 
-
+// Load Tweets Directive
+// Will make it so when you scroll to the bottom it automaticly loads tweets
 app.directive("loadtweets",function(){
     return {
         restrict:"E",
@@ -40,6 +45,8 @@ app.directive("loadtweets",function(){
     }
 });
 
+// This directive sorts out the type of column it is and compiles it to stage
+// Might figure out a better way to sort this out later
 app.directive( "tweetcolumn" , function ($compile) {
     var template_for = function(type) {
         return type+"\\.html";
@@ -73,30 +80,97 @@ app.directive( "tweetcolumn" , function ($compile) {
     }
 })
 
-// FOr resizing the columsn to fit window height
-
+// For resizing the columsn to fit window height
 app.directive('resize', function ($window) {
-    return function (scope) {
-        console.log(scope);
-        scope.width = $window.innerWidth;
-        scope.height = $window.innerHeight;
-        angular.element($window).bind('resize', function () {
-            scope.$apply(function () {
-                //scope.width = $window.innerWidth;
-                //console.log($window.innerHeight);
-                scope.height = $window.innerHeight;
-            });
-        });
-    };
-});
+    return function (scope, element) {
+        var w = angular.element($window);
+        scope.getWindowDimensions = function () {
+            return { 'h': w.height(), 'w': w.width() };
+        };
+        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+            scope.windowHeight = newValue.h;
+            scope.style = function () {
+                var newHeight = (scope.$parent.$parent.column.settings == true ? 240 :  130 );            // Find out if settings are closed or not
+                return {
+                    'height': (newValue.h - newHeight) + 'px'
+                };
+            };
+        }, true);
 
+        w.bind('resize', function () {
+            scope.$apply();
+        });
+    }
+})
+
+// Edit Columns that sits right top of the columns
+app.directive('editcol', function() {
+    return {
+        restrict:"A",
+        link : function(scope , element) {
+
+            var magicon = "<i class=\"icon-search icon-white heading-icon\" editcol></i>";
+            var edit    = "<p class=\"heading-text\" editcol><a href=\"#\">Edit</a></p>";
+            var close   = "<p class=\"heading-text\" editcol><a href=\"#\">Close</a></p>";
+
+            if(true) openEditState();
+
+            function openEditState(){
+                element.children().replaceWith(close);
+            }
+
+            function closeEditState(){
+                element.children().replaceWith(edit);
+            }
+
+            element.bind('mouseenter', function() {
+                if(!scope.$parent.$parent.column.settings)
+                    element.children().replaceWith(edit);
+            })
+
+            element.bind('mouseleave', function(){
+                if(!scope.$parent.$parent.column.settings)
+                    element.children().replaceWith(magicon);
+            })
+        }
+    }
+})
+
+// searchsettings
+// Settings that will be available for search-column type columns
+app.directive('searchsettings', function(){
+    return {
+        restrict:"E",
+        templateUrl:"search-settings.html",
+
+        link: function(scope, element)
+        {
+            scope.getSettings = function (){
+                return {
+                     "settingsVal" : scope.showSettings
+                };
+            }
+            /*,
+            scope.$watch( scope.getSettings, function ( newValue, oldValue) {
+                console.log("watch got something " + newValue.settingsVal );
+                // not sure why newValue / oldValue not working
+                if ( scope.currentVO.settings )  {
+                    element.addClass("showDiv");
+                    element.removeClass("hideDiv");
+                } else {
+                    element.addClass("hideDiv");
+                    element.removeClass("showDiv");
+                }
+            }, true );*/
+        }
+    }
+})
+
+// Controller to share the column data to the repeater that creates the columns
+// think i can get away with incorporating this to something else eventually, feel unnessary
 function ColumnsCtrl ( $scope, ColumnData )
 {
     $scope.ColumnData = ColumnData;
-    $scope.test = function(){
-        console.log("ohi");
-    }
-    //console.log(ColumnData.columns.length);
 }
 
 // Controller for any search collumns
@@ -129,6 +203,63 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     }
 }
 
+// Controller for searchColumn
+function searchSettingsCtrl ( $scope , ColumnData)
+{
+    $scope.data             = ColumnData;
+    $scope.currentVO        = $scope.$parent.$parent.$parent.column;        // Oh this nasty.
+    $scope.searchDisabled   = true;
+    $scope.showSettings     = {
+        show :             $scope.currentVO.settings
+    };
+
+    $scope.searchVars       = {
+        searchString :  $scope.currentVO.name
+    }
+    // On Text Type
+    $scope.change = function()
+    {
+        // &&  $scope.searchVars.searchString !=  $scope.currentVO.name
+        // Gotta sort out why this isn't working
+        if ($scope.searchVars.searchString.length > 2 ) {
+           $scope.searchDisabled = false
+        } else {
+            $scope.searchDisabled = true;
+        }
+    }
+
+    // Toggle Settings Panel
+    $scope.toggleSettingsPanel = function()
+    {
+        ($scope.currentVO.settings == true ) ? $scope.closeSettingsPanel() : $scope.openSettingsPanel() ;
+    }
+
+    // Close Settings Panel
+    $scope.closeSettingsPanel = function()
+    {
+        $scope.currentVO.settings   = $scope.showSettings.show = false;
+    }
+
+    // Open Settings Panel
+    $scope.openSettingsPanel = function(){
+        $scope.currentVO.settings = $scope.showSettings.show  = true;
+    }
+
+    // Asign New String to Data VO that holds the column data
+    $scope.changeSearch = function ()
+    {
+        $scope.currentVO.name       = $scope.searchVars.searchString;
+        $scope.closeSettingsPanel();
+    }
+
+    // Delete column from object
+    $scope.deleteColumn = function ()
+    {
+        // Underscore.js function
+        $scope.data.columns = _($scope.data.columns).reject(function(el) {  return el.name === $scope.currentVO.name ; });
+    }
+}
+
 // Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http , ColumnData )
 {
@@ -156,9 +287,9 @@ function TopBarCtrl (  $scope , $http , ColumnData )
 // Search More Tweets Controller
 function TopSearchBarCtrl ($scope, ColumnData,  $http)
 {
-    $scope.ColumnData = ColumnData
+    $scope.ColumnData       = ColumnData
     $scope.content;                         // Content
-    $scope.searchDisabled   = true;           // Toggle to disable button
+    $scope.searchDisabled   = true;         // Toggle to disable button
     $scope.searchVars       = {
        searchString : ""
     }
