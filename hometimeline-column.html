@@ -1,0 +1,25 @@
+<div class="tweetspan friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
+    <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
+
+    <div ng-controller="searchSettingsCtrl">
+
+        <div class="heading-edit" >
+            <i class="icon-home icon-white heading-icon"></i>
+        </div>
+
+    </div>
+
+
+    <div class="colTweets" ng-style="style()" resize>
+        <div ng-repeat="tweet in tweets" class="tweetBox">
+            <div class="tweetprofilepic">
+                <img ng-src="{{tweet.user.profile_image_url}}">
+            </div>
+            <div class="tweetdetails">
+                <p><a href="#"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</div>
