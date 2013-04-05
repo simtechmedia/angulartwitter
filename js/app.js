@@ -349,9 +349,8 @@ function MyModalCtrl ( $scope, $http )
     $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20twitter.users%20where%20screen_name%3D'"+$scope.$parent.tweet.from_user+"'%3B%20&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK";
 
     $scope.openModal = function(){
-        console.log("openModal" + $scope.$parent.tweet.from_user);
-        console.log($scope.urlRequest);
-
+        //console.log("openModal" + $scope.$parent.tweet.from_user);
+        //console.log($scope.urlRequest);
         if(document.URL.substring(0,16) == "http://localhost")
         {
             $http.get('data/userProfile.json').success(function(data) {

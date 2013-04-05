@@ -5,6 +5,7 @@
 @column-body : #26282a;
 @column-grey : #3a3d42;
 @column-edit : #666666;
+@white : #ffffff;
 
 body{
   padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -256,30 +257,118 @@ body{
 
 .profileContainer
 {
-  width:800px;
-  height:600px;
+  width:600px;
+  height:500px;
 
   .profilebg
   {
     width:600px;
-    height:600px;
+    height:500px;
     background-size: cover;
 
     .rounded(5px);
 
+
+
     .close
     {
-       margin-right: 20px;
+      float: right;
+      margin-top: 10px;
+      margin-right: 20px;
     }
 
+    .profiledeets
+    {
 
-    .profimg {
-      margin:  0 auto;
+      padding-top: 50px;
+      text-align: center;
+      text-shadow:3px 3px 1px #999;
+      font-size:22px;
+      color: @white;
 
-      border: 1px solid #000000;
+      a
+      {
+        color: @white;
+      }
+
+      a:hover
+      {
+        color:@white;;
+      }
+
+      .description
+      {
+        width: 600px;
+        height:100px;
+
+
+      }
+
+      .profimg
+      {
+        margin-bottom: 20px;
+        border: 5px solid #ffffff;
+      }
+
+      .userTweetNumbers
+      {
+        margin-top: 40px;
+        height:100px;
+        background-color: @white;
+        text-shadow: none;
+        color: #000000;
+        .opacity(0.5);
+        overflow: hidden;
+
+
+        .inner{
+          margin-top:20px;
+          vertical-align:middle;
+        }
+
+        .userTweetNumber
+        {
+          height:100px;
+          float: left;
+          width:149px;
+        }
+      }
+    }
+    .profilebuttons
+    {
+      background-color: #ffffff;
+      height: 75px;
+      background: rgb(255, 255, 255);
+      background: rgba(255, 255, 255, .5);
+      .border-radius(0 ,  10px , 10px ,  0);
+
+      .profilebutton
+      {
+        float: left;
+        height: 75px;
+        width: 50%;
+        text-align: center;
+
+        h2
+        {
+
+        }
+
+      }
+    }
+
+    .tint {
+      z-index: 1;
+      height: 500px;
+      width: 600px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: rgba(0, 0, 0, 0.7);
     }
   }
 }
+
 
 
 /*** Scrollbar stuff */

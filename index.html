@@ -77,7 +77,7 @@
                     <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <p><a href="#"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
                     <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
                 </div>
                 <hr/>
@@ -129,21 +129,59 @@
 
 
 <script type="text/ng-template" id="user-model.html">
-
     <div class="profileContainer">
+        <div style="clear:both"></div>
         <div class="profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
+            <div class="tint">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <div class="profiledeets">
+                    <img class="profimg" ng-src="{{user.profile_image_url}}">
+                    <h2 class="username">{{user.name}}</h2>
+                    <p class="screen_name">@{{user.screen_name}}</p>
 
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <div id="description">
+                        <p>{{user.description}}</p>
+                    </div>
 
-            <img class="profimg" ng-src="{{user.profile_image_url}}">
-            <p class="screen_name">{{user.screen_name}}</p>
-            <p class="username">{{user.name}}</p>
-            <p class="description">{{user.description}}</p>
-            <p class="url">{{user.url}}</p>
+                    <p class="url"><a href="{{user.url}}">{{user.url}}</a></p>
 
+                    <div class="userTweetNumbers">
+                        <div class="userTweetNumber">
+                            <div class="inner">
+                                <p>{{user.statuses_count}}</p>
+                                <p>Tweets</p>
+                            </div>
+                        </div>
+                        <div class="userTweetNumber">
+                            <div class="inner">
+                                <p>{{user.following}}</p>
+                                <p>Following</p>
+                            </div>
+                        </div>
+                        <div class="userTweetNumber">
+                            <div class="inner">
+                                <p>{{user.followers_count}}</p>
+                                <p>Followers</p>
+                            </div>
+                        </div>
+                        <div class="userTweetNumber">
+                            <div class="inner">
+                                <p>{{user.listed_count}}</p>
+                                <p>Listed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profilebuttons">
+                    <div class="profilebutton">
+                        <h2><a href="#">Tweets</a></h2>
+                    </div>
 
-            <p>Hello {{user.profile_background_image_url}} </p>
-
+                    <div class="profilebutton">
+                        <h2><a href="#">@Mentions</a></h2>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
