@@ -21,8 +21,9 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="//mgcrea.github.com/angular-strap/css/prettify.css" rel="stylesheet">
     <link href="less/style.less" rel="stylesheet/less">
 
     <!--Google Fonts-->
@@ -129,20 +130,21 @@
 
 
 <script type="text/ng-template" id="user-model.html">
+
     <div class="profileContainer">
         <div style="clear:both"></div>
-        <div class="profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
+        <div class="modal-body profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
             <div class="tint">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
                 <div class="profiledeets">
                     <img class="profimg" ng-src="{{user.profile_image_url}}">
                     <h2 class="username">{{user.name}}</h2>
                     <p class="screen_name">@{{user.screen_name}}</p>
 
-                    <div id="description">
+                    <div class="description">
                         <p>{{user.description}}</p>
                     </div>
-
                     <p class="url"><a href="{{user.url}}">{{user.url}}</a></p>
 
                     <div class="userTweetNumbers">
@@ -172,16 +174,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="profilebuttons">
-                    <div class="profilebutton">
-                        <h2><a href="#">Tweets</a></h2>
-                    </div>
 
-                    <div class="profilebutton">
-                        <h2><a href="#">@Mentions</a></h2>
-                    </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="profilebuttons">
+                <div class="profilebutton">
+                    <h2><a href="#">Tweets</a></h2>
+                </div>
+
+                <div class="profilebutton">
+                    <h2><a href="#">@Mentions</a></h2>
                 </div>
             </div>
+
         </div>
     </div>
 

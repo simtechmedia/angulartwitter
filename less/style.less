@@ -12,7 +12,6 @@ body{
   background-color: #55555a;
   //background-color:#ffffff;
   font-family: 'Merriweather Sans', sans-serif;
-  white-space: nowrap;
   scrollbar-face-color: @column-grey;
 }
 
@@ -160,9 +159,9 @@ body{
   }
 }
 
-/**
- Tweet Box
-*/
+  /**
+   Tweet Box
+  */
 
 
 .tweetBox{
@@ -218,19 +217,19 @@ body{
   }
 }
 
-/*
-  User Navigation Bar
+  /*
+    User Navigation Bar
 
-    p {
-    padding:10px 20px 10px;
-    color: #ffffff;
-    display: block;
-    float:  left ;
-    font-size: 20px;
-    font-weight: 200;
-  }
+      p {
+      padding:10px 20px 10px;
+      color: #ffffff;
+      display: block;
+      float:  left ;
+      font-size: 20px;
+      font-weight: 200;
+    }
 
-*/
+  */
 .navbar
 {
   .navbar-inner
@@ -254,11 +253,42 @@ body{
   }
 }
 
+.modal
+{
+  width:auto;
+
+  .modal-body
+  {
+    max-height: none;
+  }
+
+
+  .profilebuttons
+  {
+    background-color: #ffffff;
+    height: 75px;
+    background: rgb(255, 255, 255);
+    .border-radius(0 ,  10px , 10px ,  0);
+
+    .profilebutton
+    {
+      float: left;
+      height: 75px;
+      width: 50%;
+      text-align: center;
+
+      h2
+      {
+        line-height: 50px;
+      }
+    }
+  }
+}
 
 .profileContainer
 {
-  width:600px;
-  height:500px;
+  white-space: normal;
+
 
   .profilebg
   {
@@ -267,8 +297,6 @@ body{
     background-size: cover;
 
     .rounded(5px);
-
-
 
     .close
     {
@@ -296,13 +324,18 @@ body{
         color:@white;;
       }
 
-      .description
+      p
       {
-        width: 600px;
-        height:100px;
-
 
       }
+
+      .modalDescription
+      {
+        width: 100px;
+        height: 100px;
+        background-color: #003bb3;;
+      }
+
 
       .profimg
       {
@@ -334,33 +367,10 @@ body{
         }
       }
     }
-    .profilebuttons
-    {
-      background-color: #ffffff;
-      height: 75px;
-      background: rgb(255, 255, 255);
-      background: rgba(255, 255, 255, .5);
-      .border-radius(0 ,  10px , 10px ,  0);
 
-      .profilebutton
-      {
-        float: left;
-        height: 75px;
-        width: 50%;
-        text-align: center;
-
-        h2
-        {
-
-        }
-
-      }
-    }
 
     .tint {
       z-index: 1;
-      height: 500px;
-      width: 600px;
       position: absolute;
       top: 0px;
       left: 0px;
@@ -370,8 +380,7 @@ body{
 }
 
 
-
-/*** Scrollbar stuff */
+  /*** Scrollbar stuff */
 
 @thumb-gray : @column-edit ;
 
