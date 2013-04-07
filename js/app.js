@@ -25,6 +25,8 @@ app.factory('ColumnData', function() {
     }
 });
 
+
+
 // Tweet Body
 app.directive("tweetbody", function($compile){
     return {
@@ -61,24 +63,6 @@ app.directive("profilelink", function($compile){
     }
 });
 
-function addLinksToHtml( st ) {
-
-    // Add Ancor to @
-    var regEx = /@([a-z0-9_]{1,20})/gi;
-    //var newString = st.replace(  regEx , "<a href='#' ng-controller='MyModalCtrl' ng-click='openModal()' bs-modal='user-model.html'>~@$1</a>" );
-    var newString = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
-
-    // Adds Ancor to links
-    var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    newString = String(newString).replace(  htmlRegEx , "<a href='$1' target='_blank'>$1</a>" );
-
-    //console.log("newString = "  + newString);
-    // Add HashTags
-
-    return newString;
-}
-
-
 
 // Load Tweets Directive
 // Will make it so when you scroll to the bottom it automaticly loads tweets
@@ -97,6 +81,7 @@ app.directive("loadtweets",function(){
 
 // This directive sorts out the type of column it is and compiles it to stage
 // Might figure out a better way to sort this out later
+
 app.directive( "tweetcolumn" , function ($compile) {
     var template_for = function(type) {
         return type+"\\.html";
@@ -112,7 +97,7 @@ app.directive( "tweetcolumn" , function ($compile) {
             return function(scope, element, attrs) {
                 // Waits for Attibutes to be ready
                 attrs.$observe('type', function(typeValue) {
-                    attrs.$observe('name', function(colValue) {
+                    //attrs.$observe('name', function(colValue) {
                     // Switch for Column Twitter Type
                     var tmpl;
                     switch (typeValue)
@@ -127,7 +112,8 @@ app.directive( "tweetcolumn" , function ($compile) {
                     // Switch for Column Type
                     element.html($("#"+tmpl).html());//.show();
                     $compile(element.contents())(scope);
-                })});
+                    // })
+               });
             }
         }
     }
@@ -398,35 +384,26 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
         "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_editcol_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
     }
     */
-
 }
 
 // Controller for Profile Modal
 // Uses jsonp call to grab data from ypl
 function MyModalCtrl ( $scope, $http )
 {
-    console.log("MyModalCtrl");
-    var id = $scope.$parent.tweet.user.id;
-
+   // var id = $scope.$parent.tweet.user.id;
 
     $scope.sourceTweet = $scope.$parent.tweet ;
-//
-//    var id;
-//    if($scope.$parent.tweet.from_user_id != undefined) {
-//        id = $scope.$parent.tweet.from_user_id;
-//    } else {
-//        id = $scope.$parent.tweet.user.id;
-//    }
+
+    var id;
+    if($scope.$parent.tweet.from_user_id != undefined) {
+        id = $scope.$parent.tweet.from_user_id;
+    } else {
+        id = $scope.$parent.tweet.user.id;
+    }
 
     $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.users%20where%20id%3D"+id+"%3B%20&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
     $scope.openModal = function(){
-        console.log("openModal = " + id);
-        //console.log($scope.urlRequest);
-
-        $scope.show();
-
-        if(document.URL.substring(0,16) == "http://localhost")
-        {
+        if(document.URL.substring(0,16) == "http://localhost") {
             $scope.getLocalProfile();
         } else {
             $scope.getRealProfile();
@@ -435,7 +412,6 @@ function MyModalCtrl ( $scope, $http )
 
     $scope.getLocalProfile = function()
     {
-        console.log("getting local");
         $http.get('data/userProfile.json').success(function(data) {
             var results = data.query.results;
             console.log(results);
@@ -445,7 +421,6 @@ function MyModalCtrl ( $scope, $http )
 
     $scope.getRealProfile = function()
     {
-        console.log("getting real");
         $http.jsonp($scope.urlRequest).success(function(data){
             // Check if we're being data limited
             var results = data.query.results;
@@ -462,6 +437,24 @@ function MyModalCtrl ( $scope, $http )
             }
         });
     }
+}
 
+
+
+function addLinksToHtml( st ) {
+
+    // Add Ancor to @
+    var regEx = /@([a-z0-9_]{1,20})/gi;
+    //var newString = st.replace(  regEx , "<a href='#' ng-controller='MyModalCtrl' ng-click='openModal()' bs-modal='user-model.html'>~@$1</a>" );
+    var newString = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
+
+    // Adds Ancor to links
+    var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    newString = String(newString).replace(  htmlRegEx , "<a href='$1' target='_blank'>$1</a>" );
+
+    //console.log("newString = "  + newString);
+    // Add HashTags
+
+    return newString;
 }
 
