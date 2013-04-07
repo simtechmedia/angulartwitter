@@ -7,155 +7,138 @@
 @column-edit : #666666;
 @white : #ffffff;
 
-body{
-  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-  background-color: #55555a;
+body {
+  padding-top          : 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+  background-color     : #55555a;
   //background-color:#ffffff;
-  font-family: 'Merriweather Sans', sans-serif;
-  scrollbar-face-color: @column-grey;
+  font-family          : 'Merriweather Sans', sans-serif;
+  scrollbar-face-color : @column-grey;
 }
 
+.horizontal-row {
+  white-space : nowrap;
+  width       : 100%;
+  position    : relative;
 
-.horizontal-row
-{
-  white-space: nowrap;
-  width:100%;
-  position: relative;
-
-  .tweetspan
-  {
-    float: none;
-    width: 400px;
-    display:inline-block;
-    vertical-align: top;
-    white-space: normal;
-    margin: 0 15px 0 5px;
+  .tweetspan {
+    float          : none;
+    width          : 400px;
+    display        : inline-block;
+    vertical-align : top;
+    white-space    : normal;
+    margin         : 0 15px 0 5px;
   }
 
 }
 
-.friendTweets{
+.friendTweets {
 
-  background-color: @column-grey ;
+  background-color : @column-grey;
   .rounded(10px);
   .drop-shadow(5px,5px, 5px, 0.1);
-  color: #bbbbbb;
+  color            : #bbbbbb;
 
-  .columnsettings
-  {
-    background-color: @column-edit;
-    padding: 20px;
-    height:70px;
-    position: relative;
+  .columnsettings {
+    background-color : @column-edit;
+    padding          : 20px;
+    height           : 70px;
+    position         : relative;
 
-    input
-    {
-      width: 200px;
+    input {
+      width : 200px;
     }
-    button
-    {
-      top:100px;
-      float: right;
+    button {
+      top   : 100px;
+      float : right;
     }
 
-    .btn-danger
-    {
-      margin-top: 10px;
+    .btn-danger {
+      margin-top : 10px;
     }
   }
 
-  .hideDiv
-  {
-    display: none;
+  .hideDiv {
+    display : none;
   }
 
-  .showDiv
-  {
-    display: inline ;
+  .showDiv {
+    display : inline;
   }
 
-  .colTweets
-  {
+  .colTweets {
 
-    background-color: @column-body ;
+    background-color : @column-body;
     //height: 500px;
-    overflow-y: scroll;
-    width: 100%;
+    overflow-y       : scroll;
+    width            : 100%;
 
   }
 
   h3 {
-    padding-left: 20px;
-    line-height: 55px;
-    display: inline;
-    color: #bbbbbb;
+    padding-left : 20px;
+    line-height  : 55px;
+    display      : inline;
+    color        : #bbbbbb;
   }
 
   .heading-edit {
-    margin-top:-55px;
-    float: right;
-    height: 42px;
+    margin-top : -55px;
+    float      : right;
+    height     : 42px;
   }
 
-  .heading-icon
-  {
-    margin: 30px 36px 0 0 ;
+  .heading-icon {
+    margin : 30px 36px 0 0;
 
   }
 
-
-  .heading-text
-  {
-    text-align: center;
-    width:40px;
+  .heading-text {
+    text-align       : center;
+    width            : 40px;
     .border-radius(5px, 0 , 0 , 5px);
-    background-color: @column-edit;
+    background-color : @column-edit;
 
-    float: right;
-    padding: 10px;
-    margin: 15px 15px 0 0;
+    float            : right;
+    padding          : 10px;
+    margin           : 15px 15px 0 0;
 
-    font-weight : normal;
+    font-weight      : normal;
 
-    a , a:hover
-    {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
+    a, a:hover {
+      color           : #ffffff;
+      text-decoration : none;
+      font-weight     : bold;
     }
   }
 
 }
 
-
 .top-search {
-  float: right;
-  height: 25px;
+  float  : right;
+  height : 25px;
 
-  input[type=text]
-  {
-    margin-top: 5px;
-    width:200px;
-    height: 23px;
+  input[type=text] {
+    margin-top : 5px;
+    width      : 200px;
+    height     : 23px;
   }
 
 }
 
-
 .loadmoretweets {
 
   p {
-    font-weight: bold;
-    font-size:18px;
-    text-align: center;
-    color: #a7a7a7;
-    margin:auto;
-    line-height:51px;
-    vertical-align:middle;
+    font-weight    : bold;
+    font-size      : 18px;
+    text-align     : center;
+    color          : #a7a7a7;
+    margin         : auto;
+    line-height    : 51px;
+    vertical-align : middle;
   }
 
   p:hover {
-    color: #ffffff;
+    color : #ffffff;
   }
 }
 
@@ -163,57 +146,56 @@ body{
    Tweet Box
   */
 
+.tweetBox {
 
-.tweetBox{
-
-  position: relative;
+  position : relative;
 
   .tweetprofilepic {
 
-    position: absolute;
-    float:left;
-    width:55px;
-    top: 10px;
-    left: 10px;
+    position : absolute;
+    float    : left;
+    width    : 55px;
+    top      : 10px;
+    left     : 10px;
 
     img {
-      width:48px;
-      height:48px;
+      width  : 48px;
+      height : 48px;
 
     }
   }
 
   .tweetdetails {
 
-    padding:10px 10px 10px 70px;
+    padding : 10px 10px 10px 70px;
 
     a {
-      color: #cccccc;
+      color : #cccccc;
     }
 
     p {
-      font-style: normal;
-      overflow: hidden;
-      display: block;
+      font-style : normal;
+      overflow   : hidden;
+      display    : block;
     }
 
-    .screen_name{
+    .screen_name {
 
-      color: @column-edit;
+      color : @column-edit;
 
-      a:hover , a:link, a:visited {
-        text-decoration: none;
+      a:hover, a:link, a:visited {
+        text-decoration : none;
       }
     }
   }
 
   hr {
-    padding: 0;
-    margin: 0;
-    clear: both;
-    border: 0;
-    background-color: #3c3c3c;
-    height: 1px;
+    padding          : 0;
+    margin           : 0;
+    clear            : both;
+    border           : 0;
+    background-color : #3c3c3c;
+    height           : 1px;
   }
 }
 
@@ -230,187 +212,173 @@ body{
     }
 
   */
-.navbar
-{
-  .navbar-inner
-  {
-    padding-left: 20px;
-    padding-right:40px;
+.navbar {
+  .navbar-inner {
+    padding-left  : 20px;
+    padding-right : 40px;
   }
 
 }
 
-.usernav
-{
-  .popover-inner
-  {
-    width: 600px;
+.usernav {
+  .popover-inner {
+    width : 600px;
   }
 
-  .tweetBox
-  {
-    width: 600px;
+  .tweetBox {
+    width : 600px;
   }
 }
 
-.modal
-{
-  width:auto;
+.modal {
+  text-align  : left ;
+  width       : auto;
+  text-align  : center;
+  text-shadow : 3px 3px 1px #999;
+  font-size   : 20px;
+  color       : @white;
 
-  .modal-body
-  {
-    max-height: none;
+  .modal-body {
+    max-height : none;
   }
 
+  .userTweetNumbers {
 
-  .profilebuttons
-  {
-    background-color: #ffffff;
-    height: 75px;
-    background: rgb(255, 255, 255);
+    margin-top       : 40px;
+    height           : 100px;
+    background-color : @white;
+    text-shadow      : none;
+    color            : #000000;
+    .opacity(0.5);
+    overflow         : hidden;
+
+    .inner {
+      margin-top     : 20px;
+      vertical-align : middle;
+    }
+
+    .userTweetNumber {
+      height : 100px;
+      float  : left;
+      width  : 149px;
+    }
+  }
+
+  .profilebuttons {
+    background-color : #ffffff;
+    height           : 75px;
+    background       : rgb(255, 255, 255);
     .border-radius(0 ,  10px , 10px ,  0);
 
-    .profilebutton
-    {
-      float: left;
-      height: 75px;
-      width: 50%;
-      text-align: center;
+    .profilebutton {
+      float      : left;
+      height     : 75px;
+      width      : 50%;
+      text-align : center;
 
-      h2
-      {
-        line-height: 50px;
+      h2 {
+        line-height : 50px;
       }
     }
   }
 }
 
-.profileContainer
-{
-  white-space: normal;
+.profileContainer {
+  height : 399px;
 
-
-  .profilebg
-  {
-    width:600px;
-    height:500px;
-    background-size: cover;
-
+  .profilebg {
+    width           : 600px;
+    height          : 400px;
+    background-size : cover;
     .rounded(5px);
 
-    .close
-    {
-      float: right;
-      margin-top: 10px;
-      margin-right: 20px;
+    .close {
+      float        : right;
+      margin-top   : 10px;
+      margin-right : 20px;
     }
 
-    .profiledeets
-    {
+    .profiledeets {
 
-      padding-top: 50px;
-      text-align: center;
-      text-shadow:3px 3px 1px #999;
-      font-size:22px;
-      color: @white;
+      height          : 290px;
 
-      a
-      {
-        color: @white;
+      a {
+        color : @white;
       }
 
-      a:hover
-      {
-        color:@white;;
+      a:hover {
+        color : @white;;
       }
 
-      p
-      {
-
+      p {
+        margin : 10px 20px;
       }
 
-      .modalDescription
-      {
-        width: 100px;
-        height: 100px;
-        background-color: #003bb3;;
+      .modalDescription {
+        width            : 100px;
+        height           : 100px;
+        background-color : #003bb3;;
       }
 
-
-      .profimg
-      {
-        margin-bottom: 20px;
-        border: 5px solid #ffffff;
-      }
-
-      .userTweetNumbers
-      {
-        margin-top: 40px;
-        height:100px;
-        background-color: @white;
-        text-shadow: none;
-        color: #000000;
-        .opacity(0.5);
-        overflow: hidden;
-
-
-        .inner{
-          margin-top:20px;
-          vertical-align:middle;
-        }
-
-        .userTweetNumber
-        {
-          height:100px;
-          float: left;
-          width:149px;
-        }
+      .profimg {
+        margin-left   : 30px;
+        margin-top    : 30px;
+        margin-bottom : 10px;
+        border        : 5px solid #ffffff;
       }
     }
-
 
     .tint {
-      z-index: 1;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      background: rgba(0, 0, 0, 0.7);
+      width      : 100%;
+      z-index    : 1;
+      position   : absolute;
+      top        : 0px;
+      left       : 0px;
+      background : rgba(0, 0, 0, 0.7);
     }
   }
 }
-
 
   /*** Scrollbar stuff */
 
-@thumb-gray : @column-edit ;
+@thumb-gray : @column-edit;
 
 ::-webkit-scrollbar {
-  width: 10px;
-} /* this targets the default scrollbar (compulsory) */
+  width : 10px;
+}
+
+  /* this targets the default scrollbar (compulsory) */
 
 ::-webkit-scrollbar-track {
-  background-color: @column-body;
-} /* the new scrollbar will have a flat appearance with the set background color */
-::-webkit-scrollbar-thumb {
-  background-color: @thumb-gray;
-} /* this will style the thumb, ignoring the track */
-::-webkit-scrollbar-button {
-  background-color: @column-body;
-} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
-::-webkit-scrollbar-corner {
-  background-color: @thumb-gray;
-} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
-
-.jspTrack
-{
-  background: #b46868; /* changed from #dde */
-  position: relative;
+  background-color : @column-body;
 }
-.jspDrag
-{
-  background: rgba(0,0,0,0.2); /* changed from #bbd */
-  position: relative;
-  top: 0;
-  left: 0;
-  cursor: pointer;
+
+  /* the new scrollbar will have a flat appearance with the set background color */
+::-webkit-scrollbar-thumb {
+  background-color : @thumb-gray;
+}
+
+  /* this will style the thumb, ignoring the track */
+::-webkit-scrollbar-button {
+  background-color : @column-body;
+}
+
+  /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+::-webkit-scrollbar-corner {
+  background-color : @thumb-gray;
+}
+
+  /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
+
+.jspTrack {
+  background : #b46868; /* changed from #dde */
+  position   : relative;
+}
+
+.jspDrag {
+  background : rgba(0, 0, 0, 0.2); /* changed from #bbd */
+  position   : relative;
+  top        : 0;
+  left       : 0;
+  cursor     : pointer;
 }

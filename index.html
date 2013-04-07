@@ -130,53 +130,46 @@
 
 
 <script type="text/ng-template" id="user-model.html">
-
     <div class="profileContainer">
         <div style="clear:both"></div>
         <div class="modal-body profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
             <div class="tint">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
                 <div class="profiledeets">
                     <img class="profimg" ng-src="{{user.profile_image_url}}">
                     <h2 class="username">{{user.name}}</h2>
                     <p class="screen_name">@{{user.screen_name}}</p>
-
                     <div class="description">
                         <p>{{user.description}}</p>
                     </div>
                     <p class="url"><a href="{{user.url}}">{{user.url}}</a></p>
-
-                    <div class="userTweetNumbers">
-                        <div class="userTweetNumber">
-                            <div class="inner">
-                                <p>{{user.statuses_count}}</p>
-                                <p>Tweets</p>
-                            </div>
+                </div>
+                <div class="userTweetNumbers">
+                    <div class="userTweetNumber">
+                        <div class="inner">
+                            <p>{{user.statuses_count}}</p>
+                            <p>Tweets</p>
                         </div>
-                        <div class="userTweetNumber">
-                            <div class="inner">
-                                <p>{{user.following}}</p>
-                                <p>Following</p>
-                            </div>
+                    </div>
+                    <div class="userTweetNumber">
+                        <div class="inner">
+                            <p>{{user.friends_count}}</p>
+                            <p>Following</p>
                         </div>
-                        <div class="userTweetNumber">
-                            <div class="inner">
-                                <p>{{user.followers_count}}</p>
-                                <p>Followers</p>
-                            </div>
+                    </div>
+                    <div class="userTweetNumber">
+                        <div class="inner">
+                            <p>{{user.followers_count}}</p>
+                            <p>Followers</p>
                         </div>
-                        <div class="userTweetNumber">
-                            <div class="inner">
-                                <p>{{user.listed_count}}</p>
-                                <p>Listed</p>
-                            </div>
+                    </div>
+                    <div class="userTweetNumber">
+                        <div class="inner">
+                            <p>{{user.listed_count}}</p>
+                            <p>Listed</p>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
         <div class="modal-footer">

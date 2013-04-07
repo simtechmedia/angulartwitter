@@ -346,12 +346,12 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
 function MyModalCtrl ( $scope, $http )
 {
     $scope.sourceTweet = $scope.$parent.tweet ;
-    $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.users%20where%20screen_name%3D'"+$scope.$parent.tweet.from_user+"'%3B%20&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
+    $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.users%20where%20id%3D"+$scope.$parent.tweet.from_user_id+"%3B%20&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
 
     $scope.openModal = function(){
         console.log("openModal" + $scope.$parent.tweet.from_user);
         console.log($scope.urlRequest);
-        if(!document.URL.substring(0,16) == "http://localhost")
+        if(document.URL.substring(0,16) == "http://localhost")
         {
             $scope.getLocalProfile();
         } else {
@@ -370,7 +370,6 @@ function MyModalCtrl ( $scope, $http )
     $scope.getRealProfile = function()
     {
         $http.jsonp($scope.urlRequest).success(function(data){
-
             // Check if we're being data limited
             var results = data.query.results;
             console.log(results);
