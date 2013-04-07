@@ -90,16 +90,12 @@
 <script type="text/ng-template" id="search-column.html">
     <div class="tweetspan friendTweets" name={{ColumnData.columns[$parent.$index].name}} name2="{{}}" ng-controller="SeatchTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
-
         <div ng-controller="searchSettingsCtrl">
-
-        <div class="heading-edit" editcol ng-click="toggleSettingsPanel()">
-            <i class="icon-search icon-white heading-icon"></i>
+            <div class="heading-edit" editcol ng-click="toggleSettingsPanel()">
+                <i class="icon-search icon-white heading-icon"></i>
+            </div>
+            <searchsettings></searchsettings>
         </div>
-
-        <searchsettings></searchsettings>
-        </div>
-
         <div class="colTweets" ng-style="style()" resize>
             <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
                 <div class="tweetprofilepic">
@@ -127,7 +123,6 @@
         </form>
     </div>
 </script>
-
 
 <script type="text/ng-template" id="user-model.html">
     <div class="profileContainer">
@@ -182,11 +177,8 @@
                     <h2><a href="#">@Mentions</a></h2>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

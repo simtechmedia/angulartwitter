@@ -4,15 +4,13 @@
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365134669078" ignored="false" />
     <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365212633681" ignored="false" />
     <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365294514704" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365294079748" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365296974253" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -47,11 +45,11 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="51" selection-start="7173" selection-end="7173" vertical-scroll-proportion="-9.215686">
+            <state line="92" column="46" selection-start="4330" selection-end="4348" vertical-scroll-proportion="-17.392157">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1365294663802" expanded="true" signature="327:652" placeholder="..." />
+                <marker date="1365295693800" expanded="true" signature="327:652" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -60,7 +58,7 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="353" column="11" selection-start="11863" selection-end="11863" vertical-scroll-proportion="0.59057593">
+            <state line="125" column="0" selection-start="4172" selection-end="4172" vertical-scroll-proportion="0.31505376">
               <folding />
             </state>
           </provider>
@@ -512,18 +510,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="51" selection-start="7173" selection-end="7173" vertical-scroll-proportion="-9.215686">
+        <state line="92" column="46" selection-start="4330" selection-end="4348" vertical-scroll-proportion="-17.392157">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1365294663802" expanded="true" signature="327:652" placeholder="..." />
+            <marker date="1365295693800" expanded="true" signature="327:652" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="353" column="11" selection-start="11863" selection-end="11863" vertical-scroll-proportion="0.59057593">
+        <state line="125" column="0" selection-start="4172" selection-end="4172" vertical-scroll-proportion="0.31505376">
           <folding />
         </state>
       </provider>

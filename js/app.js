@@ -118,16 +118,31 @@ app.directive('editcol', function() {
             var edit    = "<p class=\"heading-text\" editcol><a href=\"#\">Edit</a></p>";
             var close   = "<p class=\"heading-text\" editcol><a href=\"#\">Close</a></p>";
 
-            if(true) openEditState();
+            if(scope.showSettings.show == true) openEditState();
+
+            scope.getShowSettings = function () {
+                return { show : scope.showSettings.show }
+            };
+
+            scope.$watch(scope.getShowSettings, function (newValue, oldValue)
+            {
+                if( newValue.show == true )
+                    openEditState();
+                else
+                    closeEditState();
+            }, true);
 
             function openEditState(){
                 element.children().replaceWith(close);
             }
 
             function closeEditState(){
-                element.children().replaceWith(edit);
+                element.children().replaceWith(magicon);
             }
 
+            /*
+            this break things, will try to redo later
+            thikn it's something to do with bubbling, but the other binds are in the controller
             element.bind('mouseenter', function() {
                 if(!scope.$parent.$parent.column.settings)
                     element.children().replaceWith(edit);
@@ -137,6 +152,8 @@ app.directive('editcol', function() {
                 if(!scope.$parent.$parent.column.settings)
                     element.children().replaceWith(magicon);
             })
+
+            */
         }
     }
 })
@@ -195,13 +212,6 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
         $scope.tweets = results;
     }
 
-
-    /*
-    $http.get('data/searchangularjs.json').success(function(data) {
-        var results = data.query.results.results;
-        $scope.tweets = results;
-
-    });*/
     $scope.addMorePages = function() {
         console.log("addingMorePages");
         $scope.pageSize=$scope.pageSize+10
@@ -335,7 +345,7 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
     // Commenting out , might use it later
     /*
     $scope.popover = {
-        "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_user_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
+        "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_editcol_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
     }
     */
 
