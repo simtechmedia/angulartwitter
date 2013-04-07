@@ -65,21 +65,19 @@
 <script type="text/ng-template" id="friendtweets-column.html">
     <div class="tweetspan friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
-
         <div ng-controller="searchSettingsCtrl">
             <div class="heading-edit" >
                 <i class="icon-home icon-white heading-icon"></i>
             </div>
         </div>
-
         <div class="colTweets" ng-style="style()" resize>
             <div ng-repeat="tweet in tweets" class="tweetBox">
                 <div class="tweetprofilepic">
                     <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
-                    <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
+                    <a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
             </div>
@@ -102,8 +100,10 @@
                     <img ng-src="{{tweet.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
+                    <!--
                     <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
                     <tweetbody ng-bind-html="addHTML(tweet.text)"></tweetbody>
+                    -->
                 </div>
                 <hr/>
             </div>
@@ -126,7 +126,6 @@
 
 <script type="text/ng-template" id="user-model.html">
     <div class="profileContainer">
-        <div style="clear:both"></div>
         <div class="modal-body profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
             <div class="tint">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -172,7 +171,6 @@
                 <div class="profilebutton">
                     <h2><a href="#">Tweets</a></h2>
                 </div>
-
                 <div class="profilebutton">
                     <h2><a href="#">@Mentions</a></h2>
                 </div>
@@ -184,7 +182,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.1/angular-strap.min.js"></script>
+<script src="js/vendor/angular-strap.js"></script>
 <script src="js/vendor/angular-sanitize.js"></script>
 <script src="js/vendor/less-1.3.3.min.js"></script>
 <script src="js/vendor/jquery.jscrollpane.min.js"></script>

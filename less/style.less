@@ -1,5 +1,7 @@
 // Import Elements Mixins
 @import "elements.less";
+@import '3l-mini';
+@import "animation1";
 
 @nice-blue: #5B83AD;
 @column-body : #26282a;
@@ -31,12 +33,16 @@ body {
 
 }
 
+
 .friendTweets {
 
   background-color : @column-grey;
+  color            : #bbbbbb;
   .rounded(10px);
   .drop-shadow(5px,5px, 5px, 0.1);
-  color            : #bbbbbb;
+
+  .opacity(1);
+  .animation(fadeIn 1s);
 
   .columnsettings {
     background-color : @column-edit;
@@ -141,10 +147,6 @@ body {
     color : #ffffff;
   }
 }
-
-  /**
-   Tweet Box
-  */
 
 .tweetBox {
 

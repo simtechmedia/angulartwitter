@@ -4,13 +4,15 @@
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365134669078" ignored="false" />
-    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365212633681" ignored="false" />
-    <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365294514704" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365296974253" ignored="false" />
+    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365334264926" ignored="false" />
+    <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365307035181" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365335049944" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -23,6 +25,8 @@
     <file path="/user-modal.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365070364236" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5.rnc" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365134670905" ignored="false" />
     <file path="/a.css" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365292550011" ignored="false" />
+    <file path="/myanimations.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365310230371" ignored="false" />
+    <file path="/angular-strap.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365330469983" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +49,10 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="46" selection-start="4330" selection-end="4348" vertical-scroll-proportion="-17.392157">
+            <state line="103" column="107" selection-start="4999" selection-end="5009" vertical-scroll-proportion="-34.333332">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1365295693800" expanded="true" signature="327:652" placeholder="..." />
+                <marker date="1365334787445" expanded="true" signature="327:652" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -58,16 +61,7 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="0" selection-start="4172" selection-end="4172" vertical-scroll-proportion="0.31505376">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="searchangularjs.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="25" selection-start="1100" selection-end="1112" vertical-scroll-proportion="-9.0">
+            <state line="46" column="0" selection-start="1378" selection-end="2034" vertical-scroll-proportion="0.27849463">
               <folding />
             </state>
           </provider>
@@ -76,7 +70,16 @@
       <file leaf-file-name="elements.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/less/elements.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="29" selection-start="3847" selection-end="3847" vertical-scroll-proportion="0.0">
+            <state line="155" column="1" selection-start="5956" selection-end="5956" vertical-scroll-proportion="-83.6">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lesshat.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/less/lesshat.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="13" selection-start="1986" selection-end="1995" vertical-scroll-proportion="-41.28">
               <folding />
             </state>
           </provider>
@@ -85,25 +88,16 @@
       <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/less/style.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="331" column="17" selection-start="5365" selection-end="5365" vertical-scroll-proportion="0.86">
+            <state line="114" column="29" selection-start="2103" selection-end="2103" vertical-scroll-proportion="-20.4">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userData.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/userData.json">
+      <file leaf-file-name="myanimations.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/less/myanimations.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="19" selection-start="165" selection-end="167" vertical-scroll-proportion="-4.576923">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userProfile.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/userProfile.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="30" selection-start="1114" selection-end="1127" vertical-scroll-proportion="-4.2941175">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -127,10 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="/HTML Fragment (app.js:4508).html" />
-        <option value="$PROJECT_DIR$/js/japp.js" />
-        <option value="/HTML Fragment (app.js:3695).html" />
-        <option value="/HTML Fragment (app.js:3766).html" />
         <option value="/HTML Fragment (app.js:3856).html" />
         <option value="$PROJECT_DIR$/partials/search-settings.html" />
         <option value="$PROJECT_DIR$/partials/user-modal.html" />
@@ -140,7 +130,11 @@
         <option value="$PROJECT_DIR$/data/searchangularjs.json" />
         <option value="$PROJECT_DIR$/data/userData.json" />
         <option value="$PROJECT_DIR$/data/userProfile.json" />
+        <option value="$PROJECT_DIR$/less/mymixins.less" />
+        <option value="$PROJECT_DIR$/less/myanimations.less" />
+        <option value="$PROJECT_DIR$/less/animation1.less" />
         <option value="$PROJECT_DIR$/less/style.less" />
+        <option value="$PROJECT_DIR$/js/vendor/angular-strap.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/app.js" />
       </list>
@@ -220,7 +214,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="less" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angulartwitter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angulartwitter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angulartwitter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angulartwitter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -279,6 +309,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\angulartwitter\less" />
       <recent name="C:\wamp\www\angulartwitter\js" />
       <recent name="C:\wamp\www\angulartwitter" />
     </key>
@@ -293,6 +324,13 @@
       <option name="filePath" />
       <option name="scope" value="ALL" />
       <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
@@ -336,6 +374,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973504" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30521876" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24986821" sideWeight="0.67026496" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -347,7 +386,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -414,51 +452,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="959" column="1" selection-start="40309" selection-end="40309" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/less/elements.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="14" selection-start="2659" selection-end="2672" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/less/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="20" selection-start="3652" selection-end="3652" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/userData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="32" selection-start="2741" selection-end="2782" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/bootstrap-responsive.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="14" selection-start="393" selection-end="394" vertical-scroll-proportion="0.37663645" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/phrase.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="35" selection-start="1353" selection-end="1353" vertical-scroll-proportion="0.52165157">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/japp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="5" selection-start="114" selection-end="114" vertical-scroll-proportion="0.08780992" />
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/common.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="22" selection-start="1921" selection-end="1962" vertical-scroll-proportion="0.69284993">
@@ -473,20 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/less/elements.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="29" selection-start="3847" selection-end="3847" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/userData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="19" selection-start="165" selection-end="167" vertical-scroll-proportion="-4.576923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/searchangularjs.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="25" selection-start="1100" selection-end="1112" vertical-scroll-proportion="-9.0">
@@ -494,34 +473,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/less/style.less">
+    <entry file="file://$PROJECT_DIR$/data/userProfile.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="331" column="17" selection-start="5365" selection-end="5365" vertical-scroll-proportion="0.86">
+        <state line="18" column="47" selection-start="934" selection-end="934" vertical-scroll-proportion="-2.9607842">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/userProfile.json">
+    <entry file="file://$PROJECT_DIR$/data/userData.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="30" selection-start="1114" selection-end="1127" vertical-scroll-proportion="-4.2941175">
+        <state line="7" column="19" selection-start="165" selection-end="167" vertical-scroll-proportion="0.09978768">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/animation1.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/elements.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="1" selection-start="5956" selection-end="5956" vertical-scroll-proportion="-83.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/lesshat.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="13" selection-start="1986" selection-end="1995" vertical-scroll-proportion="-41.28">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="29" selection-start="2103" selection-end="2103" vertical-scroll-proportion="-20.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vendor/angular-strap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="647" column="0" selection-start="19416" selection-end="21068" vertical-scroll-proportion="0.43801653">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/3L-mini.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/Bootstrap/mixins.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/Bootstrap/bootstrap.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="20" selection-start="572" selection-end="572" vertical-scroll-proportion="0.21248741">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/myanimations.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="46" selection-start="4330" selection-end="4348" vertical-scroll-proportion="-17.392157">
+        <state line="103" column="107" selection-start="4999" selection-end="5009" vertical-scroll-proportion="-34.333332">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#script#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1365295693800" expanded="true" signature="327:652" placeholder="..." />
+            <marker date="1365334787445" expanded="true" signature="327:652" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="0" selection-start="4172" selection-end="4172" vertical-scroll-proportion="0.31505376">
+        <state line="46" column="0" selection-start="1378" selection-end="2034" vertical-scroll-proportion="0.27849463">
           <folding />
         </state>
       </provider>
