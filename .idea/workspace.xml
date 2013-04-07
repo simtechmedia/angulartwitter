@@ -3,19 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/japp.js" afterPath="$PROJECT_DIR$/js/japp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/vendor/jquery.mousewheel.js" afterPath="$PROJECT_DIR$/js/vendor/jquery.mousewheel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365348218683" ignored="false" />
     <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365347242136" ignored="false" />
     <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365307035181" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365345578331" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365351482640" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -53,10 +47,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="191" column="33" selection-start="8895" selection-end="8895" vertical-scroll-proportion="1.784067">
+            <state line="50" column="163" selection-start="2395" selection-end="2429" vertical-scroll-proportion="-9.058824">
               <folding>
                 <marker date="1365348353357" expanded="true" signature="327:652" placeholder="..." />
               </folding>
@@ -64,10 +58,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="japp.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/japp.js">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="10" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+            <state line="437" column="12" selection-start="13987" selection-end="13987" vertical-scroll-proportion="0.88481677">
               <folding />
             </state>
           </provider>
@@ -138,11 +132,11 @@
         <option value="$PROJECT_DIR$/less/myanimations.less" />
         <option value="$PROJECT_DIR$/less/animation1.less" />
         <option value="$PROJECT_DIR$/js/vendor/angular-strap.js" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/less/style.less" />
         <option value="$PROJECT_DIR$/css/jquery.jscrollpane.css" />
         <option value="$PROJECT_DIR$/js/japp.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -495,7 +489,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/vendor/angular-strap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="647" column="0" selection-start="19416" selection-end="21068" vertical-scroll-proportion="0.43801653" />
+        <state line="647" column="0" selection-start="19416" selection-end="21068" vertical-scroll-proportion="0.43801653">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/less/3L-mini.less">
@@ -513,18 +509,6 @@
     <entry file="file://$PROJECT_DIR$/less/Bootstrap/bootstrap.less">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="20" selection-start="572" selection-end="572" vertical-scroll-proportion="0.21248741" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="23" selection-start="3775" selection-end="3775" vertical-scroll-proportion="0.65806454" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/less/lesshat.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="13" selection-start="1986" selection-end="1995" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/less/style.less">
@@ -550,17 +534,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/japp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="10" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+        <state line="7" column="10" selection-start="321" selection-end="321" vertical-scroll-proportion="0.11983887">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="33" selection-start="8895" selection-end="8895" vertical-scroll-proportion="1.784067">
+        <state line="50" column="163" selection-start="2395" selection-end="2429" vertical-scroll-proportion="-9.058824">
           <folding>
             <marker date="1365348353357" expanded="true" signature="327:652" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/lesshat.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="13" selection-start="1986" selection-end="1995" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="437" column="12" selection-start="13987" selection-end="13987" vertical-scroll-proportion="0.88481677">
+          <folding />
         </state>
       </provider>
     </entry>

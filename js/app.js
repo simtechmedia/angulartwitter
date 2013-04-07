@@ -61,7 +61,24 @@ app.directive("profilelink", function($compile){
             }
         }
     }
+})
+
+
+app.directive("hashlink", function($compile){
+    return {
+        restrict:"E",
+        replace:true,
+        compile: function() {
+            return function ( scope, element , attrs) {
+                attrs.$observe('hash', function(textValue) {
+                    var linkHTML = '<a href="#" ng-controller="HashTagSearchCtrl" ng-click="searchTweets(\''+textValue+'\')">#'+textValue+'</a>';
+                    element.html( $compile( linkHTML )(scope) );
+                });
+            }
+        }
+    }
 });
+
 
 
 // Load Tweets Directive
@@ -386,6 +403,27 @@ function TopSearchBarCtrl ($scope, ColumnData,  $http)
     */
 }
 
+
+function HashTagSearchCtrl ($scope, ColumnData )
+{
+    $scope.ColumnData       = ColumnData
+    $scope.content;                         // Content
+    $scope.searchVars       = {
+        searchString : ""
+    }
+
+    //Search Tweets
+    $scope.searchTweets = function(st)
+    {
+        $scope.ColumnData.columns.push({
+            "name" : st ,
+            "type" : "search",
+            "settings" : false
+        });
+    }
+}
+
+
 // Controller for Profile Modal
 // Uses jsonp call to grab data from ypl
 function MyModalCtrl ( $scope, $http )
@@ -439,8 +477,6 @@ function MyModalCtrl ( $scope, $http )
     }
 }
 
-
-
 function addLinksToHtml( st ) {
 
     // Add Ancor to @
@@ -454,6 +490,8 @@ function addLinksToHtml( st ) {
 
     //console.log("newString = "  + newString);
     // Add HashTags
+    var hashRegEx = /#([a-z0-9_]{1,20})/gi;
+    newString = String(newString).replace(  hashRegEx , "<hashlink hash='$1'></hashlink>" );
 
     return newString;
 }
