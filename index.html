@@ -86,7 +86,12 @@
                     <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <div class="tweetname">
+                        <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    </div>
+                    <div class="tweettime">
+                        <tweettime time="{{tweet.created_at}}"></tweettime>
+                    </div>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
@@ -110,7 +115,12 @@
                     <img ng-src="{{tweet.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <p><a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
+                    <div class="tweetname">
+                        <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a>
+                    </div>
+                    <div class="tweettime">
+                        <tweettime time="{{tweet.created_at}}"></tweettime>
+                    </div>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
@@ -135,7 +145,12 @@
                     <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <div class="tweetname">
+                        <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    </div>
+                    <div class="tweettime">
+                        <tweettime time="{{tweet.created_at}}"></tweettime>
+                    </div>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>

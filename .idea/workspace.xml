@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a55aeb1c-31d7-415e-b022-3d286e366e79" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/style.less" afterPath="$PROJECT_DIR$/less/style.less" />
     </list>
     <ignored path="angulartwitter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365348218683" ignored="false" />
-    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365430410025" ignored="false" />
-    <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365416995141" ignored="false" />
-    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365428394409" ignored="false" />
+    <file path="/index.html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365433862450" ignored="false" />
+    <file path="/style.less" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365434228278" ignored="false" />
+    <file path="/app.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1365433977654" ignored="false" />
     <file path="$PROJECT_DIR$/../portang/data/HomeTweets.json.js" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364551056540" ignored="false" />
     <file path="/HTML Fragment (app.js:199).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364621720270" ignored="false" />
     <file path="/HTML Fragment (app.js:340).html" changelist="a55aeb1c-31d7-415e-b022-3d286e366e79" time="1364633989118" ignored="false" />
@@ -49,23 +51,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1428" selection-end="1428" vertical-scroll-proportion="-1.5490196">
+            <state line="93" column="26" selection-start="4422" selection-end="4422" vertical-scroll-proportion="-0.62863296">
               <folding>
-                <marker date="1365431258781" expanded="true" signature="327:652" placeholder="..." />
+                <marker date="1365434339190" expanded="true" signature="327:652" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="614" column="0" selection-start="20100" selection-end="20100" vertical-scroll-proportion="1.747644">
+            <state line="272" column="44" selection-start="8778" selection-end="8778" vertical-scroll-proportion="-8.84">
               <folding>
-                <element signature="e#6872#7411#0" expanded="false" />
+                <element signature="e#6876#7415#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -83,7 +85,7 @@
       <file leaf-file-name="userTweets.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/userTweets.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="1" selection-start="49706" selection-end="49706" vertical-scroll-proportion="-5.8846154">
+            <state line="8" column="5" selection-start="49704" selection-end="49704" vertical-scroll-proportion="-5.230769">
               <folding />
             </state>
           </provider>
@@ -92,7 +94,7 @@
       <file leaf-file-name="search-settings.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/search-settings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="130" selection-start="357" selection-end="607" vertical-scroll-proportion="-4.576923">
+            <state line="5" column="17" selection-start="348" selection-end="348" vertical-scroll-proportion="-3.2692308">
               <folding />
             </state>
           </provider>
@@ -130,7 +132,7 @@
       <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/less/style.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="227" column="0" selection-start="3575" selection-end="3575" vertical-scroll-proportion="-13.42">
+            <state line="189" column="0" selection-start="3056" selection-end="3056" vertical-scroll-proportion="-9.0">
               <folding />
             </state>
           </provider>
@@ -163,13 +165,13 @@
         <option value="$PROJECT_DIR$/partials/search-column.html" />
         <option value="$PROJECT_DIR$/partials/friendtweets-column.html" />
         <option value="$PROJECT_DIR$/partials/user-modal.html" />
-        <option value="$PROJECT_DIR$/less/style.less" />
         <option value="$PROJECT_DIR$/partials/search-settings.html" />
         <option value="$PROJECT_DIR$/data/userTweets.json" />
         <option value="$PROJECT_DIR$/partials/user-settings.html" />
         <option value="$PROJECT_DIR$/partials/home-settings.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/less/style.less" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -551,30 +553,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/less/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="0" selection-start="3575" selection-end="3575" vertical-scroll-proportion="-13.42">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/userData.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="67" selection-start="371" selection-end="371" vertical-scroll-proportion="-6.4615383">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/userTweets.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="1" selection-start="49706" selection-end="49706" vertical-scroll-proportion="-5.8846154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/search-settings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="130" selection-start="357" selection-end="607" vertical-scroll-proportion="-4.576923">
           <folding />
         </state>
       </provider>
@@ -586,6 +567,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/partials/search-settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="348" selection-end="348" vertical-scroll-proportion="-3.2692308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/userTweets.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="5" selection-start="49704" selection-end="49704" vertical-scroll-proportion="-5.230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partials/home-settings.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="6" selection-start="345" selection-end="345" vertical-scroll-proportion="-3.2692308">
@@ -593,20 +588,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1428" selection-end="1428" vertical-scroll-proportion="-1.5490196">
+        <state line="272" column="44" selection-start="8778" selection-end="8778" vertical-scroll-proportion="-8.84">
           <folding>
-            <marker date="1365431258781" expanded="true" signature="327:652" placeholder="..." />
+            <element signature="e#6876#7415#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
+    <entry file="file://$PROJECT_DIR$/less/style.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="614" column="0" selection-start="20100" selection-end="20100" vertical-scroll-proportion="1.747644">
+        <state line="189" column="0" selection-start="3056" selection-end="3056" vertical-scroll-proportion="-9.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="26" selection-start="4422" selection-end="4422" vertical-scroll-proportion="-0.62863296">
           <folding>
-            <element signature="e#6872#7411#0" expanded="false" />
+            <marker date="1365434339190" expanded="true" signature="327:652" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -1,8 +1,15 @@
 
-Twitter Application built in AngularJS
+# Twitter Application built in AngularJS #
+
 
 Libaries Used
 -------------
-Bootstrap
-Less.js
-Underscore.js
+*   AngularJS
+*   Twitter Bootstrap
+*   Less.js
+*   Underscore.js
+
+
+
+
+

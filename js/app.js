@@ -41,8 +41,8 @@ app.directive("tweetbody", function($compile){
             return function ( scope, element , attrs) {
                 attrs.$observe('text', function(textValue) {
                     if(textValue != undefined && textValue.length > 0) {
-                        var bodyText = addLinksToHtml(textValue);
-                        element.html( $compile(  "<p>"+bodyText+"</p>" )(scope) )
+                        ///var bodyText = addLinksToHtml(textValue);
+                        element.html( $compile(  "<p>"+textValue+"</p>" )(scope) )
                     }
                 })
             }
@@ -267,6 +267,45 @@ app.directive('homesettings', function(){
 })
 
 
+// Tweet time, converts twitter time to human time
+// Need to change compile to linker function i think
+// It's 2am and i need togot sleep
+app.directive("tweettime", function($compile){
+    return {
+        restrict:"E",
+        replace:true,
+        compile: function() {
+            return function ( scope, element , attrs) {
+                attrs.$observe('time', function(textValue) {
+//                    var linkHTML = '<a href="#" ng-controller="HashTagSearchCtrl" ng-click="searchTweets(\''+textValue+'\')"><strong>#'+textValue+'</strong></a>';
+                    var linkHTML = '<p>'+TwitterDateConverter(textValue)+'</p>';
+                    element.html( $compile( linkHTML )(scope) );
+                });
+            }
+        }
+    }
+});
+
+function TwitterDateConverter(time){
+    var date = new Date(time),
+        diff = (((new Date()).getTime() - date.getTime()) / 1000),
+        day_diff = Math.floor(diff / 86400);
+
+    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
+        return;
+
+    return day_diff == 0 && (
+        diff < 60 && "just now" ||
+            diff < 120 && "1 minute ago" ||
+            diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
+            diff < 7200 && "1 hour ago" ||
+            diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
+        day_diff == 1 && "Yesterday" ||
+        day_diff < 7 && day_diff + " days ago" ||
+        day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
+}
+
+
 // Controller to share the column data to the repeater that creates the columns
 // think i can get away with incorporating this to something else eventually, feel unnessary
 function ColumnsCtrl ( $scope, ColumnData )
@@ -307,10 +346,7 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
         console.log("addingMorePages");
         $scope.pageSize=$scope.pageSize+10
     }
-    $scope.addHTML = function( st ){
-        //return addLinksToHtml(st);
-        return st;
-    }
+
 }
 
 // User Tweets Controller
@@ -329,7 +365,6 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
     {
         $http.get('data/userTweets.json').success(function(data) {
 
-            console.log(String(data));
             $scope.processData(data);
         });
     } else {
@@ -343,6 +378,16 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
     {
         var results = JSON.parse(data.query.results.result);
         $scope.tweets = results;
+
+        // Need to do a manual Tweet Convert
+        console.log(results);
+
+    }
+
+    $scope.parseTwitterTime = function( time )
+    {
+        console.log(time);
+        return parseTwitterDate(time);
     }
 
     $scope.addMorePages = function() {
@@ -350,6 +395,7 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
         $scope.pageSize=$scope.pageSize+10
     }
 }
+
 
 // Controller for searchColumn
 function searchSettingsCtrl ( $scope , ColumnData)
