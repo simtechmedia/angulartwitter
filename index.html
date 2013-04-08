@@ -78,7 +78,7 @@
                     <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
@@ -102,7 +102,7 @@
                     <img ng-src="{{tweet.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
+                    <p><a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
@@ -111,6 +111,32 @@
         </div>
     </div>
 </script>
+
+<script type="text/ng-template" id="user-column.html">
+    <div class="tweetspan friendTweets" name={{ColumnData.columns[$parent.$index].name}} name2="{{}}" ng-controller="UserTweetsCtrl">
+        <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
+        <div ng-controller="searchSettingsCtrl">
+            <div class="heading-edit" editcol ng-click="toggleSettingsPanel()">
+                <i class="icon-user icon-white heading-icon"></i>
+            </div>
+            <usersettings></usersettings>
+        </div>
+        <div class="colTweets" ng-style="style()" resize>
+            <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
+                <div class="tweetprofilepic">
+                    <img ng-src="{{tweet.user.profile_image_url}}">
+                </div>
+                <div class="tweetdetails">
+                    <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <tweetbody text="{{tweet.text}}"></tweetbody>
+                </div>
+                <hr/>
+            </div>
+            <loadtweets></loadtweets>
+        </div>
+    </div>
+</script>
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://code.angularjs.org/1.1.3/angular.js"></script>
