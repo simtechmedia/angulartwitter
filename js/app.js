@@ -55,7 +55,7 @@ app.directive("profilelink", function($compile){
 //                console.log("$scope.$parent.tweet.from_user");
 //                console.log(scope.$parent);
                 attrs.$observe('profilename', function(textValue) {
-                    var linkHTML = '<a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="user-model.html" data-toggle="modal">@'+textValue+'</a>'
+                    var linkHTML = '<a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="partials/user-modal.html" data-toggle="modal">@'+textValue+'</a>'
                     element.html( $compile( linkHTML )(scope) );
                 });
             }
@@ -71,7 +71,7 @@ app.directive("hashlink", function($compile){
         compile: function() {
             return function ( scope, element , attrs) {
                 attrs.$observe('hash', function(textValue) {
-                    var linkHTML = '<a href="#" ng-controller="HashTagSearchCtrl" ng-click="searchTweets(\''+textValue+'\')">#'+textValue+'</a>';
+                    var linkHTML = '<a href="#" ng-controller="HashTagSearchCtrl" ng-click="searchTweets(\''+textValue+'\')"><strong>#'+textValue+'</strong></a>';
                     element.html( $compile( linkHTML )(scope) );
                 });
             }
@@ -214,7 +214,7 @@ app.directive('editcol', function() {
 app.directive('searchsettings', function(){
     return {
         restrict:"E",
-        templateUrl:"search-settings.html",
+        templateUrl:"partials/search-settings.html",
 
         link: function(scope, element)
         {
@@ -481,12 +481,12 @@ function addLinksToHtml( st ) {
 
     // Add Ancor to @
     var regEx = /@([a-z0-9_]{1,20})/gi;
-    //var newString = st.replace(  regEx , "<a href='#' ng-controller='MyModalCtrl' ng-click='openModal()' bs-modal='user-model.html'>~@$1</a>" );
-    var newString = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
+    // Commenting this out until i figure out the bug
+    var newString = st;// = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
 
     // Adds Ancor to links
     var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    newString = String(newString).replace(  htmlRegEx , "<a href='$1' target='_blank'>$1</a>" );
+    newString = String(newString).replace(  htmlRegEx , "<a href='$1' target='_blank'><strong>$1</strong></a>" );
 
     //console.log("newString = "  + newString);
     // Add HashTags

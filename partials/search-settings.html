@@ -1,0 +1,9 @@
+<div class="columnsettings" ng-show="showSettings.show">
+    <form>
+        <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search String" ng-change="change()" ng-model="searchVars.searchString">
+        <button type="submit" class="btn ng-scope"  ng-click="changeSearch()">
+            Search
+        </button>
+        <button type="button" class="btn btn-danger" ng-click="deleteColumn()">Delete Column</button>
+    </form>
+</div>

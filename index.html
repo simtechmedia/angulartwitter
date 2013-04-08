@@ -62,6 +62,7 @@
         </div>
 </div>
 
+
 <! -- Templates , might actually move these to partials eventually -- >
 <script type="text/ng-template" id="friendtweets-column.html">
     <div class="tweetspan friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
@@ -77,7 +78,7 @@
                     <img ng-src="{{tweet.user.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+                    <a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
@@ -101,80 +102,12 @@
                     <img ng-src="{{tweet.profile_image_url}}">
                 </div>
                 <div class="tweetdetails">
-                    <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'user-model.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
+                    <p><a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a></p>
                     <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
                 <hr/>
             </div>
             <loadtweets></loadtweets>
-        </div>
-    </div>
-</script>
-
-<script type="text/ng-template" id="search-settings.html">
-    <div class="columnsettings" ng-show="showSettings.show">
-        <form>
-        <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search String" ng-change="change()" ng-model="searchVars.searchString">
-        <button type="submit" class="btn ng-scope"  ng-click="changeSearch()">
-            Search
-        </button>
-        <button type="button" class="btn btn-danger" ng-click="deleteColumn()">Delete Column</button>
-        </form>
-    </div>
-</script>
-
-<script type="text/ng-template" id="user-model.html">
-    <div class="profileContainer">
-
-        <div class="modal-body profilebg" style="background-image:url('{{user.profile_background_image_url}}')">
-            <div class="tint">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <div class="profiledeets">
-                    <img class="profimg" ng-src="{{user.profile_image_url}}">
-                    <h2 class="username">{{user.name}}</h2>
-                    <p class="screen_name">@{{user.screen_name}}</p>
-                    <div class="description">
-                        <p>{{user.description}}</p>
-                    </div>
-                    <p class="url"><a href="{{user.url}}">{{user.url}}</a></p>
-                </div>
-                <div class="userTweetNumbers">
-                    <div class="userTweetNumber">
-                        <div class="inner">
-                            <p>{{user.statuses_count}}</p>
-                            <p>Tweets</p>
-                        </div>
-                    </div>
-                    <div class="userTweetNumber">
-                        <div class="inner">
-                            <p>{{user.friends_count}}</p>
-                            <p>Following</p>
-                        </div>
-                    </div>
-                    <div class="userTweetNumber">
-                        <div class="inner">
-                            <p>{{user.followers_count}}</p>
-                            <p>Followers</p>
-                        </div>
-                    </div>
-                    <div class="userTweetNumber">
-                        <div class="inner">
-                            <p>{{user.listed_count}}</p>
-                            <p>Listed</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="profilebuttons">
-                <div class="profilebutton">
-                    <h2><a href="#">Tweets</a></h2>
-                </div>
-                <div class="profilebutton">
-                    <h2><a href="#">@Mentions</a></h2>
-                </div>
-            </div>
         </div>
     </div>
 </script>

@@ -63,12 +63,8 @@
 	box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5;
 }
 .border-radius-fix(){.background-clip(padding-box);}
-.border-radius (@radius:5px, ...) {
-	-webkit-border-radius: @arguments;
-	-moz-border-radius: @arguments;
-	border-radius: @arguments;
-}
-.round-corners (@radius:5px, ...) {.border-radius(@arguments);}
+
+
 .elliptical-border-radius (@radius1, @radius2) {
 	-webkit-border-radius: @radius1 ~"/" @radius2;
 	-moz-border-radius: @radius1 ~"/" @radius2;

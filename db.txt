@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng"
+    yahoo:count="1" yahoo:created="2013-04-08T00:43:15Z" yahoo:lang="en-US">
+    <diagnostics>
+        <publiclyCallable>true</publiclyCallable>
+        <redirect from="http://datatables.org/alltables.env" status="301"><![CDATA[http://www.datatables.org/alltables.env]]></redirect>
+        <url execution-start-time="2" execution-stop-time="154"
+            execution-time="152" proxy="DEFAULT"><![CDATA[http://datatables.org/alltables.env]]></url>
+        <user-time>946</user-time>
+        <service-time>913</service-time>
+        <build-version>35413</build-version>
+    </diagnostics> 
+    <results>
+        <inserted>
+            <execute>store://simtechmedia.com/angtwit01</execute>
+            <select>store://zcvOtK2Op43hv71R9hcA9r</select>
+            <update>store://utrKC6jmE8W7RndF9mZUwe</update>
+        </inserted>
+    </results>
+</query>
+
+set access_token='109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV' on twitter;
+set access_token_secret='5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc' on twitter;
+select * FROM twitter.statuses.user_timeline
+WHERE screen_name="YQLTest567"
+
+ https://developer.yahoo.com/yql/console/?env=store://simtechmedia.com/angtwit01#h=set%20access_token%3D%27109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV%27%20on%20twitter%3B%0Aset%20access_token_secret%3D%275W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc%27%20on%20twitter%3B%0Aselect%20*%20FROM%20twitter.statuses.user_timeline%20%0AWHERE%20screen_name%3D%22YQLTest567%22
