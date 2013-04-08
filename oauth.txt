@@ -1,5 +1,0 @@
-env 'http://datatables.org/alltables.env';
-set oauth_consumer_key='Nm5TO91b0jpNy8E4VePiWQ' on twitter;
-set oauth_consumer_secret='DLj2583T1AjKLwmmDyR2froCgXnMRhciPPQcMKA' on twitter;
-set consumer_key='Nm5TO91b0jpNy8E4VePiWQ' on twitter;
-set consumer_secret='DLj2583T1AjKLwmmDyR2froCgXnMRhciPPQcMKA' on twitter;

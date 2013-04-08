@@ -4,6 +4,8 @@
         <button type="submit" class="btn ng-scope"  ng-click="changeSearch()">
             Search
         </button>
+        <a class="btn arrow" ng-disabled="leftdisabled" href="#" ng-click="moveColLeft()"><i class="icon-chevron-left"></i></a>
+        <a class="btn arrow" ng-disabled="rightdisabled" href="#" ng-click="moveColRight()"><i class="icon-chevron-right"></i></a>
         <button type="button" class="btn btn-danger" ng-click="deleteColumn()">Delete Column</button>
     </form>
 </div>

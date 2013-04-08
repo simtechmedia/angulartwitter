@@ -253,6 +253,23 @@ app.directive('usersettings', function(){
 })
 
 
+app.directive('homesettings', function(){
+    return {
+        restrict:"E",
+        templateUrl:"partials/home-settings.html",
+
+        link: function(scope, element)
+        {
+            scope.getSettings = function (){
+                return {
+                    "settingsVal" : scope.showSettings
+                };
+            }
+        }
+    }
+})
+
+
 // Controller to share the column data to the repeater that creates the columns
 // think i can get away with incorporating this to something else eventually, feel unnessary
 function ColumnsCtrl ( $scope, ColumnData )
@@ -308,12 +325,15 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
     $scope.pageSize         = 10;
     $scope.searchString     = "";
     var searchString        = encodeURI($scope.$parent.column.name);
-    var searchURL           = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
+    //var searchURL           = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
+    var searchURL           = "https://query.yahooapis.com/v1/public/yql?q=set%20access_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20access_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20FROM%20twitter.statuses.user_timeline%20%0AWHERE%20screen_name%3D%22simtechmedia%22&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Fangtwit01&callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
     if(document.URL.substring(0,16) == "http://localhost")
     {
         $http.get('data/userTweets.json').success(function(data) {
+
+            console.log(String(data));
             $scope.processData(data);
         });
     } else {
@@ -341,9 +361,21 @@ function searchSettingsCtrl ( $scope , ColumnData)
     $scope.data             = ColumnData;
     $scope.currentVO        = $scope.$parent.$parent.$parent.column;        // Oh this nasty.
     $scope.searchDisabled   = true;
+    $scope.thisIndex;
+    $scope.leftdisabled      = false;
+    $scope.rightdisabled     = false ;
+
     $scope.showSettings     = {
         show :             $scope.currentVO.settings
+
+        // Check Vadility
     };
+
+    $scope.checkArrows      = function ()
+    {
+        $scope.leftdisabled = ( $scope.thisIndex > 0 ) ?   false :  true ;
+        $scope.rightdisabled = ( $scope.thisIndex < $scope.data.columns.length -1 ) ?   false :  true ;
+    }
 
     $scope.searchVars       = {
         searchString :  $scope.currentVO.name
@@ -363,7 +395,6 @@ function searchSettingsCtrl ( $scope , ColumnData)
     // Toggle Settings Panel
     $scope.toggleSettingsPanel = function()
     {
-//        console.log("toggleSettingsPanel");
         ($scope.currentVO.settings == true ) ? $scope.closeSettingsPanel() : $scope.openSettingsPanel() ;
     }
 
@@ -375,7 +406,9 @@ function searchSettingsCtrl ( $scope , ColumnData)
 
     // Open Settings Panel
     $scope.openSettingsPanel = function(){
+        $scope.thisIndex            = $scope.$parent.$index
         $scope.currentVO.settings = $scope.showSettings.show  = true;
+        $scope.checkArrows();
     }
 
     // Asign New String to Data VO that holds the column data
@@ -393,6 +426,37 @@ function searchSettingsCtrl ( $scope , ColumnData)
             return el.name === $scope.currentVO.name && el.type == $scope.currentVO.type ;
         });
     }
+
+    // Arror Arrange Functions
+    $scope.moveColLeft = function()
+    {
+        $scope.thisIndex = $scope.$parent.$index;
+        if( $scope.thisIndex  > 0 )  {
+            swapArrayElements($scope.data.columns, $scope.thisIndex , $scope.thisIndex  - 1 )
+            $scope.thisIndex-- ;
+            $scope.checkArrows();
+        }
+
+    }
+
+    $scope.moveColRight = function()
+    {
+        $scope.thisIndex = $scope.$parent.$index
+        if( $scope.thisIndex  < $scope.data.columns.length -1  )
+        {
+            swapArrayElements($scope.data.columns, $scope.thisIndex , $scope.thisIndex  + 1 )
+            $scope.thisIndex++;
+            $scope.checkArrows();
+        }
+
+
+    }
+}
+
+function swapArrayElements(array_object, index_a, index_b) {
+    var temp = array_object[index_a];
+    array_object[index_a] = array_object[index_b];
+    array_object[index_b] = temp;
 }
 
 // Controller for 'Home Tweets' Column

@@ -46,13 +46,20 @@
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="TopBarCtrl">
     <div class="navbar-inner">
-        <a class="brand" href="#">Welcome Back {{userData.user.name}}</a>
-        <form class="form-search top-search" ng-controller="TopSearchBarCtrl">
-            <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search..." ng-change="change()" ng-model="searchVars.searchString">
-            <button type="submit" name="submit" ng-disabled="searchDisabled" class="btn ng-scope"  ng-click="searchTweets()">
-                Add Column
-            </button>
-        </form>
+        <div class="navcol">
+            <a class="brand" href="#">Welcome Back {{userData.user.name}}</a>
+        </div>
+        <div class="navcol">
+            <img src="img/logo.png" class="navlogo">
+        </div>
+        <div class="navcol">
+            <form class="form-search top-search" ng-controller="TopSearchBarCtrl">
+                <input type="text" name="searchinput" class="input-medium search-query" placeholder="Search..." ng-change="change()" ng-model="searchVars.searchString">
+                <button type="submit" name="submit" ng-disabled="searchDisabled" class="btn ng-scope"  ng-click="searchTweets()">
+                    Add Column
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -68,9 +75,10 @@
     <div class="tweetspan friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
         <div ng-controller="searchSettingsCtrl">
-            <div class="heading-edit" >
+            <div class="heading-edit" ng-click="toggleSettingsPanel()">
                 <i class="icon-home icon-white heading-icon"></i>
             </div>
+            <homesettings></homesettings>
         </div>
         <div class="colTweets" ng-style="style()" resize>
             <div ng-repeat="tweet in tweets" class="tweetBox">
