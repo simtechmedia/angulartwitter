@@ -31,8 +31,6 @@ app.factory('ColumnData', function() {
     }
 });
 
-
-
 // Tweet Body
 app.directive("tweetbody", function($compile){
     return {
@@ -52,14 +50,14 @@ app.directive("tweetbody", function($compile){
     }
 });
 
+// Directive for profile links inside tweets, not currently enabled
+// As the Modal for Angular Strap doesn't want to seem to work with the way i've set it up
 app.directive("profilelink", function($compile){
     return {
         restrict:"E",
         replace:true,
         compile: function() {
             return function ( scope, element , attrs) {
-//                console.log("$scope.$parent.tweet.from_user");
-//                console.log(scope.$parent);
                 attrs.$observe('profilename', function(textValue) {
                     var linkHTML = '<a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="partials/user-modal.html" data-toggle="modal">@'+textValue+'</a>'
                     element.html( $compile( linkHTML )(scope) );
@@ -69,7 +67,7 @@ app.directive("profilelink", function($compile){
     }
 })
 
-
+// Directives for Hash links inside tweets
 app.directive("hashlink", function($compile){
     return {
         restrict:"E",
@@ -84,8 +82,6 @@ app.directive("hashlink", function($compile){
         }
     }
 });
-
-
 
 // Load Tweets Directive
 // Will make it so when you scroll to the bottom it automaticly loads tweets
@@ -120,7 +116,6 @@ app.directive( "tweetcolumn" , function ($compile) {
             return function(scope, element, attrs) {
                 // Waits for Attibutes to be ready
                 attrs.$observe('type', function(typeValue) {
-                    //attrs.$observe('name', function(colValue) {
                     // Switch for Column Twitter Type
                     var tmpl;
                     switch (typeValue)
@@ -136,10 +131,12 @@ app.directive( "tweetcolumn" , function ($compile) {
                             break;
 
                     }
+
                     // Switch for Column Type
+                    // This is what's stopping me from getting everything
+                    // Into partials. html() doesn't seem to work on external files?
                     element.html($("#"+tmpl).html());//.show();
                     $compile(element.contents())(scope);
-                    // })
                });
             }
         }
@@ -316,16 +313,15 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
     }
 }
 
+// User Tweets Controller
+// This is the tweets for a particular user
 function UserTweetsCtrl ( $scope , $http , ColumnData )
 {
-    console.log("UserTweetsCtrl");
-
     $scope.data             = ColumnData;
     // Limit for pagination
     $scope.pageSize         = 10;
     $scope.searchString     = "";
     var searchString        = encodeURI($scope.$parent.column.name);
-    //var searchURL           = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
     var searchURL           = "https://query.yahooapis.com/v1/public/yql?q=set%20access_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20access_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20FROM%20twitter.statuses.user_timeline%20%0AWHERE%20screen_name%3D%22simtechmedia%22&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Fangtwit01&callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
@@ -451,12 +447,6 @@ function searchSettingsCtrl ( $scope , ColumnData)
 
 
     }
-}
-
-function swapArrayElements(array_object, index_a, index_b) {
-    var temp = array_object[index_a];
-    array_object[index_a] = array_object[index_b];
-    array_object[index_b] = temp;
 }
 
 // Controller for 'Home Tweets' Column
@@ -622,6 +612,8 @@ function ProfileModalCtrl ( $scope, $http , ColumnData )
     }
 }
 
+
+
 function addLinksToHtml( st ) {
 
     // Add Ancor to @
@@ -641,3 +633,9 @@ function addLinksToHtml( st ) {
     return newString;
 }
 
+
+function swapArrayElements(array_object, index_a, index_b) {
+    var temp = array_object[index_a];
+    array_object[index_a] = array_object[index_b];
+    array_object[index_b] = temp;
+}
