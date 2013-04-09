@@ -85,6 +85,7 @@ app.directive("hashlink", function($compile){
 
 // Load Tweets Directive
 // Will make it so when you scroll to the bottom it automaticly loads tweets
+// and also this doesn't need to be a directive
 app.directive("loadtweets",function(){
     return {
         restrict:"E",
@@ -380,13 +381,11 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
         $scope.tweets = results;
 
         // Need to do a manual Tweet Convert
-        console.log(results);
 
     }
 
     $scope.parseTwitterTime = function( time )
     {
-        console.log(time);
         return parseTwitterDate(time);
     }
 
@@ -615,7 +614,7 @@ function ProfileModalCtrl ( $scope, $http , ColumnData )
     {
         $http.get('data/userProfile.json').success(function(data) {
             var results = data.query.results;
-            console.log(results);
+            //console.log(results);
             $scope.user = results.user;;
         });
     }
@@ -625,10 +624,8 @@ function ProfileModalCtrl ( $scope, $http , ColumnData )
         $http.jsonp($scope.urlRequest).success(function(data){
             // Check if we're being data limited
             var results = data.query.results;
-            console.log(results);
             if(results != null)
             {
-                console.log("API got")
                 $scope.user = results.user;;
             } else {
                 console.log("API Data capped")
