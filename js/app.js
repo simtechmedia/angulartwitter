@@ -41,8 +41,8 @@ app.directive("tweetbody", function($compile){
             return function ( scope, element , attrs) {
                 attrs.$observe('text', function(textValue) {
                     if(textValue != undefined && textValue.length > 0) {
-                        ///var bodyText = addLinksToHtml(textValue);
-                        element.html( $compile(  "<p>"+textValue+"</p>" )(scope) )
+                        var bodyText = addLinksToHtml(textValue);
+                        element.html( $compile(  "<p>"+bodyText+"</p>" )(scope) )
                     }
                 })
             }
@@ -101,7 +101,6 @@ app.directive("loadtweets",function(){
 
 // This directive sorts out the type of column it is and compiles it to stage
 // Might figure out a better way to sort this out later
-
 app.directive( "tweetcolumn" , function ($compile) {
     var template_for = function(type) {
         return type+"\\.html";
@@ -151,6 +150,8 @@ app.directive('resize', function ($window) {
         scope.getWindowDimensions = function () {
             return { 'h': w.height(), 'w': w.width() };
         };
+
+
         scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
             scope.windowHeight = newValue.h;
             scope.style = function () {
@@ -222,7 +223,6 @@ app.directive('searchsettings', function(){
     return {
         restrict:"E",
         templateUrl:"partials/search-settings.html",
-
         link: function(scope, element)
         {
             scope.getSettings = function (){
@@ -238,7 +238,6 @@ app.directive('usersettings', function(){
     return {
         restrict:"E",
         templateUrl:"partials/user-settings.html",
-
         link: function(scope, element)
         {
             scope.getSettings = function (){
@@ -278,7 +277,7 @@ app.directive("tweettime", function($compile){
         compile: function() {
             return function ( scope, element , attrs) {
                 attrs.$observe('time', function(textValue) {
-//                    var linkHTML = '<a href="#" ng-controller="HashTagSearchCtrl" ng-click="searchTweets(\''+textValue+'\')"><strong>#'+textValue+'</strong></a>';
+                    //console.log(scope);
                     var linkHTML = '<p>'+TwitterDateConverter(textValue)+'</p>';
                     element.html( $compile( linkHTML )(scope) );
                 });
@@ -287,24 +286,89 @@ app.directive("tweettime", function($compile){
     }
 });
 
-function TwitterDateConverter(time){
-    var date = new Date(time),
-        diff = (((new Date()).getTime() - date.getTime()) / 1000),
-        day_diff = Math.floor(diff / 86400);
+// More Tweet Details directive
+app.directive("tweetmoredetails", function($compile)
+{
+   return {
+       replace:true,
+       template: '',
+       link: function( scope, element) {
+           element.bind('click', function(){
+               console.log(scope);
+               scope.tweetmoredetails( scope.tweet );
+           })
+       }
+   }
+});
 
-    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
-        return;
+// DIrective that controls the slie motion when tweetmoredetails is clicked
+app.directive("colsider", function()
+{
+    return function (scope, element) {
 
-    return day_diff == 0 && (
-        diff < 60 && "just now" ||
-            diff < 120 && "1 minute ago" ||
-            diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
-            diff < 7200 && "1 hour ago" ||
-            diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
-        day_diff == 1 && "Yesterday" ||
-        day_diff < 7 && day_diff + " days ago" ||
-        day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
-}
+        scope.getMoreDetailState = function ()
+        {
+            return { state : scope.moreDetails.state }
+        }
+
+        // Watches when slide needs to be abled
+        scope.$watch(scope.getMoreDetailState, function (newValue, oldValue)
+        {
+            if( newValue.state === true )
+            {
+                if(element.hasClass("coLRightState")) {
+                    element.removeClass("coLRightState");
+                }
+                element.addClass("colLeftState");
+            }
+
+            if( newValue.state === false )
+            {
+                if(element.hasClass("colLeftState")){
+                    element.removeClass("colLeftState");
+                }
+                element.addClass("coLRightState");
+            }
+        }, true);
+    }
+});
+
+//scrolleey
+// Directive that will move the scrollbar up and down when the more tweet details are pressed
+app.directive("scrolleey", function()
+{
+    return function (scope, element, attrs)
+    {
+        var savedY = 0 ;                                    // Saves the yPositon before moretweetdetails is used
+
+        scope.getMoreDetailState = function ()
+        {
+            return { state : scope.moreDetails.state }
+        }
+
+        // Watches when slide needs to be abled
+        scope.$watch(scope.getMoreDetailState, function (newValue, oldValue)
+        {
+            if( newValue.state === true ) {
+
+                // TODO not sure why this doens't work
+                savedY = attrs.$$element[0].scrollTop;      // Save Current YPos so we can return
+                attrs.$$element[0].scrollTop = 0
+
+                if(element.hasClass("colYScrollY")) element.removeClass("colYScrollY");         // Turns off Y Scrolling
+                element.addClass("colYScrollN");
+            }
+
+            if( newValue.state === false ) {
+
+                attrs.$$element[0].scrollTop = savedY;
+
+                if(element.hasClass("colYScrollN")) element.removeClass("colYScrollN");
+                element.addClass("colYScrollY");
+            }
+        }, true);
+    }
+});
 
 
 // Controller to share the column data to the repeater that creates the columns
@@ -312,17 +376,21 @@ function TwitterDateConverter(time){
 function ColumnsCtrl ( $scope, ColumnData )
 {
     $scope.ColumnData = ColumnData;
+    $scope.moveLeft = function()
+    {
+        console.log("moveLeft");
+    }
 }
 
 // Controller for any search collumns
 function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 {
     $scope.data             = ColumnData;
-    // Limit for pagination
-    $scope.pageSize         = 10;
+
+    $scope.pageSize         = 10;               // Limit for pagination
     $scope.searchString     = "";
-    var searchString = encodeURI($scope.$parent.column.name);
-    var searchURL = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
+    var searchString        = encodeURI($scope.$parent.column.name);
+    var searchURL           = "http://search.twitter.com/search.json?q="+searchString+"&rpp=20&include_entities=true&result_type=mixed"+"?callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
     if(document.URL.substring(0,16) == "http://localhost")
@@ -347,7 +415,6 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
         console.log("addingMorePages");
         $scope.pageSize=$scope.pageSize+10
     }
-
 }
 
 // User Tweets Controller
@@ -489,14 +556,18 @@ function searchSettingsCtrl ( $scope , ColumnData)
             $scope.thisIndex++;
             $scope.checkArrows();
         }
-
-
     }
 }
 
 // Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http , ColumnData )
 {
+    $scope.moreDetails =
+    {
+        state : false,               // State of the more details , if the column is slid left or not
+        tweet : ""
+    }
+
     var homelineURL = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.status.timeline.friends%3B&format=json&diagnostics=true&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
@@ -512,12 +583,39 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
         })
     }
 
+    $scope.tweetmoredetails = function( tweet )
+    {
+        console.log("tweetmoredetails");
+        $scope.moreDetails.tweet = tweet;
+        $scope.moreDetails.state = true;
+        $scope.safeApply();
+
+    }
+
+    $scope.tweetlessdetails = function( tweet )
+    {
+        console.log("tweetlessdetails");
+        $scope.moreDetails.state = false;
+        $scope.safeApply();
+    }
+
     // Process JSON data and push it to the view
     $scope.processData = function(data)
     {
         var results = data.query.results.statuses.status;
         $scope.tweets = results;
     }
+
+    $scope.safeApply = function(fn) {
+        var phase = this.$root.$$phase;
+        if(phase == '$apply' || phase == '$digest') {
+            if(fn && (typeof(fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
 }
 
 // Controller for Top Bar
@@ -682,3 +780,23 @@ function swapArrayElements(array_object, index_a, index_b) {
     array_object[index_a] = array_object[index_b];
     array_object[index_b] = temp;
 }
+
+function TwitterDateConverter(time){
+    var date = new Date(time),
+        diff = (((new Date()).getTime() - date.getTime()) / 1000),
+        day_diff = Math.floor(diff / 86400);
+
+    if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
+        return;
+
+    return day_diff == 0 && (
+        diff < 60 && "just now" ||
+            diff < 120 && "1 minute ago" ||
+            diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
+            diff < 7200 && "1 hour ago" ||
+            diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
+        day_diff == 1 && "Yesterday" ||
+        day_diff < 7 && day_diff + " days ago" ||
+        day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
+}
+

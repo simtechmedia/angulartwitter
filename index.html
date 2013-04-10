@@ -69,7 +69,6 @@
         </div>
 </div>
 
-
 <! -- Templates , might actually move these to partials eventually -- >
 <script type="text/ng-template" id="friendtweets-column.html">
     <div class="tweetspan friendTweets" name={{}} ng-controller="FriendTweetsCtrl">
@@ -80,23 +79,43 @@
             </div>
             <homesettings></homesettings>
         </div>
-        <div class="colTweets" ng-style="style()" resize>
-            <div ng-repeat="tweet in tweets" class="tweetBox">
-                <div class="tweetprofilepic">
-                    <img ng-src="{{tweet.user.profile_image_url}}">
-                </div>
-                <div class="tweetdetails">
-                    <div class="tweetname">
-                        <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+        <div class="colTweets" ng-style="style()" resize scrolleey>
+            <div class="tweetHolder" colsider>
+                <div class="tweetcontainer">
+                    <div ng-repeat="tweet in tweets" class="tweetBox">
+                        <div class="tweetprofilepic">
+                            <img ng-src="{{tweet.user.profile_image_url}}">
+                        </div>
+                        <div class="tweetdetails">
+                            <div class="tweetname">
+                                <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a>
+                            </div>
+                            <div class="tweettime">
+                                <tweettime time="{{tweet.created_at}}"></tweettime>
+                            </div>
+                            <tweetbody text="{{tweet.text}}"></tweetbody>
+                        </div>
+                        <i class="icon-circle-arrow-right icon-white" tweetmoredetails></i>
+                        <hr/>
                     </div>
-                    <div class="tweettime">
-                        <tweettime time="{{tweet.created_at}}"></tweettime>
-                    </div>
-                    <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
-                <i class="icon-circle-arrow-right icon-white" bs-popover="'partials/popover.html'"></i>
-                <hr/>
+                <div class="tweetmoredetails">
+                    <div class="tweetbox">
+                        <div class="tweetprofilepic-big">
+                            <img ng-src="{{moreDetails.tweet.user.profile_image_url}}">
+                        </div>
+                        <div class="tweetdetails">
+                           <h4>{{moreDetails.tweet.user.name}}</h4>
+                            <p><strong>{{moreDetails.tweet.user.screen_name}}</strong></a></p>
+                            <tweetbody text="{{moreDetails.tweet.text}}"></tweetbody>
+                            <p>{{moreDetails.tweet.created_at}}"></p>
+                            <p>Client : <span ng-bind-html="moreDetails.tweet.source"></span></p>
+                        </div>
+                        <a class="btn arrow lessdetailsbtn" ng-disabled="leftdisabled" href="#" ng-click="tweetlessdetails()"><i class="icon-chevron-left"></i> Back </a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </script>
@@ -111,22 +130,43 @@
             <searchsettings></searchsettings>
         </div>
         <div class="colTweets" ng-style="style()" resize>
-            <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
-                <div class="tweetprofilepic">
-                    <img ng-src="{{tweet.profile_image_url}}">
-                </div>
-                <div class="tweetdetails">
-                    <div class="tweetname">
-                        <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a>
+            <div class="tweetHolder">
+                <div class="tweetcontainer">
+                    <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
+                        <div class="tweetprofilepic">
+                            <img ng-src="{{tweet.profile_image_url}}">
+                        </div>
+                        <div class="tweetdetails">
+                            <div class="tweetname">
+                                <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.from_user_name}}</strong><span class="screen_name">@{{tweet.from_user}}</span></a>
+                            </div>
+                            <div class="tweettime">
+                                <tweettime time="{{tweet.created_at}}"></tweettime>
+                            </div>
+                            <tweetbody text="{{tweet.text}}"></tweetbody>
+                        </div>
+                        <i class="icon-circle-arrow-right icon-white" tweetmoredetails></i>
+                        <hr/>
                     </div>
-                    <div class="tweettime">
-                        <tweettime time="{{tweet.created_at}}"></tweettime>
-                    </div>
-                    <tweetbody text="{{tweet.text}}"></tweetbody>
+                    <loadtweets></loadtweets>
                 </div>
-                <hr/>
+                <div class="tweetmoredetails">
+                    <div class="tweetbox">
+                        <div class="tweetprofilepic-big">
+                            <img ng-src="{{moreDetails.tweet.user.profile_image_url}}">
+                        </div>
+                        <div class="tweetdetails">
+                            <h4>{{moreDetails.tweet.user.name}}</h4>
+                            <p><strong>{{moreDetails.tweet.user.screen_name}}</strong></a></p>
+                            <tweetbody text="{{moreDetails.tweet.text}}"></tweetbody>
+                            <p>{{moreDetails.tweet.created_at}}</p>
+                            <p>Client : <span ng-bind-html="moreDetails.tweet.source"></span></p>
+                        </div>
+                        <a class="btn arrow lessdetailsbtn" ng-disabled="leftdisabled" href="#" ng-click="tweetlessdetails()"><i class="icon-chevron-left"></i> Back </a>
+                    </div>
+                </div>
+
             </div>
-            <loadtweets></loadtweets>
         </div>
     </div>
 </script>
@@ -141,22 +181,43 @@
             <usersettings></usersettings>
         </div>
         <div class="colTweets" ng-style="style()" resize>
-            <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
-                <div class="tweetprofilepic">
-                    <img ng-src="{{tweet.user.profile_image_url}}">
-                </div>
-                <div class="tweetdetails">
-                    <div class="tweetname">
-                        <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a></p>
+            <div class="tweetHolder">
+                <div class="tweetcontainer">
+                    <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
+                        <div class="tweetprofilepic">
+                            <img ng-src="{{tweet.user.profile_image_url}}">
+                        </div>
+                        <div class="tweetdetails">
+                            <div class="tweetname">
+                                <a href="#" ng-controller="ProfileModalCtrl" ng-click="openModal()" bs-modal="'partials/user-modal.html'"><strong>{{tweet.user.name}}</strong><span class="screen_name">@{{tweet.user.screen_name}}</span></a>
+                            </div>
+                            <div class="tweettime">
+                                <tweettime time="{{tweet.created_at}}"></tweettime>
+                            </div>
+                            <tweetbody text="{{tweet.text}}"></tweetbody>
+                        </div>
+                        <i class="icon-circle-arrow-right icon-white" tweetmoredetails></i>
+                        <hr/>
                     </div>
-                    <div class="tweettime">
-                        <tweettime time="{{tweet.created_at}}"></tweettime>
-                    </div>
-                    <tweetbody text="{{tweet.text}}"></tweetbody>
                 </div>
-                <hr/>
+                <loadtweets></loadtweets>
             </div>
-            <loadtweets></loadtweets>
+
+            <div class="tweetmoredetails">
+                <div class="tweetbox">
+                    <div class="tweetprofilepic-big">
+                        <img ng-src="{{moreDetails.tweet.user.profile_image_url}}">
+                    </div>
+                    <div class="tweetdetails">
+                        <h4>{{moreDetails.tweet.user.name}}</h4>
+                        <p><strong>{{moreDetails.tweet.user.screen_name}}</strong></a></p>
+                        <tweetbody text="{{moreDetails.tweet.text}}"></tweetbody>
+                        <p>{{moreDetails.tweet.created_at}}</p>
+                        <p>Client : <span ng-bind-html="moreDetails.tweet.source"></span></p>
+                    </div>
+                    <a class="btn arrow lessdetailsbtn" ng-disabled="leftdisabled" href="#" ng-click="tweetlessdetails()"><i class="icon-chevron-left"></i> Back </a>
+                </div>
+            </div>
         </div>
     </div>
 </script>

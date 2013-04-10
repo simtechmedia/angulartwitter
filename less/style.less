@@ -33,7 +33,6 @@ body {
 
 }
 
-
 .friendTweets {
 
   background-color : @column-grey;
@@ -50,19 +49,16 @@ body {
     height           : 70px;
     position         : relative;
 
-    .leftCol
-    {
-      width: 50%;
-      float: left;
+    .leftCol {
+      width : 50%;
+      float : left;
     }
 
-    .rightCol
-    {
-      float: left;
-      width: 50%;
-      text-align: right;
+    .rightCol {
+      float      : left;
+      width      : 50%;
+      text-align : right;
     }
-
 
     input {
       width : 200px;
@@ -76,11 +72,29 @@ body {
       margin-top : 10px;
     }
 
-    .arrow
-    {
+    .arrow {
       margin-top : 10px;
     }
+  }
 
+  // Column Animations
+
+  .colLeftState {
+    margin-left : -390px;
+    .animation(moveColLeft 0.5s);
+  }
+
+  .coLRightState {
+    margin-left : 0px;
+    .animation(moveColRight 0.5s);
+  }
+
+  .colYScrollN {
+    overflow-y       : hidden;
+  }
+
+  .colYScrollY {
+    overflow-y       : scroll;
   }
 
   .hideDiv {
@@ -93,18 +107,131 @@ body {
 
   .colTweets {
     background-color : @column-body;
-    //height: 500px;
     overflow-y       : scroll;
+    overflow-x       : hidden;
     width            : 100%;
 
     .icon-circle-arrow-right {
 
-      opacity: 0.25;
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
+      opacity  : 0.25;
+      position : absolute;
+      bottom   : 10px;
+      right    : 10px;
     }
 
+    .icon-circle-arrow-right:hover  {
+
+      opacity  : 1;
+
+    }
+
+    .tweetHolder {
+      width : 780px;
+
+      .lessdetailsbtn
+      {
+        margin-left: 70px;
+      }
+
+      .tweetprofilepic {
+
+        position : absolute;
+        float    : right;
+        width    : 55px;
+        top      : 10px;
+        left     : 10px;
+
+        img {
+          width  : 48px;
+          height : 48px;
+        }
+      }
+
+      .tweetBox {
+
+        position         : relative;
+        width            : 390px;
+        clear            : both;
+
+        hr {
+          padding          : 0;
+          margin           : 0;
+          clear            : both;
+          border           : 0;
+          background-color : #3c3c3c;
+          height           : 1px;
+        }
+
+
+
+      }
+
+      .tweetprofilepic-big {
+        position : absolute;
+        float    : right;
+        width    : 55px;
+        top      : 20px;
+        left     : 10px;
+
+        img {
+          width  : 48px;
+          height : 48px;
+        }
+      }
+
+      .tweetdetails {
+        padding : 10px 10px 10px 70px;
+        a {
+          color : #cccccc;
+        }
+
+        p {
+
+          font-style : normal;
+          overflow   : hidden;
+          display    : block;
+        }
+
+        .screen_name {
+          color : @column-edit;
+          a:hover, a:link, a:visited {
+            text-decoration : none;
+          }
+        }
+
+        .tweetname {
+          float         : left;
+          margin        : 0;
+          width         : 70%;
+          height        : 20px;
+          text-overflow : ellipsis;
+          white-space   : nowrap;
+          overflow      : hidden;
+        }
+
+        .tweettime {
+          text-align : right;
+          margin     : 0;
+          width      : 30%;
+          overflow   : hidden;
+          position   : relative;
+          font-size  : 10px;
+        }
+
+        .tweetbody {
+        }
+      }
+
+      .tweetmoredetails {
+        width            : 390px;
+        float            : right;
+        position         : relative;
+      }
+
+      .tweetcontainer {
+        float : left;
+      }
+    }
   }
 
   h3 {
@@ -143,13 +270,9 @@ body {
       font-weight     : bold;
     }
   }
-
 }
 
-
-
 .loadmoretweets {
-
   p {
     font-weight    : bold;
     font-size      : 18px;
@@ -165,112 +288,33 @@ body {
   }
 }
 
-.tweetBox {
-
-  position : relative;
-
-  .tweetprofilepic {
-
-    position : absolute;
-    float    : left;
-    width    : 55px;
-    top      : 10px;
-    left     : 10px;
-
-    img {
-      width  : 48px;
-      height : 48px;
-
-    }
-  }
-
-  .tweetdetails {
-
-    padding : 10px 10px 10px 70px;
-
-    a {
-      color : #cccccc;
-    }
-
-    p {
-      font-style : normal;
-      overflow   : hidden;
-      display    : block;
-    }
-
-    .screen_name {
-      color : @column-edit;
-      a:hover, a:link, a:visited {
-        text-decoration : none;
-      }
-    }
-
-    .tweetname
-    {
-      float: left;
-      margin:0;
-      width: 70%;
-      height: 20px;
-      text-overflow: ellipsis;
-      white-space:nowrap;
-      overflow:hidden;
-    }
-
-    .tweettime
-    {
-      text-align: right;
-      margin:0;
-      width: 30%;
-      overflow:hidden;
-      position:relative;
-      font-size:10px;
-    }
-
-    .tweetbody
-    {
-
-    }
-  }
-
-  hr {
-    padding          : 0;
-    margin           : 0;
-    clear            : both;
-    border           : 0;
-    background-color : #3c3c3c;
-    height           : 1px;
-  }
-}
-
 .navbar {
   .navbar-inner {
     padding-left  : 20px;
     padding-right : 40px;
   }
 
-  .navcol  {
-    height : 50px;
-    width:33%;
-    position:relative;
-    float:left;
-    display: table-cell;
-    vertical-align: middle
+  .navcol {
+    height         : 50px;
+    width          : 33%;
+    position       : relative;
+    float          : left;
+    display        : table-cell;
+    vertical-align : middle
   }
 
   .navlogo {
-    display: block;
-    margin: 10px auto 0 auto;
+    display : block;
+    margin  : 10px auto 0 auto;
 
   }
 
-  .brand
-  {
-    margin-top: 5px;
+  .brand {
+    margin-top : 5px;
   }
 
   .top-search {
-    float  : right;
-
+    float : right;
 
     input[type=text] {
       margin-top : 5px;
@@ -293,7 +337,7 @@ body {
 }
 
 .modal {
-  text-align  : left ;
+  text-align  : left;
   width       : auto;
   text-align  : center;
   text-shadow : 3px 3px 1px #999;
@@ -362,7 +406,7 @@ body {
 
     .profiledeets {
 
-      height          : 290px;
+      height : 290px;
 
       a {
         color : @white;
