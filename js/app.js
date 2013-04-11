@@ -109,9 +109,8 @@ app.directive( "tweetcolumn" , function ($compile) {
         restrict:"E",
         transclude: true,
         scope:true,
-
+        replace:true,
         compile: function() {
-
             // Link Function
             return function(scope, element, attrs) {
                 // Waits for Attibutes to be ready
@@ -131,7 +130,6 @@ app.directive( "tweetcolumn" , function ($compile) {
                             break;
 
                     }
-
                     // Switch for Column Type
                     // This is what's stopping me from getting everything
                     // Into partials. html() doesn't seem to work on external files?
@@ -249,7 +247,6 @@ app.directive('usersettings', function(){
     }
 })
 
-
 app.directive('homesettings', function(){
     return {
         restrict:"E",
@@ -314,8 +311,11 @@ app.directive("colsider", function()
         // Watches when slide needs to be abled
         scope.$watch(scope.getMoreDetailState, function (newValue, oldValue)
         {
+            console.log("scope.$watch(scope.getMoreDetailState newState = " + newValue.state);
+
             if( newValue.state === true )
             {
+
                 if(element.hasClass("coLRightState")) {
                     element.removeClass("coLRightState");
                 }
@@ -376,17 +376,59 @@ app.directive("scrolleey", function()
 function ColumnsCtrl ( $scope, ColumnData )
 {
     $scope.ColumnData = ColumnData;
-    $scope.moveLeft = function()
+
+
+
+}
+
+
+// Parent Controller for all columns
+// Contains functions that all columsn use
+function TweetColumnCtrl ( $scope, ColumnData )
+{
+    $scope.data             = ColumnData;       // Modal service to hold info of state of the columns
+
+    $scope.moreDetails =
     {
-        console.log("moveLeft");
+        state : false,                          // State of the more details , if the column is slid left or not
+        tweet : ""
     }
+
+    // More Tweet Details Button
+    $scope.tweetmoredetails = function( tweet )
+    {
+        console.log("tweetmoredetails");
+        console.log(tweet);
+        $scope.moreDetails.tweet = tweet;
+        $scope.moreDetails.state = true;
+        $scope.safeApply();
+    }
+
+    // Less Tweet Details when back is pressed
+    $scope.tweetlessdetails = function()
+    {
+        $scope.moreDetails.state = false;
+        $scope.safeApply();
+    }
+
+    // Safely Apply
+    // Thanks to Alex Vanston https://coderwall.com/p/ngisma
+    $scope.safeApply = function(fn) {
+        var phase = this.$root.$$phase;
+        if(phase == '$apply' || phase == '$digest') {
+            if(fn && (typeof(fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
+
 }
 
 // Controller for any search collumns
-function SeatchTweetsCtrl ( $scope , $http , ColumnData )
+function SearchTweetsCtrl ( $scope , $http  )
 {
-    $scope.data             = ColumnData;
-
     $scope.pageSize         = 10;               // Limit for pagination
     $scope.searchString     = "";
     var searchString        = encodeURI($scope.$parent.column.name);
@@ -419,9 +461,8 @@ function SeatchTweetsCtrl ( $scope , $http , ColumnData )
 
 // User Tweets Controller
 // This is the tweets for a particular user
-function UserTweetsCtrl ( $scope , $http , ColumnData )
+function UserTweetsCtrl ( $scope , $http )
 {
-    $scope.data             = ColumnData;
     // Limit for pagination
     $scope.pageSize         = 10;
     $scope.searchString     = "";
@@ -446,9 +487,6 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
     {
         var results = JSON.parse(data.query.results.result);
         $scope.tweets = results;
-
-        // Need to do a manual Tweet Convert
-
     }
 
     $scope.parseTwitterTime = function( time )
@@ -464,9 +502,8 @@ function UserTweetsCtrl ( $scope , $http , ColumnData )
 
 
 // Controller for searchColumn
-function searchSettingsCtrl ( $scope , ColumnData)
+function searchSettingsCtrl ( $scope )
 {
-    $scope.data             = ColumnData;
     $scope.currentVO        = $scope.$parent.$parent.$parent.column;        // Oh this nasty.
     $scope.searchDisabled   = true;
     $scope.thisIndex;
@@ -530,7 +567,7 @@ function searchSettingsCtrl ( $scope , ColumnData)
     $scope.deleteColumn = function ()
     {
         // Underscore.js function
-        $scope.data.columns = _($scope.data.columns).reject(function(el) {
+        $scope.ColumnData.columns = _($scope.ColumnData.columns).reject(function(el) {
             return el.name === $scope.currentVO.name && el.type == $scope.currentVO.type ;
         });
     }
@@ -540,11 +577,10 @@ function searchSettingsCtrl ( $scope , ColumnData)
     {
         $scope.thisIndex = $scope.$parent.$index;
         if( $scope.thisIndex  > 0 )  {
-            swapArrayElements($scope.data.columns, $scope.thisIndex , $scope.thisIndex  - 1 )
+            swapArrayElements($scope.ColumnData.columns, $scope.thisIndex , $scope.thisIndex  - 1 )
             $scope.thisIndex-- ;
             $scope.checkArrows();
         }
-
     }
 
     $scope.moveColRight = function()
@@ -560,14 +596,8 @@ function searchSettingsCtrl ( $scope , ColumnData)
 }
 
 // Controller for 'Home Tweets' Column
-function FriendTweetsCtrl( $scope , $http , ColumnData )
+function FriendTweetsCtrl( $scope , $http  )
 {
-    $scope.moreDetails =
-    {
-        state : false,               // State of the more details , if the column is slid left or not
-        tweet : ""
-    }
-
     var homelineURL = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.status.timeline.friends%3B&format=json&diagnostics=true&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
@@ -583,44 +613,18 @@ function FriendTweetsCtrl( $scope , $http , ColumnData )
         })
     }
 
-    $scope.tweetmoredetails = function( tweet )
-    {
-        console.log("tweetmoredetails");
-        $scope.moreDetails.tweet = tweet;
-        $scope.moreDetails.state = true;
-        $scope.safeApply();
-
-    }
-
-    $scope.tweetlessdetails = function( tweet )
-    {
-        console.log("tweetlessdetails");
-        $scope.moreDetails.state = false;
-        $scope.safeApply();
-    }
-
     // Process JSON data and push it to the view
     $scope.processData = function(data)
     {
         var results = data.query.results.statuses.status;
         $scope.tweets = results;
     }
-
-    $scope.safeApply = function(fn) {
-        var phase = this.$root.$$phase;
-        if(phase == '$apply' || phase == '$digest') {
-            if(fn && (typeof(fn) === 'function')) {
-                fn();
-            }
-        } else {
-            this.$apply(fn);
-        }
-    };
 }
 
 // Controller for Top Bar
-// Used for holding user data
-function TopBarCtrl (  $scope , $http , ColumnData )
+// Used for holding user data, at the moment its loading in a set JSON
+// But eventually I'll properly do a OAuth thing
+function TopBarCtrl (  $scope , $http )
 {
     $http.get('data/userData.json').success(function(data) {
         var results = data.query.results
@@ -650,21 +654,13 @@ function TopSearchBarCtrl ($scope, ColumnData )
             "settings" : false
         });
     }
-    /*
-    // Popover Content
-    // Commenting out , might use it later
-
-    $scope.popover = {
-        "content": "<div ng-repeat=\"tweet in tweets\" class=\"tweetBox\">\n    <div class=\"tweetprofilepic\">\n        <img ng-src=\"{{tweet.profile_image_url}}\">\n    </div>\n    <div class=\"tweetdetails\">\n        <p><a href=\"#\"><strong>{{tweet.from_editcol_name}}</strong><span class=\"screen_name\">@{{tweet.from_user}}</span></a></p>\n        <tweetbody ng-bind-html=\"addHTML(tweet.text)\">{{tweet.text}}</tweetbody>\n    </div>\n    <hr/>\n</div>"
-    }
-    */
 }
 
 // Controller for all the hash tags, going to figure out a way
 // So one controller does the whole tweet rather than individual elements
-function HashTagSearchCtrl ($scope, ColumnData )
+function HashTagSearchCtrl ( $scope )
 {
-    $scope.ColumnData       = ColumnData
+
     $scope.content;                         // Content
     $scope.searchVars       = {
         searchString : ""
@@ -680,13 +676,11 @@ function HashTagSearchCtrl ($scope, ColumnData )
     }
 }
 
-
 // Controller for Profile Modal
 // Uses jsonp call to grab data from ypl
-function ProfileModalCtrl ( $scope, $http , ColumnData )
+function ProfileModalCtrl ( $scope, $http  )
 {
    // var id = $scope.$parent.tweet.user.id;
-    $scope.ColumnData       = ColumnData
     $scope.sourceTweet      = $scope.$parent.tweet ;
 
     var id;
@@ -753,9 +747,10 @@ function ProfileModalCtrl ( $scope, $http , ColumnData )
     }
 }
 
+// JavaScript Helper Functions
 
-
-function addLinksToHtml( st ) {
+function addLinksToHtml( st )
+{
 
     // Add Ancor to @
     var regEx = /@([a-z0-9_]{1,20})/gi;
@@ -773,7 +768,6 @@ function addLinksToHtml( st ) {
 
     return newString;
 }
-
 
 function swapArrayElements(array_object, index_a, index_b) {
     var temp = array_object[index_a];

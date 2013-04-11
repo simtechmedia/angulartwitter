@@ -65,7 +65,7 @@
 
 <div class="horizontal-row" ng-controller="ColumnsCtrl">
         <div class="tweetspan" ng-repeat="column in ColumnData.columns">
-            <tweetColumn type="{{column['type']}}" name="{{column['name']}}"></tweetColumn>
+            <tweetColumn type="{{column['type']}}" ng-controller="TweetColumnCtrl" name="{{column['name']}}"></tweetColumn>
         </div>
 </div>
 
@@ -121,7 +121,7 @@
 </script>
 
 <script type="text/ng-template" id="search-column.html">
-    <div class="tweetspan friendTweets" name={{ColumnData.columns[$parent.$index].name}} name2="{{}}" ng-controller="SeatchTweetsCtrl">
+    <div class="tweetspan friendTweets" name={{ColumnData.columns[$parent.$index].name}} name2="{{}}" ng-controller="SearchTweetsCtrl">
         <h3>{{$parent.$index+1}}. {{ColumnData.columns[$parent.$index]["name"]}} </h3>
         <div ng-controller="searchSettingsCtrl">
             <div class="heading-edit" editcol ng-click="toggleSettingsPanel()">
@@ -129,8 +129,8 @@
             </div>
             <searchsettings></searchsettings>
         </div>
-        <div class="colTweets" ng-style="style()" resize>
-            <div class="tweetHolder">
+        <div class="colTweets" ng-style="style()" resize scrolleey>
+            <div class="tweetHolder" colsider>
                 <div class="tweetcontainer">
                     <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
                         <div class="tweetprofilepic">
@@ -153,7 +153,7 @@
                 <div class="tweetmoredetails">
                     <div class="tweetbox">
                         <div class="tweetprofilepic-big">
-                            <img ng-src="{{moreDetails.tweet.user.profile_image_url}}">
+                            <img ng-src="{{moreDetails.tweet.profile_image_url}}">
                         </div>
                         <div class="tweetdetails">
                             <h4>{{moreDetails.tweet.user.name}}</h4>
@@ -161,7 +161,7 @@
                             <tweetbody text="{{moreDetails.tweet.text}}"></tweetbody>
                             <p>{{moreDetails.tweet.created_at}}</p>
                             <p>Client : <span ng-bind-html="moreDetails.tweet.source"></span></p>
-                        </div>
+                        </div> 
                         <a class="btn arrow lessdetailsbtn" ng-disabled="leftdisabled" href="#" ng-click="tweetlessdetails()"><i class="icon-chevron-left"></i> Back </a>
                     </div>
                 </div>
@@ -180,8 +180,8 @@
             </div>
             <usersettings></usersettings>
         </div>
-        <div class="colTweets" ng-style="style()" resize>
-            <div class="tweetHolder">
+        <div class="colTweets" ng-style="style()" resize scrolleey>
+            <div class="tweetHolder" colsider>
                 <div class="tweetcontainer">
                     <div ng-repeat="tweet in tweets | limitTo:pageSize " class="tweetBox">
                         <div class="tweetprofilepic">
@@ -199,25 +199,27 @@
                         <i class="icon-circle-arrow-right icon-white" tweetmoredetails></i>
                         <hr/>
                     </div>
+                    <loadtweets></loadtweets>
                 </div>
-                <loadtweets></loadtweets>
+
+
+                <div class="tweetmoredetails">
+                    <div class="tweetbox">
+                        <div class="tweetprofilepic-big">
+                            <img ng-src="{{moreDetails.tweet.user.profile_image_url}}">
+                        </div>
+                        <div class="tweetdetails">
+                            <h4>{{moreDetails.tweet.user.name}}</h4>
+                            <p><strong>{{moreDetails.tweet.user.screen_name}}</strong></a></p>
+                            <tweetbody text="{{moreDetails.tweet.text}}"></tweetbody>
+                            <p>{{moreDetails.tweet.created_at}}</p>
+                            <p>Client : <span ng-bind-html="moreDetails.tweet.source"></span></p>
+                        </div>
+                        <a class="btn arrow lessdetailsbtn" ng-disabled="leftdisabled" href="#" ng-click="tweetlessdetails()"><i class="icon-chevron-left"></i> Back </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="tweetmoredetails">
-                <div class="tweetbox">
-                    <div class="tweetprofilepic-big">
-                        <img ng-src="{{moreDetails.tweet.user.profile_image_url}}">
-                    </div>
-                    <div class="tweetdetails">
-                        <h4>{{moreDetails.tweet.user.name}}</h4>
-                        <p><strong>{{moreDetails.tweet.user.screen_name}}</strong></a></p>
-                        <tweetbody text="{{moreDetails.tweet.text}}"></tweetbody>
-                        <p>{{moreDetails.tweet.created_at}}</p>
-                        <p>Client : <span ng-bind-html="moreDetails.tweet.source"></span></p>
-                    </div>
-                    <a class="btn arrow lessdetailsbtn" ng-disabled="leftdisabled" href="#" ng-click="tweetlessdetails()"><i class="icon-chevron-left"></i> Back </a>
-                </div>
-            </div>
         </div>
     </div>
 </script>
