@@ -264,6 +264,27 @@ app.directive('homesettings', function(){
 })
 
 
+// For some odd reason the 'client' information on certain tweets comes in as encoded HTML
+// This directive sorts it out
+// TODO change this to a link function not compile
+app.directive("twitterclient", function($compile){
+    return {
+        restrict:"E",
+        replace:true,
+        compile: function() {
+            return function ( scope, element , attrs) {
+                attrs.$observe('client', function(textValue) {
+                    var decode = decodeXml( textValue );
+                    var linkHTML = "<p>Client : "+decode+"</p>";
+                    element.html( $compile( linkHTML )(scope) );
+                });
+            }
+        }
+    }
+});
+
+
+
 // Tweet time, converts twitter time to human time
 // Need to change compile to linker function i think
 // It's 2am and i need togot sleep
@@ -284,14 +305,13 @@ app.directive("tweettime", function($compile){
 });
 
 // More Tweet Details directive
-app.directive("tweetmoredetails", function($compile)
+app.directive("tweetmoredetails", function()
 {
    return {
        replace:true,
        template: '',
        link: function( scope, element) {
            element.bind('click', function(){
-               console.log(scope);
                scope.tweetmoredetails( scope.tweet );
            })
        }
@@ -311,8 +331,6 @@ app.directive("colsider", function()
         // Watches when slide needs to be abled
         scope.$watch(scope.getMoreDetailState, function (newValue, oldValue)
         {
-            console.log("scope.$watch(scope.getMoreDetailState newState = " + newValue.state);
-
             if( newValue.state === true )
             {
 
@@ -370,47 +388,36 @@ app.directive("scrolleey", function()
     }
 });
 
-
 // Controller to share the column data to the repeater that creates the columns
 // think i can get away with incorporating this to something else eventually, feel unnessary
 function ColumnsCtrl ( $scope, ColumnData )
 {
     $scope.ColumnData = ColumnData;
-
-
-
 }
-
 
 // Parent Controller for all columns
 // Contains functions that all columsn use
 function TweetColumnCtrl ( $scope, ColumnData )
 {
     $scope.data             = ColumnData;       // Modal service to hold info of state of the columns
-
     $scope.moreDetails =
     {
         state : false,                          // State of the more details , if the column is slid left or not
         tweet : ""
     }
-
     // More Tweet Details Button
     $scope.tweetmoredetails = function( tweet )
     {
-        console.log("tweetmoredetails");
-        console.log(tweet);
         $scope.moreDetails.tweet = tweet;
         $scope.moreDetails.state = true;
         $scope.safeApply();
     }
-
     // Less Tweet Details when back is pressed
     $scope.tweetlessdetails = function()
     {
         $scope.moreDetails.state = false;
         $scope.safeApply();
     }
-
     // Safely Apply
     // Thanks to Alex Vanston https://coderwall.com/p/ngisma
     $scope.safeApply = function(fn) {
@@ -423,7 +430,6 @@ function TweetColumnCtrl ( $scope, ColumnData )
             this.$apply(fn);
         }
     };
-
 }
 
 // Controller for any search collumns
@@ -470,7 +476,7 @@ function UserTweetsCtrl ( $scope , $http )
     var searchURL           = "https://query.yahooapis.com/v1/public/yql?q=set%20access_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20access_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20FROM%20twitter.statuses.user_timeline%20%0AWHERE%20screen_name%3D%22simtechmedia%22&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Fangtwit01&callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
-    if(document.URL.substring(0,16) == "http://localhost")
+    if(!document.URL.substring(0,16) == "http://localhost")
     {
         $http.get('data/userTweets.json').success(function(data) {
 
@@ -512,19 +518,19 @@ function searchSettingsCtrl ( $scope )
 
     $scope.showSettings     = {
         show :             $scope.currentVO.settings
-
-        // Check Vadility
     };
-
-    $scope.checkArrows      = function ()
-    {
-        $scope.leftdisabled = ( $scope.thisIndex > 0 ) ?   false :  true ;
-        $scope.rightdisabled = ( $scope.thisIndex < $scope.data.columns.length -1 ) ?   false :  true ;
-    }
 
     $scope.searchVars       = {
         searchString :  $scope.currentVO.name
     }
+
+    // Checks if arrowsm are valid
+    $scope.checkArrows      = function ()
+    {
+        $scope.leftdisabled = ( $scope.thisIndex > 0 ) ?   false :  true ;
+        $scope.rightdisabled    = ( $scope.thisIndex < $scope.data.columns.length -1 ) ?   false :  true ;
+    }
+
     // On Text Type
     $scope.change = function()
     {
@@ -572,7 +578,7 @@ function searchSettingsCtrl ( $scope )
         });
     }
 
-    // Arror Arrange Functions
+    // Arrow Arrange Functions
     $scope.moveColLeft = function()
     {
         $scope.thisIndex = $scope.$parent.$index;
@@ -598,6 +604,8 @@ function searchSettingsCtrl ( $scope )
 // Controller for 'Home Tweets' Column
 function FriendTweetsCtrl( $scope , $http  )
 {
+    // Query for Home Timeline tweets
+    // TODO I still gotta figure how to get friends retreets as well as friends tweets
     var homelineURL = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.status.timeline.friends%3B&format=json&diagnostics=true&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
 
     // Debug stuff, getting rate limited
@@ -660,7 +668,6 @@ function TopSearchBarCtrl ($scope, ColumnData )
 // So one controller does the whole tweet rather than individual elements
 function HashTagSearchCtrl ( $scope )
 {
-
     $scope.content;                         // Content
     $scope.searchVars       = {
         searchString : ""
@@ -669,9 +676,9 @@ function HashTagSearchCtrl ( $scope )
     $scope.searchTweets     = function(st)
     {
         $scope.ColumnData.columns.push({
-            "name" : st ,
-            "type" : "search",
-            "settings" : false
+            "name"          : st ,
+            "type"          : "search",
+            "settings"      : false
         });
     }
 }
@@ -686,11 +693,11 @@ function ProfileModalCtrl ( $scope, $http  )
     var id;
     var screen_name;
     if($scope.$parent.tweet.from_user_id != undefined) {
-        id =                $scope.$parent.tweet.from_user_id;
-        screen_name =       $scope.$parent.from_user
+        id                  = $scope.$parent.tweet.from_user_id;
+        screen_name         = $scope.$parent.from_user
     } else {
-        id = $scope.$parent.tweet.user.id;
-        screen_name =       $scope.$parent.tweet.user.screen_name;
+        id                  = $scope.$parent.tweet.user.id;
+        screen_name         = $scope.$parent.tweet.user.screen_name;
     }
 
     $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.users%20where%20id%3D"+id+"%3B%20&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
@@ -748,13 +755,12 @@ function ProfileModalCtrl ( $scope, $http  )
 }
 
 // JavaScript Helper Functions
-
 function addLinksToHtml( st )
 {
-
     // Add Ancor to @
     var regEx = /@([a-z0-9_]{1,20})/gi;
     // Commenting this out until i figure out the bug
+    // TODO this breaks the modal , I've asked the dude who made the plugin for hlep, we'll get back to it
     var newString = st;// = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
 
     // Adds Ancor to links
@@ -769,7 +775,8 @@ function addLinksToHtml( st )
     return newString;
 }
 
-function swapArrayElements(array_object, index_a, index_b) {
+function swapArrayElements(array_object, index_a, index_b)
+{
     var temp = array_object[index_a];
     array_object[index_a] = array_object[index_b];
     array_object[index_b] = temp;
@@ -794,3 +801,33 @@ function TwitterDateConverter(time){
         day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
 }
 
+
+
+var xml_special_to_escaped_one_map = {
+    '&': '&amp;',
+    '"': '&quot;',
+    '\'': '&#039;',
+    '<': '&lt;',
+    '>': '&gt;'
+};
+
+var escaped_one_to_xml_special_map = {
+    '&amp;': '&',
+    '&quot;': '"',
+    '&#039;': '\'',
+    '&lt;': '<',
+    '&gt;': '>'
+};
+
+function encodeXml(string) {
+    return string.replace(/([\&"'<>])/g, function(str, item) {
+        return xml_special_to_escaped_one_map[item];
+    });
+};
+
+function decodeXml(string) {
+    return string.replace(/(&amp;|&quot;|&#039;|&lt;|&gt;)/g,
+        function(str, item) {
+            return escaped_one_to_xml_special_map[item];
+        });
+}
