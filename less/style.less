@@ -289,18 +289,47 @@ body {
 }
 
 .navbar {
+
+  position: absolute;
+
+
   .navbar-inner {
+    height         : 30px;
+    width: 100%;
     padding-left  : 20px;
     padding-right : 40px;
+    padding:0;
+    display: table;
+//    border: 1px solid #ccc
   }
 
   .navcol {
-    height         : 50px;
-    width          : 33%;
-    position       : relative;
-    float          : left;
+    height         : 30px;
+    width          : 400px;
+    padding        : 0;
+//    position       : relative;
+//    float          : left;
     display        : table-cell;
-    vertical-align : middle
+    vertical-align : top ;
+    margin:  0;
+//    border: 1px solid #ccc;
+
+    form{
+        margin: 0;
+    }
+
+
+  }
+
+  .navcolM {
+    height         : 30px;
+//  position       : relative;
+//  float          : left;
+    display        : table-cell;
+    vertical-align : top ;
+    padding:0;
+    margin:0;
+//    border: 1px solid #ccc
   }
 
   .navlogo {
@@ -310,7 +339,7 @@ body {
   }
 
   .brand {
-    margin-top : 5px;
+//    margin-top : 5px;
   }
 
   .top-search {

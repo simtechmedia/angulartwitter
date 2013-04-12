@@ -59,7 +59,8 @@ app.directive("profilelink", function($compile){
         compile: function() {
             return function ( scope, element , attrs) {
                 attrs.$observe('profilename', function(textValue) {
-                    var linkHTML = '<a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="partials/user-modal.html" data-toggle="modal">@'+textValue+'</a>'
+                    var linkHTML = '<a href="#" ng-controller="ProfileModalCtrl" ng-click="openModalM()">@'+textValue+'</a>'
+                    //var linkHTML = '<a href="#" ng-controller="MyModalCtrl" ng-click="openModal()" bs-modal="partials/user-modal.html" data-toggle="modal">@'+textValue+'</a>'
                     element.html( $compile( linkHTML )(scope) );
                 });
             }
@@ -472,27 +473,39 @@ function UserTweetsCtrl ( $scope , $http )
     // Limit for pagination
     $scope.pageSize         = 10;
     $scope.searchString     = "";
-    var searchString        = encodeURI($scope.$parent.column.name);
     var searchURL           = "https://query.yahooapis.com/v1/public/yql?q=set%20access_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20access_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20FROM%20twitter.statuses.user_timeline%20%0AWHERE%20screen_name%3D%22simtechmedia%22&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Fangtwit01&callback=JSON_CALLBACK";
+    var maxTries            = 3;
+    var currentTry          = 0;
 
-    // Debug stuff, getting rate limited
-    if(!document.URL.substring(0,16) == "http://localhost")
+    $scope.getData = function()
     {
-        $http.get('data/userTweets.json').success(function(data) {
-
-            $scope.processData(data);
-        });
-    } else {
-        $http.jsonp(searchURL).success(function(data)
+        currentTry++;
+        // Debug stuff, getting rate limited
+        if(document.URL.substring(0,16) == "http://localhost")
         {
-            $scope.processData(data);
-        })
+            $http.get('data/userTweets.json').success(function(data) {
+
+                $scope.processData(data);
+            });
+        } else {
+            $http.jsonp(searchURL).success(function(data)
+            {
+                $scope.processData(data);
+            })
+        }
     }
+
+    $scope.getData();         // Init get data
 
     $scope.processData = function(data)
     {
-        var results = JSON.parse(data.query.results.result);
-        $scope.tweets = results;
+        try{
+            var results = JSON.parse(data.query.results.result);
+            $scope.tweets = results;
+        } catch ( err ) {
+            console.log("processData failed on userTweets, trying again");
+            if(currentTry < maxTries) $scope.getData();
+        }
     }
 
     $scope.parseTwitterTime = function( time )
@@ -579,7 +592,7 @@ function searchSettingsCtrl ( $scope )
     }
 
     // Arrow Arrange Functions
-    $scope.moveColLeft = function()
+    $scope.moveColLeft      = function()
     {
         $scope.thisIndex = $scope.$parent.$index;
         if( $scope.thisIndex  > 0 )  {
@@ -591,7 +604,7 @@ function searchSettingsCtrl ( $scope )
 
     $scope.moveColRight = function()
     {
-        $scope.thisIndex = $scope.$parent.$index
+        $scope.thisIndex    = $scope.$parent.$index
         if( $scope.thisIndex  < $scope.data.columns.length -1  )
         {
             swapArrayElements($scope.data.columns, $scope.thisIndex , $scope.thisIndex  + 1 )
@@ -625,7 +638,7 @@ function FriendTweetsCtrl( $scope , $http  )
     $scope.processData = function(data)
     {
         var results = data.query.results.statuses.status;
-        $scope.tweets = results;
+        $scope.tweets       = results;
     }
 }
 
@@ -635,8 +648,8 @@ function FriendTweetsCtrl( $scope , $http  )
 function TopBarCtrl (  $scope , $http )
 {
     $http.get('data/userData.json').success(function(data) {
-        var results = data.query.results
-        $scope.userData = results;
+        var results         = data.query.results
+        $scope.userData     = results;
         //console.log(results);
     });
 }
@@ -685,7 +698,7 @@ function HashTagSearchCtrl ( $scope )
 
 // Controller for Profile Modal
 // Uses jsonp call to grab data from ypl
-function ProfileModalCtrl ( $scope, $http  )
+function ProfileModalCtrl ( $scope, $http , $modal )
 {
    // var id = $scope.$parent.tweet.user.id;
     $scope.sourceTweet      = $scope.$parent.tweet ;
@@ -701,7 +714,9 @@ function ProfileModalCtrl ( $scope, $http  )
     }
 
     $scope.urlRequest = "https://query.yahooapis.com/v1/public/yql?q=set%20oauth_token%3D'109847094-V2IhnURLzb4q9bpvbMAuvulrNywM4EvSvmjsILvV'%20on%20twitter%3B%0Aset%20oauth_token_secret%3D'5W73pwttktohZ55YOFC7Tjl9YQeelyQ6bfDrDDsZLc'%20on%20twitter%3B%0Aselect%20*%20from%20twitter.users%20where%20id%3D"+id+"%3B%20&format=json&env=store%3A%2F%2Fsimtechmedia.com%2Foauthdemo&callback=JSON_CALLBACK";
+
     $scope.openModal = function(){
+        console.log("openModal");
         if(document.URL.substring(0,16) == "http://localhost") {
             $scope.getLocalProfile();
         } else {
@@ -709,11 +724,18 @@ function ProfileModalCtrl ( $scope, $http  )
         }
     }
 
+    $scope.openModalM = function()
+    {
+        var modal = $modal({ template: 'partials/user-modal.html', scope:$scope, show: true, backdrop: 'static'});
+        $scope.openModal();
+    }
+
     $scope.getLocalProfile = function()
     {
+        console.log("getLocalProfile");
         $http.get('data/userProfile.json').success(function(data) {
             var results = data.query.results;
-            //console.log(results);
+            console.log(results);
             $scope.user = results.user;;
         });
     }
@@ -737,6 +759,7 @@ function ProfileModalCtrl ( $scope, $http  )
 
     $scope.userTweets = function()
     {
+        console.log("userTweets");
         $scope.ColumnData.columns.push({
             "name" : screen_name ,
             "type" : "user",
@@ -761,7 +784,7 @@ function addLinksToHtml( st )
     var regEx = /@([a-z0-9_]{1,20})/gi;
     // Commenting this out until i figure out the bug
     // TODO this breaks the modal , I've asked the dude who made the plugin for hlep, we'll get back to it
-    var newString = st;// = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
+    var newString = String(st).replace(  regEx , "<profilelink profilename='$1'></profilelink>" );
 
     // Adds Ancor to links
     var htmlRegEx = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;

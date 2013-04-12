@@ -1,6 +1,6 @@
 /**
  * AngularStrap - Twitter Bootstrap directives for AngularJS
- * @version v0.7.2 - 2013-04-11
+ * @version v0.7.1 - 2013-03-21
  * @link http://mgcrea.github.com/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -247,7 +247,7 @@ angular.module('$strap.directives')
 
 }])
 
-.directive('bsButtonsRadio', ['$timeout', function($timeout) {
+.directive('bsButtonsRadio', ['$parse', function($parse) {
   'use strict';
   return {
     restrict: 'A',
@@ -268,12 +268,10 @@ angular.module('$strap.directives')
         // If we have a controller (i.e. ngModelController) then wire it up
         if(controller) {
 
-          $timeout(function() {
-            iElement
-              .find('[value]').button()
-              .filter('[value="' + controller.$viewValue + '"]')
-              .addClass('active');
-          });
+          iElement
+            .find('[value]').button()
+            .filter('[value="' + scope.$eval(iAttrs.ngModel) + '"]')
+            .addClass('active');
 
           iElement.on('click.button.data-api', function (ev) {
             scope.$apply(function () {
@@ -286,8 +284,7 @@ angular.module('$strap.directives')
             if(newValue !== oldValue) {
               var $btn = iElement.find('[value="' + scope.$eval(iAttrs.ngModel) + '"]');
               if($btn.length) {
-                $btn.button('toggle');
-                // $.fn.button.Constructor.prototype.toggle.call($btn.data('button'));
+                $.fn.button.Constructor.prototype.toggle.call($btn.data('button'));
               }
             }
           });
@@ -351,7 +348,7 @@ angular.module('$strap.directives')
 .directive('bsDatepicker', ['$timeout', '$strap.config', function($timeout, config) {
   'use strict';
 
-  var isAppleTouch = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
+  var isTouch = 'ontouchstart' in window && !window.navigator.userAgent.match(/PhantomJS/i);
 
   var regexpMap = function regexpMap(language) {
     language = language || 'en';
@@ -393,56 +390,54 @@ angular.module('$strap.directives')
 
       var options = config.datepicker || {},
           language = attrs.language || options.language || 'en',
-          type = attrs.dateType || options.type || 'date',
-          format = attrs.dateFormat || options.format || ($.fn.datepicker.dates[language] && $.fn.datepicker.dates[language].format) || 'yyyy-mm-dd';
+          format = attrs.dateFormat || options.format || ($.fn.datepicker.dates[language] && $.fn.datepicker.dates[language].format) || 'mm/dd/yyyy';
 
-      var dateFormatRegexp = isAppleTouch ? regexpForDateFormat('yyyy-mm-dd', language) : regexpForDateFormat(format, language);
+      var dateFormatRegexp = isTouch ? 'yyyy/mm/dd' : regexpForDateFormat(format, language);
 
       // Handle date validity according to dateFormat
       if(controller) {
-
-        // controller.$formatters.unshift(function(viewValue) {
-        //   console.warn('$formatters', arguments);
-        // });
-
-        // ngModel validity
         controller.$parsers.unshift(function(viewValue) {
-          if(!viewValue) {
-            controller.$setValidity('date', true);
-            return null;
-          } else if(type === 'date' && angular.isDate(viewValue)) {
+          //console.warn('viewValue', viewValue, dateFormatRegexp,  dateFormatRegexp.test(viewValue));
+          if (!viewValue || dateFormatRegexp.test(viewValue)) {
             controller.$setValidity('date', true);
             return viewValue;
-          } else if(angular.isString(viewValue) && dateFormatRegexp.test(viewValue)) {
-            controller.$setValidity('date', true);
-            if(isAppleTouch) return new Date(viewValue);
-            return type === 'string' ? viewValue : $.fn.datepicker.DPGlobal.parseDate(viewValue, $.fn.datepicker.DPGlobal.parseFormat(format), language);
           } else {
             controller.$setValidity('date', false);
             return undefined;
           }
         });
-
-        // ngModel rendering
-        controller.$render = function ngModelRender() {
-          return controller.$modelValue && element.datepicker('setValue', controller.$modelValue);
-        };
-
       }
 
       // Use native interface for touch devices
-      if(isAppleTouch) {
+      if(isTouch && element.prop('type') === 'text') {
 
-        element.prop('type', 'date').css('-webkit-appearance', 'textfield');
+        element.prop('type', 'date');
+        element.on('change', function(ev) {
+          scope.$apply(function () {
+            controller.$setViewValue(element.val());
+          });
+        });
 
       } else {
 
-        // If we have a ngModelController then wire it up
+        // If we have a controller (i.e. ngModelController) then wire it up
         if(controller) {
           element.on('changeDate', function(ev) {
             scope.$apply(function () {
-              controller.$setViewValue(type === 'string' ? element.val() : ev.date);
+              controller.$setViewValue(element.val());
             });
+          });
+        }
+
+        // Popover GarbageCollection
+        var $popover = element.closest('.popover');
+        if($popover) {
+          $popover.on('hide', function(e) {
+            var datepicker = element.data('datepicker');
+            if(datepicker) {
+              datepicker.picker.remove();
+              element.data('datepicker', null);
+            }
           });
         }
 
@@ -455,25 +450,122 @@ angular.module('$strap.directives')
           forceParse: attrs.forceParse || false
         });
 
-        // Garbage collection
-        scope.$on('$destroy', function() {
-          console.warn('$destroy');
-          var datepicker = element.data('datepicker');
-          if(datepicker) {
-            datepicker.picker.remove();
-            element.data('datepicker', null);
-          }
-        });
-
       }
 
       // Support add-on
       var component = element.siblings('[data-toggle="datepicker"]');
       if(component.length) {
-        component.on('click', function() {
-          element.trigger('focus');
-        });
+        component.on('click', function() { element.trigger('focus'); });
       }
+
+    }
+
+  };
+
+}]);
+
+// https://github.com/eternicode/bootstrap-datepicker
+
+angular.module('$strap.directives')
+
+.directive('bsDaterangepicker', ['$timeout', function($timeout) {
+  'use strict';
+
+  var isTouch = 'ontouchstart' in window && !window.navigator.userAgent.match(/PhantomJS/i);
+
+  // var DATE_REGEXP_MAP = {
+  //   '/'    : '[\\/]',
+  //   '-'    : '[-]',
+  //   '.'    : '[.]',
+  //   'dd'   : '(?:(?:[0-2]?[0-9]{1})|(?:[3][01]{1}))',
+  //   'd'   : '(?:(?:[0-2]?[0-9]{1})|(?:[3][01]{1}))',
+  //   'mm'   : '(?:[0]?[1-9]|[1][012])',
+  //   'm'   : '(?:[0]?[1-9]|[1][012])',
+  //   'yyyy' : '(?:(?:[1]{1}[0-9]{1}[0-9]{1}[0-9]{1})|(?:[2]{1}[0-9]{3}))(?![[0-9]])',
+  //   'yy'   : '(?:(?:[0-9]{1}[0-9]{1}))(?![[0-9]])'
+  // };
+
+  return {
+    restrict: 'A',
+    require: '?ngModel',
+    link: function postLink(scope, element, attrs, controller) {
+      console.log('postLink', this, arguments); window.element = element;
+
+    //   var regexpForDateFormat = function(dateFormat, options) {
+    //     options || (options = {});
+    //     var re = dateFormat, regexpMap = DATE_REGEXP_MAP;
+    //     /*if(options.mask) {
+    //       regexpMap['/'] = '';
+    //       regexpMap['-'] = '';
+    //     }*/
+    //     angular.forEach(regexpMap, function(v, k) { re = re.split(k).join(v); });
+    //     return new RegExp('^' + re + '$', ['i']);
+    //   };
+
+    //   var dateFormatRegexp = isTouch ? 'yyyy/mm/dd' : regexpForDateFormat(attrs.dateFormat || 'mm/dd/yyyy'/*, {mask: !!attrs.uiMask}*/);
+
+    //   // Handle date validity according to dateFormat
+    //   if(controller) {
+    //     controller.$parsers.unshift(function(viewValue) {
+    //       //console.warn('viewValue', viewValue, dateFormatRegexp,  dateFormatRegexp.test(viewValue));
+    //       if (!viewValue || dateFormatRegexp.test(viewValue)) {
+    //         controller.$setValidity('date', true);
+    //         return viewValue;
+    //       } else {
+    //         controller.$setValidity('date', false);
+    //         return undefined;
+    //       }
+    //     });
+    //   }
+
+    //   // Support add-on
+    //   var component = element.next('[data-toggle="datepicker"]');
+    //   if(component.length) {
+    //     component.on('click', function() { isTouch ? element.trigger('focus') : element.datepicker('show'); });
+    //   }
+
+    //   // Use native interface for touch devices
+    //   if(isTouch && element.prop('type') === 'text') {
+
+    //     element.prop('type', 'date');
+    //     element.on('change', function(ev) {
+    //       scope.$apply(function () {
+    //         controller.$setViewValue(element.val());
+    //       });
+    //     });
+
+    //   } else {
+
+    //     // If we have a controller (i.e. ngModelController) then wire it up
+    //     if(controller) {
+    //       element.on('changeDate', function(ev) {
+    //         scope.$apply(function () {
+    //           controller.$setViewValue(element.val());
+    //         });
+    //       });
+    //     }
+
+    //     // Popover GarbageCollection
+    //     var $popover = element.closest('.popover');
+    //     if($popover) {
+    //       $popover.on('hide', function(e) {
+    //         var datepicker = element.data('datepicker');
+    //         if(datepicker) {
+    //           datepicker.picker.remove();
+    //           element.data('datepicker', null);
+    //         }
+    //       });
+    //     }
+
+        // Create daterangepicker
+        element.attr('data-toggle', 'daterangepicker');
+        element.daterangepicker({
+          // autoclose: true,
+          // forceParse: attrs.forceParse || false,
+          // language: attrs.language || 'en'
+        });
+
+    //   }
 
     }
 
@@ -535,35 +627,53 @@ angular.module('$strap.directives')
 
 angular.module('$strap.directives')
 
-.factory('$modal', ['$rootScope', '$compile', '$http', '$timeout', '$q', '$templateCache', function($rootScope, $compile, $http, $timeout, $q, $templateCache) {
+.directive('bsModal', ['$parse', '$compile', '$http', '$timeout', '$q', '$templateCache', function($parse, $compile, $http, $timeout, $q, $templateCache) {
+  'use strict';
 
-  var ModalFactory = function ModalFactory(options) {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function postLink(scope, element, attr, ctrl) {
 
-    function Modal(options) {
-      if(!options) options = {};
+      var getter = $parse(attr.bsModal),
+        setter = getter.assign,
+        value = getter(scope);
 
-      var scope = options.scope || $rootScope.$new(),
-          templateUrl = options.template;
+      $q.when($templateCache.get(value) || $http.get(value, {cache: true})).then(function onSuccess(template) {
 
-      //@todo support {title, content} object
+        // Handle response from $http promise
+        if(angular.isObject(template)) {
+          template = template.data;
+        }
 
-      return $q.when($templateCache.get(templateUrl) || $http.get(templateUrl, {cache: true}).then(function(res) { return res.data; }))
-      .then(function onSuccess(template) {
+        // Hack to hide the error while i figure out whats going on
+        if(getter(scope) == 0)
+        {
+           return
+        }
 
-        // Build modal object
-        var id = templateUrl.replace('.html', '').replace(/[\/|\.|:]/g, "-") + '-' + scope.$id;
-        var $modal = $('<div class="modal hide" tabindex="-1"></div>').attr('id', id).addClass('fade').html(template);
-        if(options.modalClass) $modal.addClass(options.modalClass);
+        var id = getter(scope).replace('.html', '').replace(/[\/|\.|:]/g, "-") + '-' + scope.$id;
+
+
+        var $modal = $('<div class="modal hide" tabindex="-1"></div>')
+          .attr('id', id)
+          .attr('data-backdrop', attr.backdrop || true)
+          .attr('data-keyboard', attr.keyboard || true)
+          .addClass(attr.modalClass ? 'fade ' + attr.modalClass : 'fade')
+          .html(template);
 
         $('body').append($modal);
 
+        // Configure element
+        element.attr('href', '#' + id).attr('data-toggle', 'modal');
+
         // Compile modal content
-        $timeout(function() {
+        $timeout(function(){
           $compile($modal)(scope);
         });
 
         // Provide scope display functions
-        scope.$modal = function(name) {
+        scope._modal = function(name) {
           $modal.modal(name);
         };
         scope.hide = function() {
@@ -574,57 +684,23 @@ angular.module('$strap.directives')
         };
         scope.dismiss = scope.hide;
 
-        // Emit modal events
-        angular.forEach(['show', 'shown', 'hide', 'hidden'], function(name) {
-          $modal.on(name, function(ev) {
-            scope.$emit('modal-' + name, ev);
-          });
+        $modal.on("show", function(event) {
+          scope.$emit("modal-show", event);
         });
 
-        // Support autofocus attribute
-        $modal.on('shown', function(event) {
-          $('input[autofocus]', $modal).first().trigger('focus');
+        $modal.on("shown", function(event) {
+          scope.$emit("modal-shown", event);
         });
 
-        if(options.show) {
-          $modal.modal('show');
-        }
+        $modal.on("hide", function(event) {
+          scope.$emit("modal-hide", event);
+        });
 
-        return $modal;
+        $modal.on("hidden", function(event) {
+          scope.$emit("modal-hidden", event);
+        });
 
       });
-
-    }
-
-    return new Modal(options);
-
-  };
-
-  return ModalFactory;
-
-}])
-
-.directive('bsModal', ['$q', '$modal', function($q, $modal) {
-  'use strict';
-
-  return {
-    restrict: 'A',
-    scope: true,
-    link: function postLink(scope, iElement, iAttrs, controller) {
-
-      var options = {
-        template: scope.$eval(iAttrs.bsModal),
-        scope: scope,
-        modalClass: iAttrs.modalClass || '',
-        backdrop: iAttrs.backdrop*1 || true,
-        keyboard: iAttrs.keyboard*1 || true,
-        show: iAttrs.show*1 || false
-      };
-
-      $q.when($modal(options)).then(function onSuccess(modal) {
-        iElement.attr('data-target', '#' + modal.attr('id')).attr('data-toggle', 'modal');
-      });
-
     }
   };
 }]);
@@ -637,13 +713,13 @@ angular.module('$strap.directives')
 
   return {
     restrict: 'A',
-    link: function postLink(scope, element, attrs, controller) {
+    link: function postLink($scope, element, attrs, controller) {
       // Watch for the $location
-      scope.$watch(function() {
+      $scope.$watch(function() {
         return $location.path();
       }, function(newValue, oldValue) {
 
-        $('li[data-match-route]', element).each(function(k, li) {
+        element.find('li[data-match-route]').each(function(k, li) {
           var $li = angular.element(li),
             // data('match-rout') does not work with dynamic attributes
             pattern = $li.attr('data-match-route'),
@@ -767,32 +843,87 @@ angular.module('$strap.directives')
 
 angular.module('$strap.directives')
 
-.directive('bsSelect', ['$timeout', function($timeout) {
+.directive('bsTabs', ['$parse', '$compile', '$timeout', function($parse, $compile, $timeout) {
   'use strict';
-
-  var NG_OPTIONS_REGEXP = /^\s*(.*?)(?:\s+as\s+(.*?))?(?:\s+group\s+by\s+(.*))?\s+for\s+(?:([\$\w][\$\w\d]*)|(?:\(\s*([\$\w][\$\w\d]*)\s*,\s*([\$\w][\$\w\d]*)\s*\)))\s+in\s+(.*)$/;
 
   return {
     restrict: 'A',
     require: '?ngModel',
-    link: function postLink(scope, element, attrs, controller) {
+    scope: true,
+    link: function postLink(scope, iElement, iAttrs, controller) {
 
-      var options = scope.$eval(attrs.bsSelect) || {};
-      // console.warn('postLink', options, arguments);
+      var getter = $parse(iAttrs.bsTabs),
+        setter = getter.assign,
+        value = getter(scope);
 
+      var tabs = ['<ul class="nav nav-tabs">', '</ul>'];
+      var panes = ['<div class="tab-content">', '</div>'];
+
+      iElement.hide();
+      var activeTab = 0;
+
+      // Defer after any ngRepeat rendering
       $timeout(function() {
-        element.selectpicker(options);
-        element.next().removeClass('ng-scope');
+
+        if(!angular.isArray(value)) {
+
+          value = [];
+          // Convert existing dom elements
+          iElement.children('[data-title], [data-tab]').each(function(index) {
+            var $this = angular.element(this);
+            value.push({
+              title: scope.$eval($this.data('title') || $this.data('tab')),
+              content: this.innerHTML,
+              active: $this.hasClass('active'),
+              fade: $this.hasClass('fade')
+            });
+          });
+
+        }
+
+        // Select correct starting activeTab
+        angular.forEach(value, function(tab, index) {
+          if(tab.active) {
+            activeTab = index;
+          }
+        });
+
+        // Build from object
+        angular.forEach(value, function(tab, index) {
+          var id = 'tab-' + scope.$id + '-' + index,
+              active = activeTab === index,
+              fade = iAttrs.fade || tab.fade;
+          tabs.splice(index + 1, 0, '<li' + (active ? ' class="active"' : '') + '><a href="#' + id + '" data-index="' + index + '" data-toggle="tab">' + tab.title + '</a></li>');
+          panes.splice(index + 1, 0, '<div class="tab-pane' + (active ? ' active' : '') + (fade ? ' fade' : '') + (fade && active ? ' in' : '') + '" id="' + id + '">' + tab.content + '</div>');
+        });
+
+        iElement.html(tabs.join('') + panes.join('')).show();
+
+        // Compile tab-content
+        $compile(iElement.children('div.tab-content'))(scope);
+
       });
 
       // If we have a controller (i.e. ngModelController) then wire it up
       if(controller) {
 
-        // Watch for changes to the model value
-        scope.$watch(attrs.ngModel, function(newValue, oldValue) {
-          if (newValue !== oldValue) {
-            element.selectpicker('refresh');
-          }
+        iElement.on('show', function(ev) {
+          var $target = $(ev.target);
+          scope.$apply(function() {
+            controller.$setViewValue($target.data('index'));
+          });
+        });
+
+        // Watch ngModel for changes
+        scope.$watch(iAttrs.ngModel, function(newValue, oldValue) {
+          if(angular.isUndefined(newValue)) { return; }
+          activeTab = newValue; // update starting activeTab before first build
+          setTimeout(function() {
+            var $next = iElement.children('ul.nav-tabs').find('li:eq(' + newValue*1 + ')');
+            if(!$next.hasClass('active')) {
+              $next.children('a').tab('show');
+            }
+          });
         });
 
       }
@@ -800,104 +931,6 @@ angular.module('$strap.directives')
     }
 
   };
-
-}]);
-
-
-angular.module('$strap.directives')
-
-.directive('bsTabs', ['$parse', '$compile', '$timeout', function($parse, $compile, $timeout) {
-  'use strict';
-
-  var template = '<div class="tabs">' +
-  '<ul class="nav nav-tabs">' +
-    '<li ng-repeat="pane in panes" ng-class="{active:pane.active}">' +
-      '<a data-target="#{{pane.id}}" data-index="{{$index}}" data-toggle="tab">{{pane.title}}</a>' +
-    '</li>' +
-  '</ul>' +
-  '<div class="tab-content" ng-transclude>' +
-    // '<div ng-repeat="pane in panes" ng-class="{active:pane.selected}">{{pane.content}}</div>' +
-  '</div>';
-
-  return {
-    restrict: 'A',
-    require: '?ngModel',
-    priority: 0,
-    scope: true,
-    template: template,//'<div class="tabs"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div>',
-    replace: true,
-    transclude: true,
-    compile: function compile(tElement, tAttrs, transclude) {
-
-      return function postLink(scope, iElement, iAttrs, controller) {
-
-        var getter = $parse(iAttrs.bsTabs),
-            setter = getter.assign,
-            value = getter(scope);
-
-        scope.panes = [];
-        var $tabs = iElement.find('ul.nav-tabs');
-        var $panes = iElement.find('div.tab-content');
-
-
-        var activeTab = 0, id, title, active;
-        $timeout(function() {
-
-          $panes.find('[data-title], [data-tab]').each(function(index) {
-            var $this = angular.element(this);
-
-            id = 'tab-' + scope.$id + '-' + index;
-            title = $this.data('title') || $this.data('tab');
-            active = !active && $this.hasClass('active');
-
-            $this.attr('id', id).addClass('tab-pane');
-            if(iAttrs.fade) $this.addClass('fade');
-
-            scope.panes.push({
-              id: id,
-              title: title,
-              content: this.innerHTML,
-              active: active
-            });
-
-          });
-
-          if(scope.panes.length && !active) {
-            $panes.find('.tab-pane:first').addClass('active' + (iAttrs.fade ? ' in' : ''));
-            scope.panes[0].active = true;
-          }
-
-        });
-
-        // If we have a controller (i.e. ngModelController) then wire it up
-        if(controller) {
-
-          iElement.on('show', function(ev) {
-            var $target = $(ev.target);
-            scope.$apply(function() {
-              controller.$setViewValue($target.data('index'));
-            });
-          });
-
-          // Watch ngModel for changes
-          scope.$watch(iAttrs.ngModel, function(newValue, oldValue) {
-            if(angular.isUndefined(newValue)) return;
-            activeTab = newValue; // update starting activeTab before first build
-            setTimeout(function() {
-              var $next = $tabs.find('li:eq(' + newValue*1 + ')');
-              if(!$next.hasClass('active')) {
-                $next.children('a').tab('show');
-              }
-            });
-          });
-
-        }
-
-    };
-
-  }
-
-};
 
 }]);
 
@@ -939,14 +972,9 @@ angular.module('$strap.directives')
       // Create datepicker
       element.attr('data-toggle', 'timepicker');
       element.parent().addClass('bootstrap-timepicker');
-      element.timepicker();
-      var timepicker = element.data('timepicker');
-
-      // Support add-on
-      var component = element.siblings('[data-toggle="timepicker"]');
-      if(component.length) {
-        component.on('click', $.proxy(timepicker.showWidget, timepicker));
-      }
+      //$timeout(function () {
+        element.timepicker();
+      //});
 
     }
   };
@@ -1053,7 +1081,6 @@ angular.module('$strap.directives')
               controller.$setViewValue(value);
             });
           }
-          scope.$emit('typeahead-updated', value);
           return value;
         }
       });
